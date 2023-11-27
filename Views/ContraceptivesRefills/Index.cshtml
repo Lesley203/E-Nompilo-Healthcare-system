@@ -1,0 +1,194 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.ContraceptivesRefill>
+@using E_Nompilo_Healthcare_system.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims;
+@using E_Nompilo_Healthcare_system.UserClaimsIdentity;
+@{
+    ViewData["Title"] = "Index";
+      Layout = "~/Views/Shared/_FamilyPlanLayout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contraceptives Refill List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        th, td {
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Patient Name
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Contraceptive Type
+                </th>
+                <th>
+                    Last Refill Date
+                </th>
+                <th>
+                    Collection Date
+                </th>
+                <th>
+                    Contact Number
+                </th>
+                <th>
+                    Additional Information
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem =>item.MainUser.FirstName) @Html.DisplayFor(modelItem =>item.MainUser.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContraceptiveType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastRefillDate)
+                    </td>
+                    <td>
+                        @if (item.CollectionDate.ToString() == "0001/01/01 00:00:00") {
+                            <p>Date</p>
+                        }
+                        else {
+                            @Html.DisplayFor(modelItem => item.CollectionDate)
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContactNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AdditionalInformation)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.RefillID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.RefillID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.RefillID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
+
+@*
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-striped" >
+    <thead>
+        <tr>
+            <th>
+               Patient Name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+               Contraceptive Type
+            </th>
+            <th>
+                Last Refill Date
+            </th>
+            <th>
+                Collection Date
+            </th>
+            <th>
+                Contact Number
+            </th>
+            <th>
+                Additional Information
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem =>item.MainUser.FirstName)
+                @Html.DisplayFor(modelItem =>item.MainUser.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContraceptiveType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastRefillDate)
+            </td>
+             <td>
+                    @if(item.CollectionDate.ToString() == "0001/01/01 00:00:00")
+                    {
+                        <p>Date</p>
+                    }
+                    else{
+                         @Html.DisplayFor(modelItem => item.CollectionDate)
+                    }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdditionalInformation)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RefillID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RefillID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RefillID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+*@

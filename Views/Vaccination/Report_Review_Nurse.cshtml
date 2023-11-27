@@ -1,0 +1,99 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.Vaccine_reportingModel>
+
+@{
+    ViewData["Title"] = "Report_Review_Nurse";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    int row = 0;
+}
+
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<div class="form-container">
+
+    <form method="get" asp-controller="Vaccination" asp-action="Report_Review_Nurse" class="form-inline">
+        @* <input class="form-control " value="@ViewData["CurrentFilter"]" type="text" name="searchEmail" placeholder="Search by Email" aria-label="Search">
+        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i> Search</button>*@
+        <div class="container1t">
+            <input type="text" id="box" placeholder="Search by Email" aria-label="Search" value="@ViewData["CurrentFilter"]" name="searchEmail" class="search__box">
+            <button type="submit"> <i class="fas fa-search search__icon" id="icon" onclick="toggleShow()"></i></button>
+        </div>
+    </form>
+
+</div>
+
+<br />
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HCUser.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HCUser.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HCUser.Email)
+            </th>
+            
+           
+            <th>
+                VaccineID
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VaccineName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VaccinationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientFeedback)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            row++;
+        <tr>
+                 
+                <td>
+                    @row
+                </td>
+                <td>
+                    @Html.DisplayFor(modeItem => item.HCUser.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modeItem => item.HCUser.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modeItem => item.HCUser.Email)
+                </td>
+            
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.VaccineId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VaccineName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VaccinationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientFeedback)
+            </td>
+                <td>
+                    <a asp-controller="Vaccination" asp-action="Vaccination_comments" asp-route-Vaccination_FeddbackId="@item.Vaccination_FeddbackId" asp-route-Id="@item.Id" class=" btn btn-success">Add Comments</a>
+                </td>
+                <td>
+                    <a asp-controller="Vaccination" asp-action="Vaccination_comments_view_N" asp-route-Vaccination_FeddbackId="@item.Vaccination_FeddbackId" asp-route-Id="@item.Id" class=" btn btn-warning">View Comments</a>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,268 @@
+﻿@model MedicalFileModel
+@{
+    ViewData["Title"] = "Access_medical_file_Edit";
+    Layout = "~/Views/Shared/_WalkinLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+
+            <div class="card-body">
+
+                <div class="row">
+                    
+                    <form asp-action="Access_medical_file_Edit" method="post" class="form-horizontal" id="registerForm" novalidate>
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <h3 class="text-primary">MEDICAL FILE</h3>
+                        <hr />
+                        @*  <input hidden asp-for="Id" />*@
+                        <div class="form-group form-check-inline">
+                            <div class="col-8">
+                                <label>First name</label>
+                                <input disabled value="@ViewData["FirstName"]" class="form-control" placeholder="First" type="text">
+                            </div>
+                            <div class="col-8">
+                                <label>Last name</label>
+                                <input value="@ViewData["LastName"]" class="form-control" disabled placeholder="Last" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label id="validationCustom01" class="col-sm-10" for="TextArea">Identity No<span class="login-danger">*</span></label>
+                            <div class="col-md-10">
+                                <input  asp-for="IdentityNo" class="form-control" id="validationCustom01" value="@ViewData["IdentityNo"]" placeholder="Identity Number" type="text">
+                                <div class="invalid-feedback">
+                                    Please Provide a correct ID.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label id="validationCustom02" class="col-md-10" for="TextArea">Residential Address<span class="login-danger">*</span></label>
+                            <div class="col-md-10">
+                                <input asp-for="Address1" class="form-control" value="@ViewData["Address1"]" id="validationCustom02" placeholder="Street Address 1" type="text"  />
+                                <div class="invalid-feedback">
+                                    Please Provide a correct Address.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <input asp-for="Address2" class="form-control" value="@ViewData["Address2"]"  placeholder="Street Address 2" type="text">
+
+                            </div>
+                        </div>
+                        <div class="form-group form-check-inline ">
+                            <div class="col-sm-4">
+                                <label id="validationCustom03" class="col-sm-8">City<span class="login-danger">*</span></label>
+                                <input asp-for="City" class="form-control" value="@ViewData["City"]"  id="validationCustom03" placeholder="City" type="text">
+                                <div class="invalid-feedback">
+                                    Please Provide a correct city.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <label id="validationCustom04">Postcode<span class="login-danger">*</span></label>
+                                <input asp-for="postalCode" class="form-control" value="@ViewData["postalCode"]" id="validationCustom04" placeholder="Postcode" type="text" required>
+                                <div class="invalid-feedback">
+                                    Please Provide a correct postalcode.
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                               
+                                <label id="validationCustom05">Country or Region<span class="login-danger">*</span></label>
+                                <select asp-for="Country" id="validationCustom05" value="@ViewData["Country"]"  class="form-control" required>
+                                    <option>@ViewData["Country"]</option>
+                                    <option>USA</option>
+                                    <option>Mexico</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please Provide a correct country.
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="p-1 text-primary">NEXT OF KIN </h3>
+                        <hr />
+                        <div class="form-group form-check-inline">
+                            <div class="col-sm-8">
+                                <label id="validationCustom06">First name<span class="login-danger">*</span></label>
+                                <input asp-for="KinFirstName" class="form-control" value="@ViewData["KinFirstName"]"  id="validationCustom06" placeholder="First" type="text" >
+                                <div class="invalid-feedback">
+                                    Please Provide a correct name.
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <label id="validationCustom07">Relatioship<span class="login-danger">*</span></label>
+                                <select asp-for="KinRelationship" id="validationCustom07" value="@ViewData["Relationship"]" class="form-select ">
+                                    <option>@ViewData["Relationship"]</option>
+                                    <option>Mother</option>
+                                    <option>GrandFather</option>
+                                    <option>Father</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please Provide a correct answer.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label id="validationCustom08" class="col-sm-10" for="TextArea">Contact<span class="login-danger">*</span></label>
+                            <div class="col-sm-10">
+                                <input asp-for="KinContact" class="form-control" value="@ViewData["ContactKin"]" id="validationCustom08" placeholder="Contact Number" type="text">
+                                <div class="invalid-feedback">
+                                    Please Provide a correct contact number.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label id="validationCustom09" class="col-sm-10" for="TextArea">Email<span class="login-danger">*</span></label>
+                            <div class="col-sm-10">
+                                <input asp-for="KinEmail" class="form-control" value="@ViewData["KinEmail"]" id="validationCustom09" placeholder="Identity Number" type="email">
+                                <div class="invalid-feedback">
+                                    Please Provide a correct email.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label id="validationCustom10" class="col-sm-10" for="TextArea">Residential Address<span class="login-danger">*</span></label>
+                            <div class="col-sm-10">
+                                <input asp-for="KinAddress1" class="form-control" id="validationCustom10"  value="@ViewData["KinAddress1"]" placeholder="Street Address 1" type="text">
+                                <div class="invalid-feedback">
+                                    Please Provide a correct kin Address
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-check-inline">
+
+                            <div class="col-sm-8">
+                                <label id="validationCustom11" class="col-sm-10" for="TextArea">street2</label>
+                                <input asp-for="KinAddress2" class="form-control" id="validationCustom11" value="@ViewData["KinAddress2"]" placeholder="Street Address 2" type="text">
+
+                            </div>
+
+                            <div class="col-sm-4">
+                                <label id="validationCustom12">Postcode<span class="login-danger">*</span></label>
+                                <input asp-for="KinPostalcode" class="form-control" id="validationCustom12"  value="@ViewData["postalCodeKin"]" placeholder="Postcode" type="text">
+                                <div class="invalid-feedback">
+                                    Please Provide a postal code
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="p-1 text-primary">MEDICAL HISTORY</h3>
+                        <hr />
+                        <div class="form-group form-check-inline">
+                            <div class="col-sm-8">
+                                <label id="validationCustom13">Currently taking any medication?<span class="login-danger">*</span> </label>
+                                <select asp-for="TakingMed" id="validationCustom13" value="@ViewData["TakingMed"]" class=" disabled form-select">
+                                    <option>@ViewData["TakingMed"]</option>
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please Provide an answer
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <label id="validationCustom14">Any Allergies?<span class="login-danger dang">*</span></label>
+                                <select asp-for="allergies" id="validationCustom14" value="@ViewData["allergies"]"  class=" form-select ">
+                                    <option>@ViewData["allergies"]</option>
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                    <option>Not Sure</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please Provide a Answer
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-10" for="TextArea">Medical information we should Know(Write N/A if not)</label>
+                            <div class="col-sm-10">
+                               
+                                <input asp-for="MedicalInfor" class="form-control" value="@ViewData[" MedicalInfor"]" rows="3" cols="30">
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form">
+                            <input type="submit" id="ValidateSubmit" value="Update" class="btn btn-primary float-end" />
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+    /* Container styling */
+    .row {
+        margin: 20px;
+    }
+
+    /* Card styling */
+    .card {
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Card body styling */
+    .card-body {
+        padding: 20px;
+    }
+
+    /* Form label styling */
+    label {
+        font-weight: 550;
+    }
+
+    /* Input field styling */
+    .form-control {
+        margin-bottom: 10px;
+    }
+
+    /* Add padding to the form */
+    #registerForm {
+        padding: 20px;
+    }
+
+    /* Style the headings */
+    h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 24px;
+        color: #007BFF;
+    }
+
+    /* Style the edit icon */
+    .fa-edit {
+        color: #007BFF;
+    }
+
+    /* Error message styling */
+    .text-danger {
+        color: red;
+    }
+
+    /* Add some spacing between form groups */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    /* Style the submit button if needed */
+    /* You can customize this further */
+    [type="submit"] {
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+        /* Style the submit button on hover */
+        [type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+</style>

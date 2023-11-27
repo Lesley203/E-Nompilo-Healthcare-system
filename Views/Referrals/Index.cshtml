@@ -1,0 +1,74 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.Referrals>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+</head>
+
+<div class="container container-fluid bg-primary">
+    <h3 class="text text-white text-center">List of Referrals</h3>
+</div>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+<table id="myTable" class="table table-bordered table-striped border border-danger">
+    <thead class="table-dark table-active text-white text-uppercase">
+        <tr>
+            <th class ="text-white">@Html.DisplayNameFor(model => model.Patient)</th>
+            <th class="text-white">@Html.DisplayNameFor(model => model.ReferralDate)</th>
+            <th class ="text-white">@Html.DisplayNameFor(model => model.Reasons)</th>
+            <th class="text-white">@Html.DisplayNameFor(model => model.SpecificConcerns)</th>
+            <th class="text-white">@Html.DisplayNameFor(model => model.ReferredTo)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(ModelItem => item.MainUsers.FirstName) @Html.DisplayFor(ModelItem => item.MainUsers.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(ModelItem => item.ReferralDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(ModelItem => item.Reasons)
+                </td>
+                <td>
+                    @Html.DisplayFor(ModelItem => item.SpecificConcerns)
+                </td>
+                <td>
+                    @Html.DisplayFor(ModelItem => item.ReferredTo)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-primary">Edit</a>
+                    @* <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info">Details</a> *@
+                    <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+ <!-- DataTables CSS file -->
+
+
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables JavaScript file -->
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.bootstrap4.min.js"></script>

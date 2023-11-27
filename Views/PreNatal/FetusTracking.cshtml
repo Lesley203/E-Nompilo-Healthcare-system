@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "FetusTracking";
+    Layout = "~/Views/Shared/_PreNatalLayout.cshtml";
+}
+
+
+<div class="container-fluid pt-4 px-4">
+
+    <div class="row g-4">
+        <a asp-controller="Fetal_Monitoring" asp-action="Create">
+            <div class=" col-sm-6 col-xl-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <div id="dash-con" class="dash-con rounded d-flex align-items-center justify-content-between p-4">
+                    <img src="~/images/Fetal Monitoring.png" style="width: 70px" />
+                    <div class="ms-3">
+                        <h4 class="mb-2">Fetal Monitoring<span class="badge bg-primary rounded-pill text-white"></span></h4>
+
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a asp-controller="Ultra_Sound_Image" asp-action="Create">
+            <div class="col-sm-6 col-xl-4" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                <div id="dash-con" class="dash-con rounded d-flex align-items-center justify-content-between p-4">
+                    <img src="~/images/Sound.png" style="width: 70px" />
+                    <div class="ms-3">
+                        <h4 class="mb-2">Ultra Sound Image</h4>
+
+                    </div>
+                </div>
+            </div>
+
+        </a>
+
+
+
+    </div>
+</div>
+
+<style>
+    #dash-con {
+        background: border-box;
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 0px );
+        -webkit-backdrop-filter: blur( 0px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+    }
+
+        #dash-con:hover {
+            background: rgba( 0, 42, 255, 1 );
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 20px );
+            -webkit-backdrop-filter: blur( 20px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+        }
+</style>

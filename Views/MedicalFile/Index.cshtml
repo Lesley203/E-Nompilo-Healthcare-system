@@ -1,0 +1,219 @@
+﻿@model E_Nompilo_Healthcare_system.Models.MedicalFileModel
+<header>
+
+</header>
+<h3>MEDICAL FILE</h3>
+<hr />
+<div class="">
+    <div class="col">
+        <form asp-action="Index" method="post" class="needs-validation form-horizontal" id="registerForm" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label id="validationCustom01" class="col-sm-10" for="TextArea">Identity No<span class="login-danger">*</span></label>
+                <div class="col-md-10">
+                    <input asp-for="IdentityNo" class="form-control needs-validation" id="validationCustom01" placeholder="Identity Number" type="text" required>
+                    <span asp-validation-for="IdentityNo" class="text-danger"></span>
+                    <div class="invalid-feedback">
+                        Please Provide a correct ID.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label id="validationCustom02" class="col-md-10" for="TextArea">Residential Address<span class="login-danger">*</span></label>
+                <div class="col-md-10">
+                    <input asp-for="Address1" class="form-control" id="validationCustom02" placeholder="Street Address 1" type="text" required />
+                    <div class="invalid-feedback">
+                        Please Provide a correct Address.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input asp-for="Address2"  class="form-control" placeholder="Street Address 2" type="text">
+                   
+                </div>
+            </div>
+            <div  class="form-group form-check-inline ">
+                <div class="col-sm-4">
+                    <label id="validationCustom03" class="col-sm-8">City<span class="login-danger">*</span></label>
+                    <input asp-for="City" class="form-control" id="validationCustom03" placeholder="City" type="text" required>
+                    <div class="invalid-feedback">
+                        Please Provide a correct city.
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <label id="validationCustom04">Postcode<span class="login-danger">*</span></label>
+                    <input asp-for="postalCode" class="form-control" id="validationCustom04" placeholder="Postcode" type="text" required>
+                    <span asp-validation-for="postalCode" class="text-danger"></span>
+                    <div class="invalid-feedback">
+                        Please Provide a correct postalcode.
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <label id="validationCustom05">Country or Region<span class="login-danger">*</span></label>
+                    <select asp-for="Country" id="validationCustom05" class="form-control" required>
+                        <option selected disabled value="">Select country</option>
+                        <option>United States</option>
+                        <option>Zimbabwe</option>
+                        <option>Japan</option>
+                        <option>South Africa</option>
+                        <option>Ghana</option>
+                        <option>Niger</option>
+                        <option>Sudan</option>
+                        <option>Senegal</option>
+                        <option>Tanzania</option>
+                        <option>Ethopia</option>
+                        <option>Lesotho</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please Provide a correct country.
+                    </div>
+                </div>
+            </div>
+            <h3 class="p-1">NEXT OF KIN </h3>
+            <hr />
+            <div class="form-group form-check-inline">
+                <div class="col-sm-8">
+                    <label id="validationCustom06">First name<span class="login-danger">*</span></label>
+                    <input asp-for="KinFirstName" class="form-control" id="validationCustom06" placeholder="First" type="text" required>
+                    <div class="invalid-feedback">
+                        Please Provide a correct name.
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <label id="validationCustom07">Relatioship<span class="login-danger">*</span></label>
+                    <select asp-for="KinRelationship" id="validationCustom07" class="form-select " required>
+                        <option selected disabled value="">Select</option>
+                        <option>Mother</option>
+                        <option>GrandFather</option>
+                        <option>Father</option>
+                        <option>Friend</option>
+                        <option>GrandMother</option>
+                        <option>Uncle</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please Provide a correct answer.
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label id="validationCustom08" class="col-sm-10" for="TextArea">Contact<span class="login-danger">*</span></label>
+                <div class="col-sm-10">
+                    <input asp-for="KinContact" class="form-control" id="validationCustom08" placeholder="Contact Number" type="text" required>
+                    <span asp-validation-for="KinContact" class="text-danger"></span>
+                    <div class="invalid-feedback">
+                        Please Provide a correct contact number.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label id="validationCustom09" class="col-sm-10" for="TextArea">Email<span class="login-danger">*</span></label>
+                <div class="col-sm-10">
+                    <input asp-for="KinEmail" class="form-control" id="validationCustom09" placeholder="Identity Number" type="email" required>
+                    <div class="invalid-feedback">
+                                Please Provide a correct email.
+                            </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label id="validationCustom10" class="col-sm-10" for="TextArea">Residential Address<span class="login-danger">*</span></label>
+                <div class="col-sm-10">
+                    <input asp-for="KinAddress1" class="form-control" id="validationCustom10" placeholder="Street Address 1" type="text" required>
+                    <div class="invalid-feedback">
+                        Please Provide a correct kin Address
+                    </div>
+                </div>
+            </div>
+            <div class="form-group form-check-inline">
+
+                <div class="col-sm-8">
+                    <label id="validationCustom11" class="col-sm-10" for="TextArea">street2</label>
+                    <input asp-for="KinAddress2" class="form-control" id="validationCustom11"  placeholder="Street Address 2" type="text" >
+                   
+                </div>
+
+                <div class="col-sm-4">
+                    <label id="validationCustom12">Postcode<span class="login-danger">*</span></label>
+                    <input asp-for="KinPostalcode" class="form-control" id="validationCustom12" placeholder="Postcode" type="text" required>
+                    <span asp-validation-for="KinPostalcode" class="text-danger"></span>
+                    <div class="invalid-feedback">
+                        Please Provide a postal code
+                    </div>
+                </div>
+            </div>
+            <h3 class="p-1">MEDICAL HISTORY</h3>
+            <hr />
+            <div class="form-group form-check-inline">
+                <div class="col-sm-8">
+                    <label id="validationCustom13">Currently taking any medication?<span class="login-danger">*</span> </label>
+                    <select asp-for="TakingMed" id="validationCustom13" class=" form-select" required>
+                        <option selected disabled value="">Select if....</option>
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please Provide an answer
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <label id="validationCustom14">Any Allergies?<span  class="login-danger dang">*</span></label>
+                    <select asp-for="allergies" id="validationCustom14" class=" form-select " required>
+                        <option selected disabled value="">choose.....</option>
+                        <option>Yes</option>
+                        <option>No</option>
+                        <option>Not Sure</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please Provide a Answer
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-10" for="TextArea">Medical information we should Know(Write N/A if not)</label>
+                <div class="col-sm-10">
+                    <textarea id="validationCustom15" asp-for="MedicalInfor" class="form-control" rows="3" cols="30"></textarea>
+                    <div class="invalid-feedback">
+                        Please Provide any notes.
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="form">
+                <input type="submit" id="ValidateSubmit" value="Submit" class="btn btn-primary float-end" />
+            </div>
+        </form>
+    </div>
+   
+
+
+    
+   
+</div>
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+
+<script type="text/javascript" src="~/js/Validation.js" asp-append-version="true"></script>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/identitynovalidation.js"></script>
+}

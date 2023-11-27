@@ -1,0 +1,103 @@
+﻿@model E_Nompilo_Healthcare_system.Models.Fam_Screening
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_FamilyPlanLayout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Fam_Screening</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MainUser)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MainUser.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Question1)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Question1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Question2)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Question2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Question3)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Question3)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Question4)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Question4)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Question5)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Question5)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Question6)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Question6)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Question7)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Question7)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Question8)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Question8)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Question9)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Question9)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Question10)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Question10)
+        </dd>
+        @*<dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Question11)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Question11)
+        </dd>*@
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.ScreeningID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

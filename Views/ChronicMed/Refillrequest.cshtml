@@ -1,0 +1,235 @@
+﻿@model E_Nompilo_Healthcare_system.Models.RefillrequestModel
+@{
+    ViewData["Title"] = "Refillrequest";
+    Layout = "~/Views/Shared/_ChronicMedLayout.cshtml";
+    var medicationsList = ViewBag.MedicationsList as SelectList ?? new SelectList(new List<Add_Medication_Model>(), "MedicationId", "MedicationName");
+}
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <style>
+        /* Global CSS styles */
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header container styles */
+        .container-fluid.bg-primary {
+            background-color: #007BFF;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+            .container-fluid.bg-primary h3 {
+                color: #fff;
+                font-size: 24px;
+            }
+
+        /* Links styles */
+        .link {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+            .link:hover {
+                text-decoration: underline;
+            }
+
+        /* Form container styles */
+        .bd-example {
+            padding: 10px;
+            margin: 0;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Form label styles */
+        .form-label {
+            font-weight: bold;
+        }
+
+        /* Form input styles */
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Submit button styles */
+        .btn-primary {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body class="p-3 m-0 border-0 bd-example m-0 border-0">
+    <div class="container container-fluid bg-primary">
+        <h3 class="text text-white text-center">Welcome to Refill request</h3>
+    </div>
+
+    <!-- Links -->
+    <div>
+        <a class="link" asp-action="RequestRefill">View List</a>
+    </div>
+
+    <!-- Refill request form -->
+    <div class="bd-example">
+        <form method="post" asp-action="Refillrequest"  class="needs-validation row g-3" novalidate>
+            <input hidden asp-for="Id" />
+
+            <div class="col-md-4">
+                <label asp-for="MedicationName">Select Medication:<span class="login-danger">*</span></label>
+                <select asp-for="MedicationName" class="form-control" id="MedicationId" required>
+                    <option selected disabled value="">Select Medication.......</option>
+                    @foreach (Add_Medication_Model item in ViewBag.MedicationList)
+                    {
+                        <option value="@item.MedicationName">@item.MedicationName</option>
+                    }
+                </select>
+                <div class="invalid-feedback">
+                    Please select The Medication Name.
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label for="validationServer02" class="form-label">Quantity</label>
+                <input asp-for="RequestedQuantity" type="number" class="form-control" value="" required="">
+                <div class="invalid-feedback">
+                    Enter the quantity number.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationServer02" class="form-label">Dosage Form</label>
+                <input asp-for="DosageForm" type="text" class="form-control " value="" required="">
+                <div class="invalid-feedback">
+                    Please enter dosage form!
+                </div>
+
+            </div>
+            <div class="col-md-5">
+                <label for="validationServer02" class="form-label">Reason for Refill</label>
+                <input class="form-control" id="validationCustom04" asp-for="Notes" placeholder="" type="text" required>
+                <div class="invalid-feedback">
+                    Please provide a reason for refill!
+                </div>
+            </div>
+            <div class="col-12">
+                <input type="submit" class="btn btn-primary " value="Submit" />
+            </div>
+        </form>
+
+    </div>
+
+
+
+
+    <!-- End Example Code -->
+</body>
+</html>
+@*<div class="container container-fluid bg-primary">
+    <h3 class="text text-white text-center">Welcome to Refill request</h3>
+</div>
+
+
+</ul>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" asp-action="Refillrequest">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <div class="form-heading align-content-center" style="position:center; ">
+                                <h3 class="align-content-center centered" style="position:center; margin-bottom:27px;">Refill request Form</h3>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms ">
+                                <label>Medication Name <span class="login-danger">*</span></label>
+                                <input asp-for="MedicationName" class="form-control " required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms ">
+                                <label>Patient Name <span class="login-danger">*</span></label>
+                                <input asp-for="PatientName" class="form-control " required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms ">
+                                <label>Request Date <span class="login-danger">*</span></label>
+                                <input asp-for="RequestDate" class="form-control " type="date" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms ">
+                                <label>Requested Quantity <span class="login-danger">*</span></label>
+                                <input asp-for="RequestedQuantity" class="form-control " required>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12">
+                            <div class="form-group local-forms">
+                                <label>Notes <span class="login-danger">*</span></label>
+                                <textarea asp-for="Notes" class="form-control" rows="3" cols="30" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="doctor-submit text-end">
+
+                                <input type="submit" class="btn btn-primary " value="Submit" />
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>

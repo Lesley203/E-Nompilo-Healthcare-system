@@ -1,0 +1,195 @@
+﻿@model List<E_Nompilo_Healthcare_system.Models.RefillrequestModel>
+@{
+    int row = 0;
+    ViewData["Title"] = "RequestRefill";
+    Layout = "~/Views/Shared/_ChronicMedLayout.cshtml";
+}
+<div class="container container-fluid bg-primary">
+    <h3 class="text text-white text-center">Request Refill</h3>
+</div>
+
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Successfully!</strong> @TempData["AlertMessage"]
+    </div>
+}
+
+@if (Model != null)
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Medication Name</th>
+                <th>Dosage Form</th>
+                <th>Request Date</th>
+                <th>Request Quantity</th>
+                <th>Reason for Refill</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var apt in Model)
+            {
+                row++;
+                <tr>
+                    <td width="7%">@row</td>
+                    <td>@apt.MedicationName</td>
+                    <td>@apt.DosageForm</td>
+                    <td>@apt.RequestDate.ToString("yyyy/MM/dd")</td>
+                    <td>@apt.RequestedQuantity</td>
+                    <td>@apt.Notes</td>
+                    <td>
+                        @if (apt.Statuss == RefillStatus.Pending)
+                        {
+                            <span class="status-badge pending">Pending</span>
+                        }
+                        else if (apt.Statuss == RefillStatus.Approve)
+                        {
+                            <span class="status-badge approved">Approved</span>
+                        }
+                    </td>
+
+                    <td width="30%">
+                        <div class="w-100 btn-group" role="group">
+                            <a asp-controller="ChronicMed" asp-action="Update_RefillRequest" asp-route-RefillId="@apt.RefillId" class="btn btn-warning mx-1">Update</a>
+                            <form asp-controller="ChronicMed" asp-action="Delete_RefillRequest" asp-route-RefillId="@apt.RefillId">
+                                <input type="hidden" asp-for="@apt.RefillId" />
+                                <button type="submit" class="btn btn-danger mx-1">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1>No Request created yet</h1>
+}
+
+<style>
+    /* Style the main container */
+    .container {
+        background-color: #007bff;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+
+    /* Style the header text */
+    h3.text {
+        color: #fff;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Style the success alert */
+    .alert-success {
+        background-color: #28a745;
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(40, 167, 69, 0.2);
+    }
+
+    /* Style the table */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        /* Style the table header */
+        .table th {
+            background-color: #007bff;
+            color: #fff;
+            text-align: left;
+            padding: 10px;
+        }
+
+        /* Style the table rows */
+        .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+    /* Style the pending status badge */
+    .status-badge.pending {
+        background-color: #ffc107;
+        color: #333;
+        padding: 5px 10px;
+        border-radius: 5px;
+        box-shadow: 2px 2px 4px rgba(255, 193, 7, 0.2);
+    }
+
+    /* Style the approved status badge */
+    .status-badge.approved {
+        background-color: #28a745;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        box-shadow: 2px 2px 4px rgba(40, 167, 69, 0.2);
+    }
+
+    /* Style the action buttons */
+    .btn {
+        padding: 5px 10px;
+        text-decoration: none;
+        border-radius: 5px;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Style the "No Request created yet" message */
+    h1 {
+        text-align: center;
+        margin-top: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+
+    /* Global CSS styles */
+    body {
+        background-color: #f4f4f4;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Table styles */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    /* Status badge styles */
+    .status-badge {
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .pending {
+        background-color: #ffc107;
+        color: #212529;
+    }
+
+    .approved {
+        background-color: #28a745;
+        color: #fff;
+    }
+</style>

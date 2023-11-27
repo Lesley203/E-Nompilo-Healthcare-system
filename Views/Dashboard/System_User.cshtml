@@ -1,0 +1,74 @@
+﻿@using E_Nompilo_Healthcare_system.Areas.Identity.Data;
+@model IEnumerable<HealthcareSystemUser>
+
+@{
+    ViewData["Title"] = "System_User";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    int rowCount = 0;
+
+}
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<div class="form-container">
+
+    <form method="get" asp-controller="Dashboard" asp-action="System_User" class="form-inline">
+        @* <input class="form-control " value="@ViewData["CurrentFilter"]" type="text" name="searchEmail" placeholder="Search by Email" aria-label="Search">
+        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i> Search</button>*@
+        <div class="container1t">
+            <input type="text" id="box" placeholder="Search by Email" aria-label="Search" value="@ViewData["CurrentFilter"]" name="searchEmail" class="search__box">
+            <button type="submit"> <i class="fas fa-search search__icon" id="icon" onclick="toggleShow()"></i></button>
+        </div>
+    </form>
+
+</div>
+<div class="container table-responsive py-5">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">FirstName</th>
+                <th scope="col">LastName</th>
+                <th scope="col">Email</th>
+                <th scope="col">PhoneNumber</th>
+                <th scope="col">Date of Birth</th>
+            </tr>
+        </thead>
+
+        @foreach (var user in Model)
+        {
+            rowCount++;
+            <tbody>
+                <tr>
+
+                    <th scope="row">@rowCount</th>
+                    <td>@user.Gender</td>
+                    <td>@user.FirstName</td>
+                    <td>@user.LastName</td>
+                    <td>@user.Email</td>
+                    <td>@user.PhoneNumb</td>
+                    <td>@user.DateofBirth</td>
+                    <td> <a asp-controller="Dashboard" asp-action="UserDetails" asp-route-ID="@user.Id" class="btn btn-primary mx-1">View</a></td>
+
+                </tr>
+            </tbody>
+        }
+
+
+
+    </table>
+</div>
+
+<style>
+  
+
+   
+</style>
+
+<script>
+    function toggleShow() {
+        var el = document.getElementById("box");
+        el.classList.toggle("show");
+    }
+</script>

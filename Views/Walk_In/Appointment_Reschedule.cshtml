@@ -1,0 +1,107 @@
+﻿@model E_Nompilo_Healthcare_system.Models.AppointmentModel
+
+@{
+    ViewData["Title"] = "Appointment_Reschedule";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+
+<h1>Reschedule Appointment</h1>
+<hr />
+<<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" asp-action="Appointment_Reschedule">
+                    <input asp-for="BookingId" hidden />
+                    <input asp-for="Id" hidden />
+                    <div class="row">
+
+                        <div class="col-12">
+                            <div class="form-heading align-content-center" style="position:center; ">
+                                <h3 class="align-content-center centered" style="position:center; margin-bottom:27px;">Appointment Details</h3>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms ">
+                                <label asp-for="DateofAppointment">Date of Appointment <span class="login-danger">*</span></label>
+                                <input asp-for="DateofAppointment" class="form-control" type="date" >
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms">
+                                <label asp-for="Time">Time<span class="login-danger">*</span></label>
+                                <div class="time-icon">
+                                    <select asp-for="Time" class="form-control" id="MedicationId" required>
+                                        <option selected disabled value="">Select Medication.......</option>
+                                        @foreach (TimeSpanModel item in ViewBag.TimeList)
+                                        {
+                                            <option value="@item.Get_Time">@item.Get_Time</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="col-12 col-md-6 col-xl-6">
+                            <div class="form-group local-forms">
+                                <label asp-for="ConsultingPerson">Consulting Doctor</label>
+                                <select asp-for="ConsultingPerson" class="form-select ">
+                                    <option
+                                        disabled>Select Doctor</option>
+                                    <option>Dr.Bernardo James</option>
+                                    <option>Dr.Andrea Lalema</option>
+                                    <option>Dr.William Stephin</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-6">
+                            <div class="form-group local-forms">
+                                <label>Type of Appointment<span class="login-danger">*</span> </label>
+                                <select asp-for="TypeOfAppointment" class="form-select " >
+                                    <option disabled>Select Appointment Type</option>
+                                    <option>Check-Ups</option>
+                                    <option>Consultation</option>
+                                    <option>Dentist</option>
+                                    <option>Surgery</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="col-12 col-sm-12">
+                            <div class="form-group local-forms">
+                                <label>Notes <span class="login-danger">*</span></label>
+                                <textarea asp-for="Notes" class="form-control" rows="3" cols="30"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-6">
+                            <div class="form-group select-gender">
+                                <label class="gen-label">First Time Visit</label><br>
+                                <select asp-for="FirstTimeVisit" class="form-control " >
+                                    <option disabled>First Time Visit?...</option>
+                                    <option>Yes</option>
+                                    <option>No</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <select hidden asp-for="Id" class="form-control" ></select>
+                        <div class="col-12">
+                            <div class="doctor-submit text-end">
+                                @* <input type="submit" class="btn btn-info w-75" value="Create" />*@
+                                <input type="submit" class="btn btn-primary " value="Submit" />
+                                @*  <button type="submit" class="btn btn-primary cancel-form">Cancel</button>*@
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

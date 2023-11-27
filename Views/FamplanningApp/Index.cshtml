@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+@model List<AppointmentViewcs>
+@using E_Nompilo_Healthcare_system.Data.ViewModel
+<h1>Family planning upcoming appointments</h1>
+
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+              <th scope="col">Patient's Name</th>
+              <th scope="col">Date of Appointment</th>
+              <th scope="col">Time</th>
+              <th scope="col">First Time Visit</th>
+              <th scope="col">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if(Model != null)
+            {
+                foreach (var item in Model)
+                {
+                     <tr>
+                          <th scope="row">@item.PatientName</th>
+                          <td>@item.DateofAppointment.Date.ToShortDateString()</td>
+                          <td>@item.Time</td>
+                          <td>@item.FirstTimeVisit</td>
+                          <td>@item.Notes</td>
+                    </tr>
+                }
+            }
+            
+           
+          </tbody>
+    </table>
+</div>

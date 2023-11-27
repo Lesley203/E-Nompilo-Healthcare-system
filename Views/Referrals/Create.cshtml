@@ -1,0 +1,50 @@
+﻿@using E_Nompilo_Healthcare_system.Areas.Identity.Data;
+@model E_Nompilo_Healthcare_system.Models.Referrals
+
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+<div class="bg-primary p-3">
+    <h1 class="text-center text-white">Create Referrals</h1>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Patient" class="control-label"></label>
+                <select asp-for="Patient" class="form-control">
+                    @foreach (HealthcareSystemUser item in ViewBag.Patinet)
+                    {
+                        <option value="@item.Id">@item.FirstName @item.LastName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reasons" class="control-label"></label>
+                <input asp-for="Reasons" class="form-control" required/>
+                <span asp-validation-for="Reasons" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpecificConcerns" class="control-label"></label>
+                <input asp-for="SpecificConcerns" class="form-control" required />
+                <span asp-validation-for="SpecificConcerns" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReferredTo" class="control-label"></label>
+                <input asp-for="ReferredTo" class="form-control" required/>
+                <span asp-validation-for="ReferredTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+

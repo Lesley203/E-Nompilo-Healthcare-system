@@ -1,0 +1,59 @@
+﻿@model E_Nompilo_Healthcare_system.Models.IllnessTreatmentModel
+
+@{
+    ViewData["Title"] = "Illness_Treatment";
+    Layout = "~/Views/Shared/_WalkinLayout.cshtml";
+}
+
+
+
+<div class="treatment-container">
+    <h3 class="treatment-header">Treatment</h3>
+    <hr />
+    <dl class="row">
+        <dd class="col-sm-10 treatment-text">
+            @Html.DisplayFor(model => model.Illness_Treatment)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-controller="Walk_In" asp-action="SelfSearch" class="back-to-list-link">Back to List</a>
+</div>
+
+<style>
+    /* Container styling */
+    .treatment-container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    /* Header styling */
+    .treatment-header {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    /* Treatment text styling */
+    .treatment-text {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    /* Back to List link styling */
+    .back-to-list-link {
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+        margin-top: 20px;
+        display: inline-block;
+    }
+
+    .back-to-list-link:hover {
+        text-decoration: underline;
+    }
+</style>

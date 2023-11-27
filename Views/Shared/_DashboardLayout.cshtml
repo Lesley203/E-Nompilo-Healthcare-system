@@ -1,0 +1,1463 @@
+﻿@using E_Nompilo_Healthcare_system.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims;
+@using E_Nompilo_Healthcare_system.UserClaimsIdentity;
+@inject SignInManager<HealthcareSystemUser> SignInManager
+@inject UserManager<HealthcareSystemUser> UserManager
+@{
+
+    var gender = ViewBag.Gender;
+    var lastname = ViewBag.LastName;
+    var role = ViewBag.Role;
+    var firstName = ViewBag.FirstName;
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+ <script type="text/javascript" src="jquery.dataTables.js"></script>
+<script type="text/javascript" src="dataTables.antiThe.js"></script>
+<script type="text/javascript">
+    var table = new DataTable('#myTable', {
+        columnDefs: [
+            {
+                target: 0,
+                type: 'anti-the',
+            },
+        ],
+    });
+</script>
+
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/iconfamily=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/PatientDash.css" asp-append-version="true" />
+    <link rel="icon" type="image/x-icon" href="~/images/favicon.ico" asp-append-version="true" />
+    <link rel="stylesheet" href="~/E_Nompilo_Healthcare_system.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <title> @ViewData["Title"] - Home page</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet" />
+    <link href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/AdminDash.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin />
+    <link href="~/Set/plugins/jvectormap/jquery-jvectormap-2.0.3.css" rel='stylesheet'>
+    <link href="~/Set/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" asp-append-version="true" />
+    @* <link href="~/Set/plugins/toastr/toastr.min.css" rel='stylesheet' asp-append-version="true">*@
+    <!-- SLEEK CSS -->
+    <link id="sleek-css" rel="stylesheet" href="~/Set/css/sleek.css" />
+    <!-- FAVICON -->
+    <link rel="icon" type="image/x-icon" href="~/images/favicon.ico" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" asp-append-version="true">
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous" asp-append-version="true"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" asp-append-version="true">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" asp-append-version="true">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" asp-append-version="true">
+    @* <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" asp-append-version="true">*@
+
+    
+
+    <style>
+        .imgg {
+            filter: brightness(200%);
+            padding-top: 12px;
+            height: 200px;
+            padding-left: 5px;
+        }
+
+    </style>
+</head>
+
+
+@if (User.IsInRole("PATIENT"))
+{
+ 
+    <body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body">
+
+
+        @if (TempData["AlertMessag"] != null)
+        {
+            <div class="alert alert-success">
+                <strong>@TempData["AlertMessag"]</strong>
+            </div>
+        }
+        <div class="wrapper">
+
+            <!-- ====================================
+            ——— LEFT SIDEBAR WITH OUT FOOTER
+            ===================================== -->
+            <aside class="left-sidebar bg-sidebar">
+
+                <div id="sidebar" class="sidebar sidebar-with-footer">
+
+                    <!-- Aplication Brand -->
+                    <div class="app-brand">
+                        <a style="width:300px; padding-left:6px;" title=" Dashboard">
+
+                            <img src="~/images/111.png" class=" imgg float-start">
+
+                        </a>
+                    </div>
+
+                    <!-- begin sidebar  -->
+                    <div class="" data-simplebar style="height: 100%;">
+
+                        <ul class="nav sidebar-inner" id="sidebar-menu">
+                            <!-- Dashboard link -->
+                            <li class="has-sub active expand">
+
+                                <a class="sidenav-item-link" asp-controller="Dashboard" asp-action="Index" data-target="#dashboard"
+                                   aria-expanded="false" aria-controls="dashboard">
+                                    <i class="mdi mdi-view-dashboard-outline"></i>
+                                    <span class="nav-text">Dashboard</span>
+                                </a>
+
+                            </li>
+                            <!-- Calender link -->
+                            <li class="has-sub">
+                                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#app"
+                                   aria-expanded="false" aria-controls="app">
+                                    <i class="mdi mdi-pencil-box-multiple"></i>
+                                    <span class="nav-text">Calender</span> <b class="caret"></b>
+                                </a>
+
+                                <ul class="collapse " id="app" data-parent="#sidebar-menu">
+
+                                    <div class="sub-menu">
+                                    <li class="">
+                                        <a class="sidenav-item-link" href="#">
+                                            <span class="nav-text">Events</span>
+                                        </a>
+                                    </li>
+                    </div>
+                    </ul>
+                    </li>
+
+
+                    <!-- Anoumcements link -->
+                    <li class="has-sub ">
+                        <a class="sidenav-item-link" asp-controller="Walk_In" asp-action="BookingAppointForm" data-target="#components"
+                           aria-expanded="false" aria-controls="components">
+                            <i class='fas fa-calendar-alt' style='font-size:24px'></i>
+                            <span class="nav-text">Appointment</span>
+                        </a>
+                    </li>
+
+                    <!-- Help link -->
+                    <li class="has-sub ">
+                        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#icons"
+                           aria-expanded="false" aria-controls="icons">
+                            <i class="mdi mdi-diamond-stone"></i>
+                            <span class="nav-text">Help</span> <b class="caret"></b>
+                        </a>
+
+                        <ul class="collapse " id="icons" data-parent="#sidebar-menu">
+                            <div class="sub-menu">
+                            <li class="">
+                                <a class="sidenav-item-link" href="material-icon.html">
+                                    <span class="nav-text">Navigation</span>
+                                </a>
+                            </li>
+
+                            <li class="">
+                                <a class="sidenav-item-link" href="flag-icon.html">
+                                    <span class="nav-text">Technical issues</span>
+                                </a>
+                            </li>
+                </div>
+                </ul>
+                </li>
+
+
+
+
+
+
+                <!-- report link -->
+                <li class="has-sub ">
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#documentation"
+                       aria-expanded="false" aria-controls="documentation">
+                        <i class="mdi mdi-book-open-page-variant"></i>
+                        <span class="nav-text">Print Reports</span>
+                    </a>
+                </li>
+
+                <div class="sidebar-footer">
+                    <hr class="separator mb-0" />
+                    <div class="sidebar-footer-content">
+                    </div>
+                </div>
+        </div>
+        </aside>
+
+        <!-- ====================================
+        ——— PAGE Header
+        ===================================== -->
+        <div class="page-wrapper">
+
+            <!-- Header -->
+            <header class="main-header " id="header">
+                <nav class="navbar navbar-static-top navbar-expand-lg">
+
+                    <button id="sidebar-toggler" class="sidebar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                    </button>
+
+                    <div class="search-form d-none d-lg-inline-block">
+                        <div class="input-group">
+                            <button type="button" name="search" id="search-btn" class="btn btn-flat">
+                                <i class="mdi mdi-magnify"></i>
+                            </button>
+                            <input type="text" name="query" id="search-input" class="form-control" placeholder="search"
+                                   autofocus autocomplete="off" />
+                        </div>
+                        <div id="search-results-container">
+                            <ul id="search-results"></ul>
+                        </div>
+                    </div>
+
+                    <div class="navbar-right ">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown notifications-menu custom-dropdown">
+
+
+
+
+                            <li class="right-sidebar-in right-sidebar-2-menu">
+                                <i class="mdi mdi-settings "></i>
+                            </li>
+
+                            <li class="dropdown user-menu">
+                                <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                    <i class="fa fa-user " aria-hidden="true" style='font-size:23px ;'></i>
+                                    <span class="d-none d-lg-inline-block"><a class="nav-link text-dark text-capitalize" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"> @ViewData["LastNameUser"] </a></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <!-- User image -->
+                                    <li class="dropdown-header">
+
+                                        <div class="d-inline-block">
+
+                                            <a class="nav-link text-dark"> <i class='fas fa-user-check' style='font-size:20px'></i>@ViewBag.Role</a>
+                                            <small class="pt-1"></small>
+                                        </div>
+                                    </li>
+                                            @* @foreach (var user in Model)
+                                {*@
+                                    <li>
+                                        <a asp-controller="UserProfile" asp-action="Index">
+                                            <i class="mdi mdi-account"></i> My Profile
+                                        </a>
+                                    </li>
+
+
+                                    <li class="right-sidebar-in">
+                                        <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"> <i class="mdi mdi-settings"></i> Account </a>
+                                    </li>
+
+                                    <li class="dropdown-footer">
+                                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                            <button type="submit" style="font-size:18px;"><i style="font-size:18px;" class="mdi mdi-logout"></i> Logout</button>
+                                        </form>
+                                                @* <a asp-area="" asp-controller="Home"><i class="mdi mdi-logout"></i> Log Out</a>*@
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+
+            <!-- ====================================
+            ——— CONTENT WRAPPER
+            ===================================== -->
+            <div class="content-wrapper">
+                <div class="content">
+                        @RenderBody()
+
+                </div>
+            </div>
+            <div id="myModalSuccess" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <a class="close" href="#" data-dismiss="modal">&times;</a>
+                        <div class="page-body">
+                            <div id="MyModalSuccessAlertBody" class="head alert alert-success">
+                            </div>
+                            <h4>Is stored in our Database.</h4>
+                            <h1 style="text-align:center;">
+                                <div class="checkmark-circle">
+                                    <div class="background"></div>
+                                    <div class="checkmark draw"></div>
+                                </div>
+                            </h1>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+                @*@await RenderSectionAsync("Scripts", required: false)*@
+    </body>
+
+}
+else if (User.IsInRole("ADMIN"))
+{
+    <body class="Admin">
+
+        <div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
+            <div class="app-header header-shadow">
+                <div class="app-header__logo">
+                    <div class="logo-src">
+                        <img src="~/images/111.png" style="top:10px;" class="  imgg float-start">
+                    </div>
+
+                    <div class="header__pane ml-auto">
+                        <div>
+                            <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="app-header__mobile-menu">
+                    <div>
+                        <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="app-header__menu">
+                    <span>
+                        <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                            <span class="btn-icon-wrapper">
+                                <i class="fa fa-ellipsis-v fa-w-6"></i>
+                            </span>
+                        </button>
+                    </span>
+                </div> <div class="app-header__content">
+                    <div class="app-header-left">
+
+                        <ul class="header-megamenu nav">
+                            <li class="nav-item">
+                                <a href="javascript:void(0);" data-placement="bottom" rel="popover-focus" data-offset="300" data-toggle="popover-custom" class="nav-link">
+                                    Calender
+
+                                </a>
+
+                            </li>
+                            <li class="btn-group nav-item">
+                                <a class="nav-link" data-toggle="dropdown" aria-expanded="false">
+                                    Settings
+
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="app-header-right">
+
+                        <div class="header-btn-lg pr-0">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-wrapper">
+                                    <div class="widget-content-left">
+                                        <div class="btn-group">
+                                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                                                <i class="fa fa-user " aria-hidden="true" style='font-size:23px ;'></i>
+                                                <i class="fa fa-angle-down  opacity-8"></i>
+                                            </a>
+                                            <div tabindex="-1" role="menu" aria-hidden="true" class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right">
+                                                <div class="dropdown-menu-header">
+                                                    <div class="dropdown-menu-header-inner bg-info">
+                                                        <div class="menu-header-image opacity-2"></div>
+                                                        <div class="menu-header-content text-left">
+                                                            <div class="widget-content p-0">
+                                                                <div class="widget-content-wrapper">
+                                                                    <div class="widget-content-left mr-3">
+                                                                        @*<img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg">*@
+                                                                    </div>
+                                                                    <div class="widget-content-left">
+                                                                        <div class="widget-heading" style="font-size:20px;">User</div>
+                                                                        <div class="widget-subheading opacity-8">
+
+                                                                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i class='fas fa-user-check' style='font-size:20px'></i>@ViewBag.Role</a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="widget-content-right mr-2">
+
+                                                                        <form class="" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                                                            <button type="submit" class="btn-pill btn-shadow btn-shine btn btn-focus">Logout</button>
+
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="scroll-area-xs" style="height: 150px;">
+                                                    <div class="scrollbar-container ps">
+                                                        <ul class="nav flex-column">
+                                                            <li class="nav-item-header nav-item">Active</li>
+                                                            <li class="nav-item">
+
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link">Recover Password</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link">Profile</a>
+                                                            </li>
+                                                            <li class="nav-item-header nav-item">
+                                                                My Account
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item-divider mb-0 nav-item"></li>
+                                                </ul>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-content-left  ml-3 header-user-info">
+                                        <div class="widget-heading"> @ViewData["LastName"] </div>
+                                        <div class="widget-subheading">
+                                            <a class="nav-link text-dark" style="font-size:16px;" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@ViewData["LastNameUser"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="widget-content-right header-user-info ml-3">
+                                        <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
+                                            <i class="fa text-white fa-calendar pr-1 pl-1"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-btn-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="app-main">
+                <div class="app-sidebar sidebar-shadow">
+                    <div class="app-header__logo">
+                        <div class="logo-src"></div>
+                        <div class="header__pane ml-auto">
+                            <div>
+                                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                                    <span class="hamburger-box">
+                                        <span class="hamburger-inner"></span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-header__mobile-menu">
+                        <div>
+                            <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="app-header__menu">
+                        <span>
+                            <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                                <span class="btn-icon-wrapper">
+                                    <i class="fa fa-ellipsis-v fa-w-6"></i>
+                                </span>
+                            </button>
+                        </span>
+                    </div> <div class="scrollbar-sidebar">
+                        <div class="app-sidebar__inner">
+                            <ul class="vertical-nav-menu">
+
+                                <li class="app-sidebar__heading"> Patients</li>
+                                <li class="mm-active">
+                                    <a asp-controller="Dashboard" asp-action="Index">
+                                        <i class="metismenu-icon  fa fa-folder-open-o " style='font-size:20px ;color:white;'></i>
+                                        Dashboard
+                                        <i class="fa fa-universal-access"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Walk_In" asp-action="AdminAppointment">
+                                        <i class="metismenu-icon  fa fa-calendar-check-o " style='font-size:20px ;color:white;'></i>
+                                        Manage Appointment
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Walk_In" asp-action="AdminManageQueue">
+                                        <i class="metismenu-icon  fas fa-user-friends " style='font-size:20px ;color:white;'></i>
+                                        Queue Managements
+
+                                    </a>
+
+                                </li>
+
+
+
+                                @* <li class="app-sidebar__heading">Admin</li>
+                            <li class="mm-active">*@
+                                <li class="app-sidebar__heading"> Family Planning</li>
+                                <li class="mm-active">
+
+                                </li>
+                                <li>
+                                   
+                               <li>
+                                    <a asp-controller="ContraceptivesRefills" asp-action="ManageContraceptives">
+                                        <i class="metismenu-icon  fa fa-file-text " style='font-size:20px ;color:white;'></i>
+
+                                        Manage Contraceptives Renewals
+                                        
+                                    </a>
+                                </li>
+                                <li>
+
+
+                                   
+                                   
+                                  
+                                        <a asp-controller="Fam_Screening2" asp-action="All_Screenings">
+                                        <i class="metismenu-icon  fa fa-hospital-user " style='font-size:20px ;color:white;'></i>
+                                        Manage Screening
+
+                                    </a>
+                                </li>
+                                <li>
+                                   
+                                         <a asp-controller="Counsellings" asp-action="All_Counsellings">
+                                        <i class="metismenu-icon fa fa-hands-helping " style='font-size:20px ;color:white;'></i>
+                                       View Counselling bookings
+
+                                    </a>
+                                    </li>                               
+                                <div class="sidebar-footer">
+                                    <hr class="separator mb-0" />
+                                    <div class="sidebar-footer-content">
+                                        <a style='font-size:20px ;color:ghostwhite; font-weight:400;' class="sample-link" asp-controller="Reports" asp-action="Admin_Report">
+
+                                            View Sample Reports
+                                        </a>
+                                    </div>
+                                </div>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div><div class="app-main__outer">
+                    <div class="app-main__inner ">
+                        @*                            <div class="app-page-title">
+                    <div class="page-title-wrapper">
+                    </div>
+                    </div>*@
+                        <main class="align-content-center">
+                            @RenderBody()
+                        </main>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-dark" id="exampleModalLongTitle">Queue Confirmation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="post" asp-action="AssignQueue">
+                        <div class="modal-body">
+                            ...are you
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Enqueue</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+
+}
+else if (User.IsInRole("DOCTOR"))
+{
+    <body class="Admin">
+
+        <div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
+            <div class="app-header header-shadow">
+                <div class="app-header__logo">
+                    <div class="logo-src">
+                        <img src="~/images/111.png" style="top:10px;" class="  imgg float-start">
+                    </div>
+                    <div class="header__pane ml-auto">
+                        <div>
+                            <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="app-header__mobile-menu">
+                    <div>
+                        <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="app-header__menu">
+                    <span>
+                        <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                            <span class="btn-icon-wrapper">
+                                <i class="fa fa-ellipsis-v fa-w-6"></i>
+                            </span>
+                        </button>
+                    </span>
+                </div> <div class="app-header__content">
+                    <div class="app-header-left">
+
+                        <ul class="header-megamenu nav">
+                            <li class="nav-item">
+                                <a data-placement="bottom" rel="popover-focus" data-offset="300" class="nav-link">
+                                    Calendar
+
+                                </a>
+                            </li>
+                            <li class="btn-group nav-item">
+                                <a class="nav-link" data-toggle="dropdown" aria-expanded="false">
+                                    Settings
+
+                                </a>
+
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="app-header-right">
+
+                        <div class="header-btn-lg pr-0">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-wrapper">
+                                    <div class="widget-content-left">
+                                        <div class="btn-group">
+                                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                                                <i class="fa fa-user mb-3" aria-hidden="true" style='font-size:23px ;'></i>
+                                                <i class="fa fa-angle-down ml-4 opacity-8"></i>
+                                            </a>
+                                            <div tabindex="-1" role="menu" aria-hidden="true" class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right">
+                                                <div class="dropdown-menu-header">
+                                                    <div class="dropdown-menu-header-inner bg-info">
+                                                        <div class="menu-header-image opacity-2" style="background-image: url('assets/images/dropdown-header/city3.jpg');"></div>
+                                                        <div class="menu-header-content text-left">
+                                                            <div class="widget-content p-0">
+                                                                <div class="widget-content-wrapper">
+                                                                    <div class="widget-content-left mr-3">
+                                                                        @*<img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg">*@
+                                                                    </div>
+                                                                    <div class="widget-content-left">
+                                                                        <div class="widget-heading" style="font-size:20px;">User</div>
+                                                                        <div class="widget-subheading opacity-8">
+
+                                                                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i class='fas fa-user-check' style='font-size:20px'></i>@ViewBag.Role</a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="widget-content-right mr-2">
+
+                                                                        <form class="" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                                                            <button type="submit" class="btn-pill btn-shadow btn-shine btn btn-focus">Logout</button>
+
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="scroll-area-xs" style="height: 150px;">
+                                                    <div class="scrollbar-container ps">
+                                                        <ul class="nav flex-column">
+                                                            <li class="nav-item-header nav-item">Profile</li>
+                                                            <li class="nav-item">
+
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a href="javascript:void(0);" class="nav-link">Recover Password</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a href="javascript:void(0);" class="nav-link">Profile</a>
+                                                            </li>
+                                                            <li class="nav-item-header nav-item">
+                                                                My Account
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a href="javascript:void(0);" class="nav-link">
+                                                                    Settings
+                                                                    <div class="ml-auto badge badge-success">New</div>
+                                                                </a>
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item-divider mb-0 nav-item"></li>
+                                                </ul>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-content-left  ml-3 header-user-info">
+                                        <div class="widget-heading"> @ViewData["LastName"] </div>
+                                        <div class="widget-subheading">
+                                            <a class="nav-link text-dark" style="font-size:16px;" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@ViewData["LastNameUser"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="widget-content-right header-user-info ml-3">
+                                        <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
+                                            <i class="fa text-white fa-calendar pr-1 pl-1"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-btn-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-main">
+                <div class="app-sidebar sidebar-shadow">
+                    <div class="app-header__logo">
+                        <div class="logo-src"></div>
+                        <div class="header__pane ml-auto">
+                            <div>
+                                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                                    <span class="hamburger-box">
+                                        <span class="hamburger-inner"></span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="app-header__mobile-menu">
+                        <div>
+                            <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="app-header__menu">
+                        <span>
+                            <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                                <span class="btn-icon-wrapper">
+                                    <i class="fa fa-ellipsis-v fa-w-6"></i>
+                                </span>
+                            </button>
+                        </span>
+                    </div> <div class="scrollbar-sidebar">
+                        <div class="app-sidebar__inner">
+                            <ul class="vertical-nav-menu">
+                               
+                                <li class="app-sidebar__heading">Board</li>
+                                <li class="mm-active">
+                                    <a asp-controller="Dashboard" asp-action="Index">
+                                      
+                                        Dashboard
+                                      
+                                    </a>
+                                </li>
+                                @*  <li class="app-sidebar__heading">Patients</li> *@
+                                @* <li class="">
+                            <a asp-controller="Walk_In" asp-action="SelfDiagnos">
+                            <i class="metismenu-icon fa fa-plus" style='font-size:20px ;color:white;' aria-hidden="true"></i>
+                            Add Patient Diagnosis
+                            </a>
+                            </li>
+                            <li class="">
+                            <a asp-controller="Walk_In" asp-action="Diagnos_list">
+                            <i class="metismenu-icon fa fa-plus" style='font-size:20px ;color:white;' aria-hidden="true"></i>
+                            View Diagnosis List
+                            </a>
+                            </li> *@
+                                <li class="app-sidebar__heading"> Family-Planning</li>
+                                <li class="mm-active">
+
+                               @* <li>
+                                    <a asp-controller="FamDoctor" asp-action="PatientOverview">
+                                        <i class="metismenu-icon fa fa-user " style='font-size:20px ;color:white;'></i>
+                                        Patient Overview
+
+                                    </a>
+                                </li>*@
+                                <li>
+
+                                    <a asp-controller="FamplanningApp" asp-action="Index">
+                                        <i class="metismenu-icon  fa fa-calendar-check " style='font-size:20px ;color:white;'></i>
+                                        Appointment Management
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-controller="RequestContraceptivesInfoes" asp-action="Contaceptives_Info">
+                                        <i class="metismenu-icon fas fa-pills " style='font-size:20px ;color:white;'></i>
+                                        Contraceptives Info Requests
+
+                                    </a>
+                                </li>
+                                <li>
+
+                                    <a asp-controller="Reviews" asp-action="ManageReviews">
+                                        <i class="metismenu-icon fa fa-share " style='font-size:20px ;color:white;'></i>
+                                        View Reviews
+
+                                    </a>
+                                </li>
+                                 @* <li>
+
+                                    <a asp-controller="RequestContraceptivesInfoes" asp-action="ContraceptiveReporting">
+                                        <i class="metismenu-icon fa fa-share " style='font-size:20px ;color:white;'></i>
+                                        Report
+
+                                    </a>
+                                </li>*@
+
+                               
+
+
+
+
+
+
+                                <li class="app-sidebar__heading">Medication</li>
+
+                                <li>
+                                    <a asp-controller="ChronicMed" asp-action="DoctorMedication_List">
+                                        <i class="metismenu-icon fa fa-medkit" style='font-size:20px ;color:white;' aria-hidden="true"></i>
+                                        Medications
+
+                                    </a>
+                                </li>
+                                @* <li>
+                                    <a >
+                                        <i class="metismenu-icon fa fa-pencil-square-o" style='font-size:20px ;color:white;' aria-hidden="true"></i>
+                                        Manage Prescription request
+
+                                    </a>
+                                </li> *@
+                               @*  <li>
+                                    <a asp-controller="ChronicMed" asp-action="Prescription">
+                                        <i class="metismenu-icon fa fa-plus-circle" style='font-size:20px ;color:white;' aria-hidden="true"></i>
+                                        Create Prescription
+                                    </a>
+                                </li> *@
+
+                                <li>
+                                    <a asp-controller="ChronicMed" asp-action="prescriptions">
+                                        <i class="metismenu-icon fa fa-plus-circle"  aria-hidden="true"></i>
+                                        View Prescription
+                                    </a>
+                                </li>
+                                <li class="app-sidebar__heading">Care</li>
+
+                                <li>
+                                    <a asp-controller="Referrals" asp-action="Index">
+                                        <i style='font-size:20px ;color:white;' class="metismenu-icon fa fa-user-plus" aria-hidden="true"></i>
+                                        Referrals
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Pre_NatalCareNutritionTracking" asp-action="TrackingHistory">
+                                        <i class='metismenu-icon fas fa-heartbeat' style='font-size:24px;color:white;'></i>
+                                        Nutrition History
+                                    </a>
+                                </li>
+                                <div class="sidebar-footer">
+                                    <hr class="separator mb-0" />
+                                    <div class="sidebar-footer-content">
+                                        <a style='font-size:20px ;color:ghostwhite; font-weight:400;' class="sample-link" asp-controller="Reports" asp-action="Doctor_User_Report">
+
+                                            View Sample Reports
+                                        </a>
+                                    </div>
+                                </div>
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div><div class="app-main__outer">
+                    <div class="app-main__inner ">
+
+
+
+                        <main class="align-content-center">
+                            @RenderBody()
+                        </main>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+}
+else if (User.IsInRole("PHARMACIST"))
+{
+
+    <body class="Admin">
+
+        <div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
+            <div class="app-header header-shadow">
+                <div class="app-header__logo">
+                    <div class="logo-src">
+                        <img src="~/images/111.png" style="top:10px;" class="  imgg float-start">
+                    </div>
+                    <div class="header__pane ml-auto">
+                        <div>
+                            <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="app-header__mobile-menu">
+                    <div>
+                        <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="app-header__menu">
+                    <span>
+                        <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                            <span class="btn-icon-wrapper">
+                                <i class="fa fa-ellipsis-v fa-w-6"></i>
+                            </span>
+                        </button>
+                    </span>
+                </div> <div class="app-header__content">
+                    <div class="app-header-left">
+
+                        <ul class="header-megamenu nav">
+                            <li class="nav-item">
+                                <a href="javascript:void(0);" data-placement="bottom" rel="popover-focus" data-offset="300" data-toggle="popover-custom" class="nav-link">
+                                    Calender
+
+                                </a>
+
+                            </li>
+                            <li class="btn-group nav-item">
+                                <a class="nav-link" data-toggle="dropdown" aria-expanded="false">
+                                    Settings
+
+                                </a>
+
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="app-header-right">
+
+                        <div class="header-btn-lg pr-0">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-wrapper">
+                                    <div class="widget-content-left">
+                                        <div class="btn-group">
+                                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                                                <i class="fa fa-user " aria-hidden="true" style='font-size:23px ;'></i>
+                                                <i class="fa fa-angle-down  opacity-8"></i>
+                                            </a>
+                                            <div tabindex="-1" role="menu" aria-hidden="true" class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right">
+                                                <div class="dropdown-menu-header">
+                                                    <div class="dropdown-menu-header-inner bg-info">
+                                                        <div class="menu-header-image opacity-2" style="background-image: url('assets/images/dropdown-header/city3.jpg');"></div>
+                                                        <div class="menu-header-content text-left">
+                                                            <div class="widget-content p-0">
+                                                                <div class="widget-content-wrapper">
+                                                                    <div class="widget-content-left mr-3">
+                                                                        @* <img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg">*@
+                                                                    </div>
+                                                                    <div class="widget-content-left">
+                                                                        <div class="widget-heading" style="font-size:20px;">User</div>
+                                                                        <div class="widget-subheading opacity-8">
+
+                                                                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i class='fas fa-user-check' style='font-size:20px'></i>@ViewBag.Role</a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="widget-content-right mr-2">
+
+                                                                        <form class="" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                                                            <button type="submit" class="btn-pill btn-shadow btn-shine btn btn-focus">Logout</button>
+
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="scroll-area-xs" style="height: 150px;">
+                                                    <div class="scrollbar-container ps">
+                                                        <ul class="nav flex-column">
+                                                            <li class="nav-item-header nav-item">Profile</li>
+                                                            <li class="nav-item">
+
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a href="javascript:void(0);" class="nav-link">Recover Password</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a href="javascript:void(0);" class="nav-link">Profile</a>
+                                                            </li>
+                                                            <li class="nav-item-header nav-item">
+                                                                My Account
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-content-left  ml-3 header-user-info">
+                                        <div class="widget-heading"> @ViewData["LastName"] </div>
+                                        <div class="widget-subheading">
+                                            <a class="nav-link text-dark" style="font-size:16px;" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@ViewData["LastNameUser"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="widget-content-right header-user-info ml-3">
+                                        <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
+                                            <i class="fa text-white fa-calendar pr-1 pl-1"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-btn-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="app-main">
+                <div class="app-sidebar sidebar-shadow">
+                    <div class="app-header__logo">
+                        <div class="logo-src"></div>
+                        <div class="header__pane ml-auto">
+                            <div>
+                                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                                    <span class="hamburger-box">
+                                        <span class="hamburger-inner"></span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-header__mobile-menu">
+                        <div>
+                            <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="app-header__menu">
+                        <span>
+                            <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                                <span class="btn-icon-wrapper">
+                                    <i class="fa fa-ellipsis-v fa-w-6"></i>
+                                </span>
+                            </button>
+                        </span>
+                    </div> <div class="scrollbar-sidebar">
+                        <div class="app-sidebar__inner">
+                            <ul class="vertical-nav-menu">
+                                <br>
+                                <li class="app-sidebar__heading">Medications</li>
+                                <li class=" mm-active">
+                                    <a asp-controller="Dashboard" asp-action="Index">
+                                        Dashboard
+
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a asp-controller="ChronicMed" asp-action="Add_Medication" class="mm">
+                                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                                Add Medications
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li>
+
+                                  
+
+                                <div class="sidebar-footer">
+                                    <hr class="separator mb-0" />
+                                    <div class="sidebar-footer-content">
+                                        <a style='font-size:20px ;color:ghostwhite; font-weight:400;' class="sample-link" asp-controller="Reports" asp-action="Pharmacist_User_Report">
+
+                                            View Reports
+                                        </a>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="app-main__outer">
+                    <div class="app-main__inner ">
+
+
+
+
+                        <main class="align-content-center">
+                            @RenderBody()
+                        </main>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </body>
+}
+else if (User.IsInRole("NURSE"))
+{
+    <body class="Admin">
+
+        <div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
+            <div class="app-header header-shadow">
+                <div class="app-header__logo">
+                    <div class="logo-src">
+                        <img src="~/images/111.png" style="top:10px;" class="  imgg float-start">
+                    </div>
+                    <div class="header__pane ml-auto">
+                        <div>
+                            <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="app-header__mobile-menu">
+                    <div>
+                        <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="app-header__menu">
+                    <span>
+                        <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                            <span class="btn-icon-wrapper">
+                                <i class="fa fa-ellipsis-v fa-w-6"></i>
+                            </span>
+                        </button>
+                    </span>
+                </div> <div class="app-header__content">
+                    <div class="app-header-left">
+
+                        <ul class="header-megamenu nav">
+                            <li class="nav-item">
+                                <a href="javascript:void(0);" data-placement="bottom" rel="popover-focus" data-offset="300" data-toggle="popover-custom" class="nav-link">
+                                    Calender
+
+                                </a>
+
+                            </li>
+                            <li class="btn-group nav-item">
+                                <a class="nav-link" data-toggle="dropdown" aria-expanded="false">
+                                    Settings
+
+                                </a>
+
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="app-header-right">
+
+                        <div class="header-btn-lg pr-0">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-wrapper">
+                                    <div class="widget-content-left">
+                                        <div class="btn-group">
+                                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                                                <i class="fa fa-user " aria-hidden="true" style='font-size:23px ;'></i>
+                                                <i class="fa fa-angle-down  opacity-8"></i>
+                                            </a>
+                                            <div tabindex="-1" role="menu" aria-hidden="true" class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right">
+                                                <div class="dropdown-menu-header">
+                                                    <div class="dropdown-menu-header-inner bg-info">
+                                                        <div class="menu-header-image opacity-2" style="background-image: url('assets/images/dropdown-header/city3.jpg');"></div>
+                                                        <div class="menu-header-content text-left">
+                                                            <div class="widget-content p-0">
+                                                                <div class="widget-content-wrapper">
+                                                                    <div class="widget-content-left mr-3">
+                                                                        @* <img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg">*@
+                                                                    </div>
+                                                                    <div class="widget-content-left">
+                                                                        <div class="widget-heading" style="font-size:20px;">User</div>
+                                                                        <div class="widget-subheading opacity-8">
+
+                                                                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i class='fas fa-user-check' style='font-size:20px'></i>@ViewBag.Role</a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="widget-content-right mr-2">
+
+                                                                        <form class="" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                                                            <button type="submit" class="btn-pill btn-shadow btn-shine btn btn-focus">Logout</button>
+
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="scroll-area-xs" style="height: 150px;">
+                                                    <div class="scrollbar-container ps">
+                                                        <ul class="nav flex-column">
+                                                            <li class="nav-item-header nav-item">Profile</li>
+                                                            <li class="nav-item">
+
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a href="javascript:void(0);" class="nav-link">Recover Password</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a href="javascript:void(0);" class="nav-link">Profile</a>
+                                                            </li>
+                                                            <li class="nav-item-header nav-item">
+                                                                My Account
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-content-left  ml-3 header-user-info">
+                                        <div class="widget-heading"> @ViewData["LastName"] </div>
+                                        <div class="widget-subheading">
+                                            <a class="nav-link text-dark" style="font-size:16px;" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@ViewData["LastNameUser"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="widget-content-right header-user-info ml-3">
+                                        <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
+                                            <i class="fa text-white fa-calendar pr-1 pl-1"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-btn-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-main">
+                <div class="app-sidebar sidebar-shadow">
+                    <div class="app-header__logo">
+                        <div class="logo-src"></div>
+                        <div class="header__pane ml-auto">
+                            <div>
+                                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                                    <span class="hamburger-box">
+                                        <span class="hamburger-inner"></span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-header__mobile-menu">
+                        <div>
+                            <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="app-header__menu">
+                        <span>
+                            <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                                <span class="btn-icon-wrapper">
+                                    <i class="fa fa-ellipsis-v fa-w-6"></i>
+                                </span>
+                            </button>
+                        </span>
+                    </div> <div class="scrollbar-sidebar">
+                        <div class="app-sidebar__inner">
+                            <ul class="vertical-nav-menu">
+                                <br>
+                                <li class="app-sidebar__heading">Vaccination</li>
+                                <li class=" mm-active">
+                                    <a asp-controller="Dashboard" asp-action="Index">
+                                        Dashboard
+
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a asp-controller="Vaccine_Information" asp-action="Vaccine_Create" class="mm">
+                                                <i class="fa fa-plus-square"  ></i>
+                                               Vaccinations
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Vaccination" asp-action="Nurse_Vac" class="mm">
+                                                
+                                                <i class="fa-solid fa-syringe"></i>
+                                                Vaccinate
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li>
+
+                                    <div class="sidebar-footer">
+                                        <hr class="separator mb-0" />
+                                        <div class="sidebar-footer-content">
+                                            <a style='font-size:20px ;color:ghostwhite; font-weight:400;' class="sample-link" asp-controller="Reports" asp-action="Nurse_Report">
+
+                                                View Reports
+                                            </a>
+                                        </div>
+                                    </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="app-main__outer">
+                    <div class="app-main__inner ">
+
+
+
+
+                        <main class="align-content-center">
+                            @RenderBody()
+                        </main>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+}
+else
+{
+    <h2>No Role registered</h2>
+}
+@* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> *@
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" asp-append-version="true"></script>
+
+
+    
+    @* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> *@
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="~/Set/plugins/jquery/jquery.min.js" asp-append-version="true"></script>
+<script src="~/Set/plugins/bootstrap/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Set/js/sleek.js" asp-append-version="true"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script type="text/javascript" src="~/js/AdminDas.js" asp-append-version="true"></script>
+
+
+
+<!-- DataTables CSS file -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<!-- DataTables JavaScript file -->
+	<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap4.min.css" />
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.bootstrap4.min.js"></script>
+
+@await RenderSectionAsync("Scripts", required: false)
+
+
+
+<script type="text/javascript" src="jquery.dataTables.js"></script>
+<script type="text/javascript" src="dataTables.antiThe.js"></script>
+<script type="text/javascript">
+    var table = new DataTable('#myTable', {
+        columnDefs: [
+            {
+                target: 0,
+                type: 'anti-the',
+            },
+        ],
+    });
+</script>
+</html>
+
+

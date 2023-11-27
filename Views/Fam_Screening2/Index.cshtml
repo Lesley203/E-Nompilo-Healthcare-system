@@ -1,0 +1,218 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.Fam_Screening>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_FamilyPlanLayout.cshtml";
+}
+
+
+<div id="myModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+
+			<div class="modal-header text-center">
+				<h3 class="modal title"> Screening Results</h3>
+				<button type="button" id="close" class="close btn close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body row form-check-inline">
+				<div>
+					<img src="~/images/testpic.png" width="100px" />
+				</div>
+				<div>
+					<h4 class="text-center">Based on your screening @TempData["Results"] </h4>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<a asp-action="Create" class="btn btn-primary mb-3">Create New</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>
+							@Html.DisplayNameFor(model => model.Date)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.MainUser)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.Status)
+						</th>
+						<th>@Html.DisplayNameFor(model => model.Question1)</th>
+						<th>@Html.DisplayNameFor(model => model.Question2)</th>
+						<th>@Html.DisplayNameFor(model => model.Question3)</th>
+						<th>@Html.DisplayNameFor(model => model.Question4)</th>
+						<th>@Html.DisplayNameFor(model => model.Question5)</th>
+						<th>@Html.DisplayNameFor(model => model.Question6)</th>
+						<th>@Html.DisplayNameFor(model => model.Question7)</th>
+						<th>@Html.DisplayNameFor(model => model.Question8)</th>
+						<th>@Html.DisplayNameFor(model => model.Question9)</th>
+						<th>@Html.DisplayNameFor(model => model.Question10)</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+
+						<tr>
+							<td>@Html.DisplayFor(modelItem => item.Date)</td>
+							<td>@Html.DisplayFor(modelItem =>item.MainUser.FirstName)</td>
+							<td>@Html.DisplayFor(modelItem => item.Status)</td>
+							<td>
+								@if (item.Question1 == 10)
+								{
+									<span class="badge badge-primary">No</span>
+								}
+								else
+								{
+									<span class="badge badge-success">Yes</span>
+								}
+								@Html.DisplayFor(modelItem => item.Question1)
+							</td>
+							<td>
+								@if (item.Question2 == 10)
+								{
+									<span class="badge badge-primary">No</span>
+								}
+								else
+								{
+									<span class="badge badge-success">Yes</span>
+								}
+								@Html.DisplayFor(modelItem => item.Question2)
+							</td>
+							<td>
+								@if (item.Question3 == 10)
+								{
+									<span class="badge badge-primary">No</span>
+								}
+								else
+								{
+									<span class="badge badge-success">Yes</span>
+								}
+								@Html.DisplayFor(modelItem => item.Question3)
+							</td>
+							<td>
+								@if (item.Question4 == 10)
+								{
+									<span class="badge badge-success">Regular</span>
+								}
+								else if (item.Question4 == 5)
+								{
+									<span class="badge badge-primary">Irregular</span>
+								}
+								else if (item.Question4 == 4)
+								{
+									<span class="badge badge-primary">Heavy</span>
+								}
+								else
+								{
+									<span class="badge badge-primary">Painful</span>
+								}
+								@Html.DisplayFor(modelItem => item.Question4)
+							</td>
+							<td>
+								@if (item.Question5 == 10)
+								{
+									<span class="badge badge-primary">No</span>
+								}
+								else
+								{
+									<span class="badge badge-success">Yes</span>
+								}
+								@Html.DisplayFor(modelItem => item.Question5)
+							</td>
+							<td>
+								@if (item.Question6 == 10)
+								{
+									<span class="badge badge-success">Yes</span>
+								}
+								else
+								{
+									<span class="badge badge-primary">No</span>
+								}
+								@Html.DisplayFor(modelItem => item.Question6)
+							</td>
+							<td>
+								@if (item.Question7 == 10)
+								{
+									<span class="badge badge-primary">No</span>
+								}
+								else
+								{
+									<span class="badge badge-success">Yes</span>
+								}
+								@Html.DisplayFor(modelItem => item.Question7)
+							</td>
+							<td>
+								@if (item.Question8 == 10)
+								{
+									<span class="badge badge-success">Yes</span>
+								}
+								else
+								{
+									<span class="badge badge-primary">No</span>
+								}
+								@Html.DisplayFor(modelItem => item.Question8)
+							</td>
+							<td>
+								@if (item.Question9 == 10)
+								{
+									<span class="badge badge-success">Yes</span>
+								}
+								else
+								{
+									<span class="badge badge-primary">No</span>
+								}
+								@Html.DisplayFor(modelItem => item.Question9)
+							</td>
+							<td>
+								@if (item.Question10 == 10)
+								{
+									<span class="badge badge-success">Yes</span>
+								}
+								else
+								{
+									<span class="badge badge-primary">No</span>
+								}
+								@Html.DisplayFor(modelItem => item.Question10)
+							</td>
+							@*<td>
+						@if (item.Question11 == 10)
+						{
+						<span class="badge badge-danger">No</span>
+						}
+						else
+						{
+						<span class="badge badge-success">No</span>
+						}
+						@Html.DisplayFor(modelItem => item.Question11)
+						</td>
+
+						*@
+							<!-- Repeat the above pattern for other Question columns -->
+							<td>
+								@*<a asp-action="Edit" asp-route-id="@item.ScreeningID" class="btn btn-sm">Edit</a>
+								<a asp-action="Details" asp-route-id="@item.ScreeningID" class="btn btn-sm ">Details</a>*@
+								<a asp-action="Delete" asp-route-id="@item.ScreeningID" class="btn btn-sm">Delete</a>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<script src="~/js/site.js"></script>

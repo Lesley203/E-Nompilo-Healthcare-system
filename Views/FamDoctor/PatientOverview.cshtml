@@ -1,0 +1,177 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    
+    ViewData["Title"] = "PatientOverview";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .patient-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .patient-card-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .patient-info {
+            flex: 1;
+        }
+
+        .patient-name {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .patient-details {
+            font-size: 18px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .patient-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .patient-action {
+            background-color: #007BFF;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .patient-action:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333;
+            color: white;
+        }
+    </style>
+    <title>Patient Overview</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1> Patient Overview</h1>
+            <p>Get a comprehensive overview of your patients' profiles and interactions.</p>
+        </div>
+
+        <div class="section">
+            <h2>Patients List</h2>
+            <div class="patient-card">
+                
+                <div class="patient-info">
+                    <div class="patient-name">Rofhiwa Mphephu</div>
+                    <div class="patient-details">
+                        Age: 32 | Last Appointment: 2023-08-15 | Preferred Contact: Email
+                    </div>
+                    <div class="patient-actions">
+                        <button class="patient-action">View Profile</button>
+                        <button class="patient-action">Schedule Appointment</button>
+                        <button class="patient-action">Send Message</button>
+                    </div>
+                </div>
+            </div>
+            <div class="patient-card">
+                
+                <div class="patient-info">
+                    <div class="patient-name">Mulanga Mashau</div>
+                    <div class="patient-details">
+                        Age: 28 | Last Appointment: 2023-08-10 | Preferred Contact: Phone
+                    </div>
+                    <div class="patient-actions">
+                        <button class="patient-action">View Profile</button>
+                        <button class="patient-action">Schedule Appointment</button>
+                        <button class="patient-action">Send Message</button>
+                    </div>
+                 </div>
+             </div>
+                     <div class="patient-card">
+                
+                <div class="patient-info">
+                    <div class="patient-name">Charlotte Gray</div>
+                    <div class="patient-details">
+                        Age: 24 | Last Appointment: 2023-07-15 | Preferred Contact: Phone
+                    </div>
+                    <div class="patient-actions">
+                        <button class="patient-action">View Profile</button>
+                        <button class="patient-action">Schedule Appointment</button>
+                        <button class="patient-action">Send Message</button>
+                    </div>
+                </div>
+            </div>
+            <div class="patient-card">
+                
+                <div class="patient-info">
+                    <div class="patient-name">Mpho Mudau</div>
+                    <div class="patient-details">
+                        Age: 26 | Last Appointment: 2023-07-21 | Preferred Contact: Email
+                    </div>
+                    <div class="patient-actions">
+                        <button class="patient-action">View Profile</button>
+                        <button class="patient-action">Schedule Appointment</button>
+                        <button class="patient-action">Send Message</button>
+                    </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,167 @@
+﻿@model E_Nompilo_Healthcare_system.Models.VaccineScreening
+
+@{
+    ViewData["Title"] = "Survay_Vacc";
+    Layout = "~/Views/Shared/_VaccinationLayout.cshtml";
+}
+
+ @if (TempData["AlertMessagee"] != null)
+            {
+<script>
+    alert("@TempData["AlertMessagee"]");
+</script>
+            }
+<h2 class="text-center">
+    Survey && Get Vaccinated
+</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="Survay_Vacc" class="needs-validation" novalidate>
+            <h3>Tick What you are expriencing!</h3>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Cough" /> @Html.DisplayNameFor(model => model.Cough)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Dizzines" /> @Html.DisplayNameFor(model => model.Dizzines)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Abdominalpain" /> @Html.DisplayNameFor(model => model.Abdominalpain)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Headache" /> @Html.DisplayNameFor(model => model.Headache)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="legswelling" /> @Html.DisplayNameFor(model => model.legswelling)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="snezzing" /> @Html.DisplayNameFor(model => model.snezzing)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ChestPressure" /> @Html.DisplayNameFor(model => model.ChestPressure)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Allergy" /> @Html.DisplayNameFor(model => model.Allergy)
+                </label>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Days" class="control-label">How many days did you exprience the selcted above information</label>
+                <select asp-for="Days" class="form-select" id="validationCustom04" required>
+                    <option selected disabled value="">Choose an option...</option>
+                    <option value="1-3 days">1-3 days</option>
+                    <option value="3-6 days">3-6 days</option>
+                    <option value="6-10 days">6-10 days</option>
+                    <option value="10-15 days">10-15 days</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please select the date!
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="TakenVac" class="control-label">Are you currently taking any Medication</label>
+                <select asp-for="TakenVac" class="form-select" id="validationCustom04" required>
+                    <option selected disabled value="">Choose appointment type...</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+
+                </select>
+                <div class="invalid-feedback">
+                    Please choose an option!
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+<style>
+    <style >
+    /* Style the form container */
+    .row {
+        margin: 20px;
+    }
+
+    /* Style the form itself */
+    form {
+        background-color: #f5f5f5;
+        padding: 20px;
+        width: 1000px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    /* Style the labels */
+    label {
+        font-weight: bold;
+    }
+
+    /* Style the form groups */
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    /* Style the form controls (input, select) */
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* Style the submit button */
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    /* Style validation summary */
+    .text-danger {
+        color: red;
+    }
+</style>
+
+
+

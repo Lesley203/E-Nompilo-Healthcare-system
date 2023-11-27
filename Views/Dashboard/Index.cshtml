@@ -1,0 +1,794 @@
+﻿@using E_Nompilo_Healthcare_system.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims;
+@using E_Nompilo_Healthcare_system.UserClaimsIdentity;
+@inject SignInManager<HealthcareSystemUser> SignInManager
+@inject UserManager<HealthcareSystemUser> UserManager
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+}
+<header>
+
+    
+</header>
+@if (SignInManager.IsSignedIn(User))
+{
+    if (User.IsInRole("PATIENT"))
+    {
+
+       @if (TempData["AlertMessag"] != null)
+        {
+            <div class="alert alert-success">
+                <strong>@TempData["AlertMessag"]</strong>
+            </div>
+        }
+
+        <main class="site-wrapper">
+            <div class=" ">
+                <div class="pt-tablecell page-home relative" @*style="background-image: url(https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);
+             background-position: center;
+             background-size: cover;"*@>
+                    <div class="overlay"></div>
+
+                    <div class="container1">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
+                                <div class="page-title  home text-center">
+                                    <span class="heading-page">
+                                        Welcome to Facility System
+                                    </span>
+                                    <p class="mt20 " style="color:white">Welcome to E-nompilo Healthcare System. With passion, commitment and experience, the team at e-Nomplilo focuses on being the clear choice for the healthcare needs of the Texas Panhandle. We are proud to be either the first or the only healthcare system in the Eastern Panhandle with advanced technologies for treating</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <br />
+        <br />
+        <div class="hexagon-menu " style="position:absolute;padding-left:157px;">
+            <div class="hexagon-item p-1 ">
+                <div class="hex-item">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="hex-item">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <a asp-controller="Walk_In" asp-action="Index" class="hex-content">
+                    <span class="hex-content-inner">
+                        <span class="icon">
+                            <i class="fa fa-universal-access"></i>
+                        </span>
+                        <span class="title">Walk-in Patient</span>
+                    </span>
+                    <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+                </a>
+            </div>
+            <div class="hexagon-item p1">
+                <div class="hex-item">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="hex-item">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <a asp-controller="ChronicMed" asp-action="ChronicMed" class="hex-content">
+                    <span class="hex-content-inner">
+                        <span class="icon">
+                            <i class='fas fa-tablets' style='font-size:36px'></i>
+                        </span>
+                        <span class="title">Chronic Medication</span>
+                    </span>
+                    <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+                </a>
+            </div>
+            <div class="hexagon-item p-1">
+                <div class="hex-item">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="hex-item">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <a asp-controller="FamilyPlan" asp-action="FamilyPlanning" class="hex-content">
+                    <span class="hex-content-inner">
+                        <span class="icon">
+                            <i class="fas fa-user-plus fa-2x " style="font-size:36px"></i>
+                        </span>
+                        <span class="title">Family Planning</span>
+                    </span>
+                    <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+                </a>
+            </div>
+            <div class="hexagon-item p-1">
+                <div class="hex-item">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="hex-item">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <a asp-controller="PreNatal" asp-action="Patient" class="hex-content">
+                    <span class="hex-content-inner">
+                        <span class="icon">
+                            <i class='fas fa-user-md' style='font-size:36px'></i>
+                        </span>
+                        <span class="title">Pre-Natal-Care</span>
+                    </span>
+                    <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+                </a>
+            </div>
+            <div class="hexagon-item">
+                <div class="hex-item">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="hex-item">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <a  asp-controller="Vaccination" asp-action="Patient" class="hex-content">
+                    <span class="hex-content-inner">
+                        <span class="icon">
+                          <i class='fas fa-syringe' style='font-size:36px'></i>
+                        </span>
+                        <span class="title">Vaccination</span>
+                    </span>
+                    <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+                </a>
+            </div>
+
+        </div>
+
+        if (TempData["FileChecked"] == null)
+        {
+            <div class="modal fade bd-example-modal-xl" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content p-3">
+                        <partial name="~/Views/MedicalFile/Index.cshtml">
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            TempData["FileChecked"] = "True";
+        }
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function () {
+                var hasFile = true;
+
+                if (hasFile) {
+                    var modal = new bootstrap.Modal(document.getElementById("myModal"));
+                    modal.show();
+
+                    var closeButton = document.getElementById("close");
+                    closeButton.addEventListener("click", function () {
+                        modal.hide();
+                    })
+                }
+            });
+
+        </script>
+
+        @*                    <div class="modal fade" id="myModalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>*@
+
+        @*<div id="myModalSuccess" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <a class="close" href="#" data-dismiss="modal">&times;</a>
+                    <div class="page-body">
+                        <div id="MyModalSuccessAlertBody" class="head alert">
+                        </div>
+                        <h4>Is stored in our Database.</h4>
+                        <h1 style="text-align:center;">
+                            <div class="checkmark-circle">
+                                <div class="background"></div>
+                                <div class="checkmark draw"></div>
+                            </div>
+                        </h1>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>*@
+
+
+        @* @section Scripts{
+      <script type="text/javascript">
+        function openSuccessModal(strMessage) {
+            var myDiv = document.getElementById("MyModalSuccessAlertBody");
+            myDiv.innerHTML = strMessage;
+            $('#myModalSuccess').modal('show');
+        }
+        $(document).ready(function () {
+                    var msg =  @TempData["SuccessMassage"];
+            if (msg)
+                openSuccessModal(msg);
+        });
+      </script>
+
+       }*@
+
+
+    }
+    else if (User.IsInRole("ADMIN"))
+    {
+        <div class="d-inline-flex">
+
+            <a asp-controller="Add_New_Patient" asp-action="Add_New_Patient">
+                <div class="card cards card-2 text-center" style="width: 18rem;margin-left:45px; margin-top:20px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Add New Patient</h5>
+
+                        @* <a href="#" class="btn btn-primary">Go somewhere</a>*@
+                    </div>
+                </div>
+            </a>
+
+            <br><br>
+            <a asp-controller="Dashboard" asp-action="System_User_Book">
+                <div class="card cards card-2 text-center" style="width: 18rem; margin-left:35px; margin-top:20px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Book Appointment</h5>
+
+                        @* <a href="#" class="btn btn-primary">Go somewhere</a>*@
+                    </div>
+                </div>
+            </a>
+            <br>
+
+            <a asp-controller="Dashboard" asp-action="Admin_Medical_File">
+                <div class="card cards card-2 text-center" style="width: 22rem;margin-left:35px; margin-top:20px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Create a file</h5>
+                        @* <a href="#" class="btn btn-primary">Go somewhere</a>*@
+                    </div>
+                </div>
+            </a>
+
+            <a asp-controller="Dashboard" asp-action="System_User">
+                <div class="card cards card-2 text-center" style="width: 8rem;margin-left:35px;height:80px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Users&files </h5>
+
+                        <h4 style="font-weight:300;"> @ViewBag.UserCount</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <br />
+        <br />
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img style="height:495px;" class="d-block w-100" src="~/images/The-Must-Have-modules-of-a-Hospital-Management-System-1200x675.jpg" alt="First slide" asp-append-version="true">
+                </div>
+                <div class="carousel-item">
+                    <img style="height:495px;" class="d-block w-100" src="~/images/Can-I-Work-in-a-Hospital-With-a-Healthcare-Management-Degree.jpg" alt="Second slide" asp-append-version="true">
+                </div>
+                <div class="carousel-item">
+                    <img style="height:495px;" class="d-block w-100" src="~/images/GettyImages-1277730976-600x339.jpg" alt="Third slide">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+    }
+    else if (User.IsInRole("DOCTOR"))
+    {
+        
+       
+   
+
+        <style type="text/css">
+
+            ::before,
+            ::after {
+                position: absolute;
+                content: "";
+            }
+        </style>
+        <h3 style="box-shadow: 0 4px 6px 0 black; color:black;" class="text-center text-dark p-3">Wherever the art of medicine is loved, there is also a love for humanity.</h3>
+        <hr />
+        <div class="card1 card-1 " style="margin-left:60px;">
+            <div class="card-img">
+                <img style="Width:300px; height:320px;" class="d-block " src="~/images/doctor_Card1.jpg" alt="Second slide">
+            </div>
+            
+                <a asp-controller="Walk_In" asp-action="DoctorManageQueue" class="btnm btn-3 hover-border-2">
+                   <span>Call</span>
+                
+                </a>
+             
+        </div>
+        <div class="card1 card-1">
+            <div class="card-img">
+                <img style="Width:300px; height:320px;" class="d-block " src="~/images/doctor_card2.jpg" alt="Second slide">
+            </div>
+            <a asp-controller="ChronicMed" asp-action="DoctorrequestPresrip_List" class="btnm btn-3 hover-border-2">
+                <span>Prescription</span>
+
+            </a>
+        </div>
+        <div class="card1 card-1">
+            <div class="card-img">
+                <img style="Width:300px; height:320px;" class="d-block " src="~/images/doctor_card3.jpg" alt="Second slide">
+            </div>
+            <a asp-controller="Walk_In" asp-action="SelfDiagnos" style="" class="btnm btn-3 hover-border-2">
+                <span>Diagnosis</span>
+            </a>
+        </div>
+        
+
+
+    }
+    else if (User.IsInRole("PHARMACIST"))
+    {
+       
+        <h1 class="text-center">Medical Dispensing</h1>
+        <hr  />
+        <div class="row mt-8">
+            <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="pharmachy-thumb">
+                    <img style="width:300px;height:330px;" class="rounded-0" src="~/images/Medicines_s.jpg" alt="">
+                    <div class="trainer-title" style="">
+                        Available<br> Medicine
+                    </div>
+                    <div class="overlay1">
+                        <div class="text">
+                            <h3>Available <br> Medicine</h3>
+                            <p>Medicine Treatment with Viagra, Levitra, Cialis and Spedra tablets</p>
+                            <div class="start-consultation-btn">
+                                <a asp-controller="ChronicMed" asp-action="Medication_List">View </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="pharmachy-thumb">
+                    <img style="width:300px;height:330px;" class="rounded-0" src="~/images/6682401.png" alt="">
+                    <div class="trainer-title" style="">
+                        Anti-Malaria<br> Tablets
+                    </div>
+                    <div class="overlay1">
+                        <div class="text">
+                            <h3>Anti-Malaria<br> Tablets</h3>
+                            <p>Anti-Malaria Tablets Treatment with Viagra, Levitra, Cialis and Spedra tablets</p>
+                            <div class="start-consultation-btn">
+                                <a asp-controller="ChronicMed" asp-action="PharmRequestRefill">Refill</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="pharmachy-thumb">
+                    <img class="rounded-0" src="~/Set/img/hair-loss-treatment.jpg" alt="">
+                    <div class="trainer-title" style="">
+                        Hair Loss<br> Treatment
+                    </div>
+                    <div class="overlay1">
+                        <div class="text">
+                            <h3>Hair Loss<br> Treatment</h3>
+                            <p>Hair Loss Treatment with Viagra, Levitra, Cialis and Spedra tablets</p>
+                            <div class="start-consultation-btn">
+                                <a href="javascript:;">Start Consultation</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="pharmachy-thumb">
+                    <img class="rounded-0" src="~/Set/img/period-delay-pills.jpg" alt="">
+                    <div class="trainer-title" style="">
+                        Period Delay<br> Pills
+                    </div>
+                    <div class="overlay1">
+                        <div class="text">
+                            <h3>Period Delay<br> Pills</h3>
+                            <p>Period Delay Pills Treatment with Viagra, Levitra, Cialis and Spedra tablets</p>
+                            <div class="start-consultation-btn">
+                                <a href="javascript:;">Start Consultation</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (User.IsInRole("NURSE"))
+    {
+       
+        <h1 class="text-center">Vacc</h1>
+        <hr  />
+        <div class="row mt-8">
+            <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="pharmachy-thumb">
+                    <img style="width:300px;height:330px;" class="rounded-0" src="~/images/Vaccine_mig.png" alt="">
+                    <div class="trainer-title" style="">
+                        Available<br> Vaccines
+                    </div>
+                    <div class="overlay1">
+                        <div class="text">
+                            <h3>Information</h3>
+                            <p>Medicine Treatment</p>
+                            <div class="start-consultation-btn">
+                                <a asp-controller="Vaccine_Information" asp-action="Vaccine_list">Add vaccine Information </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="pharmachy-thumb">
+                    <img style="width:300px;height:330px;" class="rounded-0" src="~/images/images-manage vac.png" alt="">
+                    <div class="trainer-title" style="">
+                        Manage<br> Vaccinations
+                    </div>
+                    <div class="overlay1">
+                        <div class="text">
+                            <h3>VACCINATE</h3>
+                            <p> Treatment </p>
+                            <div class="start-consultation-btn">
+                                <a asp-controller="Vaccination" asp-action="ManageVaccination">Manage Vaccinations</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="pharmachy-thumb">
+                    <img style="width:300px;height:330px;" class="rounded-0" src="~/images/even-if-you-are-vaccinated-feedback.png" alt="">
+                    <div class="trainer-title" style="">
+                        Vaccination<br> Feedback
+                    </div>
+                    <div class="overlay1">
+                        <div class="text">
+                            <h3>View Feedbacks</h3>
+                            <p>Feedbcak from the patient</p>
+                            <div class="start-consultation-btn">
+                                <a asp-controller="Vaccination" asp-action="Report_Review_Nurse">View Feedback</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    }
+
+}
+
+
+@section Scripts{
+    <script type="text/javascript">
+        function openSuccessModal(strMessage) {
+            var myDiv = document.getElementById("MyModalSuccessAlertBody");
+            myDiv.innerHTML = strMessage;
+            $('#myModalSuccess').modal('show');
+        }
+
+        $(document).ready(function () {
+            var msg = "@TempData["SuccessMessage"]";
+            if (msg)
+                openSuccessModal(msg);
+
+        });
+    </script>
+}
+
+        
+        <style>
+
+            .card1 {
+                background: #fff;
+                border-radius: 2px;
+                display: inline-block;
+                height: 400px;
+                margin: 1rem;
+                position: relative;
+                width: 300px;
+                
+                margin-top:45px;
+            }
+
+           .card-1:hover {
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+             }
+
+             :active, :hover, :focus {
+                  outline: 0!important;
+                  outline-offset: 0;
+             }
+             
+
+
+.btnm {
+  position: relative;
+  display: inline-block;
+  width: auto; height: auto;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0px 25px 15px;
+  min-width: 150px;
+}
+  .btnm span {         
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    top: 0; left: 0;
+    width: 100%;
+    padding: 15px 20px;
+    transition: 0.3s;
+  }
+
+/*--- btn-3 ---*/
+.btn-3 {
+  padding: 5px;
+}
+.btn-3 span {
+  color: rgb(255, 255, 255);
+  background-color: rgb(54, 56, 55);
+}
+.btn-3::before,
+.btn-3::after {
+  background: transparent;
+  z-index: 2;
+}
+
+
+
+/* 12. hover-border-2 */
+.btnm.hover-border-2::before,
+.btn.hover-border-2::after {
+  width: 10%; height: 25%;
+  transition: 0.35s;
+}
+.btnm.hover-border-2::before {
+  bottom: 0; left: 0;
+  border-left: 1px solid rgb(28, 31, 30);
+  border-bottom: 1px solid rgb(28, 31, 30);
+}
+.btnm.hover-border-2::after {
+  top: 0; right: 0;
+  border-right: 1px solid rgb(28, 31, 30);
+  border-top: 1px solid rgb(28, 31, 30);
+}
+.btnm.hover-border-2:hover::before,
+.btnm.hover-border-2:hover::after {
+  width: 99%;
+  height: 99%;
+}
+
+
+    /*======= 4. About Planex Pharmacy ======*/
+    .pharmachy-box-gallery {
+        margin: 50px 0 0 0;
+        padding: 0;
+    }
+
+    .pharmachy-thumb {
+        position: relative;
+        width: auto;
+        margin: 0 -13px;
+    }
+
+        .pharmachy-thumb img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+    .overlay1 {
+        padding: 0 10px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(18, 119, 170, 0.6);
+        overflow: hidden;
+        width: 100%;
+        height: 0;
+        transition: .5s ease;
+    }
+
+    .trainer-title {
+        width: 100%;
+        padding: 10px 0;
+        background-color: rgba(18, 119, 170, 0.6);
+        margin: 0;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 30px;
+        line-height: 38px;
+        color: #fff;
+        font-weight: 300;
+        text-decoration: none;
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+    }
+
+    .pharmachy-thumb:hover .overlay1 {
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .text {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+        .text h3 {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 30px;
+            color: #fff;
+            font-weight: 300;
+            text-decoration: none;
+        }
+
+        .text p {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            color: #fff;
+            font-weight: 400;
+            text-decoration: none;
+        }
+
+        .text .start-consultation-btn {
+            margin-top: 34px;
+        }
+
+            .text .start-consultation-btn a {
+                display: inline-block;
+                background-color: #fff;
+                padding: 14px 20px;
+                margin: 0;
+                font-size: 16px;
+                color: #2b96cc;
+            }
+
+                .text .start-consultation-btn a:hover {
+                    color: #333;
+                }
+
+    .other-treatments-text {
+        text-align: center;
+        margin: 40px 0 15px 0;
+        padding: 0;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+        color: #2b96cc;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .other-treatments {
+        margin: 0 -13px 4px -13px;
+        padding: 25px 15px;
+        background-color: #1277aa;
+    }
+
+        .other-treatments img {
+            margin: 0 10px 0 0;
+            float: left;
+            position: relative;
+            top: 4px;
+        }
+
+        .other-treatments h2 {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+            color: #fff;
+            font-weight: 300;
+        }
+
+        .other-treatments .fa-angle-right {
+            position: absolute;
+            top: 34%;
+            right: 15px;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            color: #fff;
+        }
+
+    .about-planex-pharmacy {
+        margin: 62px 0 75px 0;
+        padding: 0;
+        font-family: 'Open Sans', sans-serif;
+        text-align: center;
+    }
+
+        .about-planex-pharmacy h2 {
+            margin: 0 0 20px 0;
+            padding: 0;
+            font-size: 36px;
+            font-weight: 600;
+            color: #2b96cc;
+        }
+
+        .about-planex-pharmacy p {
+            margin: 0 0 26px 0;
+            padding: 0;
+            font-size: 14px;
+            font-weight: 400;
+            color: #555555;
+        }
+
+    /*======= End About Planex Pharmacy ======*/
+
+
+
+    
+        </style>

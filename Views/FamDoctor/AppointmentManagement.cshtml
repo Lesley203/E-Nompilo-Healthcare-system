@@ -1,0 +1,162 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "AppointmentManagement";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .info-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .info-card-content {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .info-card-icon {
+            font-size: 48px;
+            color: #007BFF;
+        }
+
+        .info-card-text {
+            flex: 1;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .appointments-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .appointment-item {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .appointment-details {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .appointment-status {
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333;
+            color: white;
+        }
+    </style>
+    <title>Appointments Management</title>
+</head>
+<body>
+    
+        <div class="section">
+            <h2>Upcoming Appointments</h2>
+            <ul class="appointments-list">
+                <li class="appointment-item">
+                    <div class="appointment-details">
+                        <h3>Patient: Jane Williams</h3>
+                        <p>Date: September 20, 2023</p>
+                        <p>Time: 10:30 AM</p>
+                        <p>Status: <span class="appointment-status">Confirmed</span></p>
+                    </div>
+                    <button class="appointment-action">Reschedule</button>
+                </li>
+                <li class="appointment-item">
+                    <div class="appointment-details">
+                        <h3>Patient: Pete Smith</h3>
+                        <p>Date: September 25, 2023</p>
+                        <p>Time: 2:00 PM</p>
+                        <p>Status: <span class="appointment-status">Pending</span></p>
+                    </div>
+                    <button class="appointment-action">Confirm</button>
+                    </li>
+
+                <li class="appointment-item">
+                    <div class="appointment-details">
+                        <h3>Patient: Given Johnson</h3>
+                        <p>Date: September 28, 2023</p>
+                        <p>Time: 11:45 AM</p>
+                        <p>Status: <span class="appointment-status">Confirmed</span></p>
+                    </div>
+                    <button class="appointment-action"vvvv>Cancel</button>
+                </li>
+                <li class="appointment-item">
+                    <div class="appointment-details">
+                        <h3>Patient: Wendy Gale</h3>
+                        <p>Date: September 29, 2023</p>
+                        <p>Time: 12:45 AM</p>
+                        <p>Status: <span class="appointment-status">Confirmed</span></p>
+                    </div>
+                    <button class="appointment-action">Reschedule</button>
+                </li>
+            </ul>
+        </div>
+ 
+
+</body>
+</html>
+
+
+
+
+

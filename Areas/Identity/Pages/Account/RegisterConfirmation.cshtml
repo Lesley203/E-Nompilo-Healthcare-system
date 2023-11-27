@@ -1,0 +1,48 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Register confirmation";
+}
+<br />
+<br />
+<br />
+<br />
+
+<br />
+<form class="row g-3 needs-validation" novalidate>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+  <div class=" w-0">
+    <span style="font-size:40px; font-weight:300 ;color:black;" class="text-center">Are you sure you want to register?</span><br /><br />
+        <p class="text-center" style="font-size:20px; color:black; font-weight:100"> Both parties agree to maintain the confidentiality of the Patient/Client's medical information in accordance with applicable laws and regulations. The Provider will only disclose the <br />
+            Patient/Client's information with their consent or as required by law.</p>
+    
+  </div>
+  <div class="col-12">
+        <a id="confirm-link" href="@Model.EmailConfirmationUrl" class="btn btn-primary align-content-md-center" type="" >Submit</a>
+  </div>
+</form>
+
+    @*   <a  id="confirm-link" href="@Model.EmailConfirmationUrl" class="btnn">Log-in</a>*@
+@*<a class="nav-link " style="font-size:20px;background-color:blanchedalmond;box-shadow:0 9px 7px 0 black;" asp-area="Identity" asp-page="/Account/Login">Log-in</a>*@
+
+<script>
+    (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>

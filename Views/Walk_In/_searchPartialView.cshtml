@@ -1,0 +1,47 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.SelfDiagnosModel>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table myaccordion table-hover" id="accordion">
+        <thead>
+            <tr>
+                <th style="width: 70px;">Symtoms</th>
+                <th>Description</th>
+                <th>Treatment</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var apt in Model)
+            {
+
+                <tr data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+
+                    <td width="30%">@apt.SymptomName</td>
+                    <td width="30%">@apt.Description</td>
+                    <td width="30%">@apt.Treatment</td>
+
+
+                    <td width="30%">
+                        <div class="w-100 btn-group" role="group">
+
+                            @* <a asp-controller="Expense" asp-action="Delete" asp-route-ID="@apt.BookingId" class="btn btn-danger mx-1">Delete</a>
+                    <a asp-controller="Expense" asp-action="Delete" asp-route-ID="@apt.BookingId" class="btn btn-warning mx-1">Reschedule</a>*@
+                        </div>
+                    </td>
+                    <td>
+                        <i class="fa" aria-hidden="true"></i>
+                    </td>
+                </tr>
+
+
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2 class="text-primary">Search for symptoms using the form above </h2>
+}
+

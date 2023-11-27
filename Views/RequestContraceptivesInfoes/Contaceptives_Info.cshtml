@@ -1,0 +1,60 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.RequestContraceptivesInfo>
+
+@{
+    ViewData["Title"] = "Contaceptives_Info";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h1>Contaceptives Information Requests</h1>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Patient's Names
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                Contraceptive type
+            </th>
+            <th>
+               Additional Information
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           <td>
+                 @Html.DisplayFor(modelItem =>item.MainUser.FirstName)
+                 @Html.DisplayFor(modelItem =>item.MainUser.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contraceptivetype)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdditionalInfo)
+            </td>
+            <td>
+                <a asp-controller="Resourses1" asp-action="Create" asp-route-id="@item.Id"  class="btn btn-primary mx-1">Create</a> 
+              @*  <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

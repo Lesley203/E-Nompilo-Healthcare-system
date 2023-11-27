@@ -1,0 +1,393 @@
+﻿@using E_Nompilo_Healthcare_system.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims;
+@using E_Nompilo_Healthcare_system.UserClaimsIdentity;
+@inject SignInManager<HealthcareSystemUser> SignInManager
+@inject UserManager<HealthcareSystemUser> UserManager
+@{
+    var gender = ViewBag.Gender;
+    var lastname = ViewBag.LastName;
+    var role = ViewBag.Role;
+    var firstName = ViewBag.FirstName;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/css/PatientDash.css" asp-append-version="true" />
+    <link rel="icon" type="image/x-icon" href="~/images/favicon.ico" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/PatientDash.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/PatientDash.css" asp-append-version="true" />
+    <link rel="icon" type="image/x-icon" href="~/images/favicon.ico" asp-append-version="true" />
+    <link rel="stylesheet" href="~/E_Nompilo_Healthcare_system.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" asp-append-version="true">
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous" asp-append-version="true"></script>
+    <title> @ViewData["Title"] - Home page</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet" asp-append-version="true" />
+    <link href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css" rel="stylesheet" asp-append-version="true" />
+    <link id="sleek-css" rel="stylesheet" href="~/Set/css/sleek.css" />
+    <link href="~/Set/plugins/simplebar/simplebar.css" rel="stylesheet" asp-append-version="true" asp-append-version="true" />
+    <link id="sleek-css" rel="stylesheet" href="~/assets/css/sleek.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" asp-append-version="true">
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous" asp-append-version="true"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" asp-append-version="true">
+    @* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous" asp-append-version="true"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" asp-append-version="true">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" asp-append-version="true">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" asp-append-version="true">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous" asp-append-version="true"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" asp-append-version="true">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" asp-append-version="true"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" asp-append-version="true"></script>*@
+    <!-- FAVICON -->
+
+  @*   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> *@
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    
+   
+</head>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    if (User.IsInRole("PATIENT"))
+    {
+
+
+        <body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body">
+
+            <!-- The Modal -->
+            <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmationModalLabel">Success</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Your form has been successfully submitted.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            if (TempData["Successss"] != null)
+            {
+            <div class="bg-danger text-center p-2">
+                <h5 class="text-center">@TempData["Success"]</h5>
+            </div>
+            }
+            <div id="toaster"></div>
+            <div class="wrapper">
+
+                <!-- ====================================
+                ——— LEFT SIDEBAR WITH OUT FOOTER
+                ===================================== -->
+                <aside class="left-sidebar bg-sidebar">
+
+                    <div id="sidebar" class="sidebar sidebar-with-footer">
+
+                        <!-- Aplication Brand -->
+                        <div class="app-brand">
+                            <a style="width:300px; padding-left:6px;" title=" Dashboard">
+
+                                <img src="~/images/111.png" class=" imgg float-start">
+
+                            </a>
+                        </div>
+
+                        <!-- begin sidebar  -->
+
+                        <ul class="nav sidebar-inner" id="sidebar-menu">
+
+                            <li class="has-sub active expand">
+
+                                <a asp-controller="Dashboard" asp-action="Index" class="sidenav-item-link" data-target="#dashboard"
+                                   aria-expanded="false" aria-controls="dashboard">
+                                    <i style="font-size:24px" class=" fa fa-fw fa-home"></i>
+                                    <span class="nav-text">Home</span>
+                                </a>
+
+                            </li>
+                            <!-- Dashboard link -->
+                            <li class="has-sub expand">
+
+                                <a class="sidenav-item-link" asp-controller="Vaccination" asp-action="Patient" data-target="#dashboard"
+                                   aria-expanded="false" aria-controls="dashboard">
+                                    <i class="mdi mdi-view-dashboard-outline"></i>
+                                    <span class="nav-text">Vaccine Dashboard</span>
+                                </a>
+
+                            </li>
+                            <!-- Calender link -->
+                            <li class="has-sub">
+
+                                <ul class="collapse " id="app" data-parent="#sidebar-menu">
+
+                                    <div class="sub-menu">
+                                    <li class="">
+                                        <a class="sidenav-item-link" href="#">
+                                            <span class="nav-text">Events</span>
+                                        </a>
+                                    </li>
+                    </div>
+                    </ul>
+                    </li>
+
+
+                    <!-- Anoumcements link -->
+                    <li class="has-sub ">
+
+
+                    </li>
+
+                    <!-- Help link -->
+                    <li class="has-sub ">
+
+
+                        <ul class="collapse " id="icons" data-parent="#sidebar-menu">
+                            <div class="sub-menu">
+                            </div>
+                        </ul>
+                    </li>
+
+
+                    <li class="has-sub ">
+
+                    </li>
+
+                            @* <li class="has-sub ">
+            <a class="sidenav-item-link" asp-controller="Vaccination" asp-action="Appointment" data-target="#documentation"
+            aria-expanded="false" aria-controls="documentation">
+            <i class="mdi mdi-book-open-page-variant"></i>
+            <span class="nav-text">Appointment</span>
+            </a>
+            </li>*@
+                    <li class="has-sub ">
+                        <a class="sidenav-item-link" asp-controller="Vaccine_Information" asp-action="Vaccine_List_Patient" data-target="#documentation"
+                           aria-expanded="false" aria-controls="documentation">
+                            <i class='fas fa-book-medical'></i>
+                            <span class="nav-text">Vaccine Information</span>
+                        </a>
+                    </li>
+                    <li class="has-sub ">
+                        <a class="sidenav-item-link" asp-controller="VaccineScreenings" asp-action="Survay_Vacc" ata-target="#documentation"
+                           aria-expanded="false" aria-controls="documentation">
+                            <i class='fas fa-stethoscope'></i>
+                            <span class="nav-text">Survey & Get Vaccine</span>
+                        </a>
+                    </li>
+
+                    <li class="has-sub ">
+                        <a class="sidenav-item-link" asp-controller="VaccineScreenings" asp-action="Get_Vaccinated_List" ata-target="#documentation"
+                           aria-expanded="false" aria-controls="documentation">
+                            <i class="fa-solid fa-syringe"></i>
+                            <span class="nav-text">Vac Follow-Up </span>
+                        </a>
+                    </li>
+
+                   @*  <li class="has-sub">
+                        <a class="sidenav-item-link" asp-controller="Vaccination" asp-action="MedicalRecord" data-target="#documentation"
+                           aria-expanded="false" aria-controls="documentation">
+                            <i class='fas fa-medkit'></i>
+                            <span class="nav-text">Medical Record</span>
+                        </a>
+                    </li> *@
+
+
+
+                    <li class="has-sub ">
+                        <a class="sidenav-item-link" asp-controller="Vaccination" asp-action="Report_Feedback" data-target="#documentation"
+                           aria-expanded="false" aria-controls="documentation">
+                            <i class='fas fa-notes-medical'></i>
+                            <span class="nav-text">Report Feedback</span>
+                        </a>
+                    </li>
+
+                    <li class="has-sub ">
+                        <a class="sidenav-item-link" asp-controller="Vaccination" asp-action="Report_Review_Screening_1st" data-target="#documentation"
+                           aria-expanded="false" aria-controls="documentation">
+                            <i class='fas fa-stream'></i>
+                            <span class="nav-text">Screening History</span>
+                        </a>
+                    </li>
+                            @* <li class="has-sub ">
+            <a class="sidenav-item-link" asp-asp-controller="Vaccination" asp-action="Feedback" data-target="#documentation"
+            aria-expanded="false" aria-controls="documentation">
+            <i class="mdi mdi-book-open-page-variant"></i>
+            <span class="nav-text">Feedback</span>
+            </a>
+            </li>
+            *@
+                    <!-- sidebar Footer -->
+
+                    <div class="sidebar-footer">
+                        <hr class="separator mb-0" />
+
+                    </div>
+
+            </div>
+            </aside>
+
+            <!-- ====================================
+            ——— PAGE Header
+            ===================================== -->
+            <div class="page-wrapper pt-0">
+
+                <!-- Header -->
+                <header class="main-header " id="header">
+                    <nav class="navbar navbar-static-top navbar-expand-lg">
+                        <!-- Sidebar toggle button -->
+                            @*<a asp-controller="Dashboard" asp-action="Index">
+                <i class="fa fa-fw fa-home ml-2" style="font-size:28px; color:black;"></i>
+
+                </a>*@
+                        <button id="sidebar-toggler" class="sidebar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
+                        </button>
+                        <!-- search form -->
+                        <div class="search-form d-none d-lg-inline-block">
+                            <div class="input-group">
+                                <button type="button" name="search" id="search-btn" class="btn btn-flat">
+                                    <i class="mdi mdi-magnify"></i>
+                                </button>
+                                <input type="text" name="query" id="search-input" class="form-control" placeholder="search"
+                                       autofocus autocomplete="off" />
+                            </div>
+                            <div id="search-results-container">
+                                <ul id="search-results"></ul>
+                            </div>
+                        </div>
+
+                        <div class="navbar-right ">
+
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown notifications-menu custom-dropdown">
+
+
+
+
+                                <li class="right-sidebar-in right-sidebar-2-menu">
+                                    <i class="mdi mdi-settings "></i>
+                                </li>
+                                <!-- User Account -->
+                                <li class="dropdown user-menu">
+                                    <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                        <i class="fa fa-user " aria-hidden="true" style='font-size:23px ;'></i>
+                                        <span class="d-none d-lg-inline-block"><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@ViewData["LastNameUser"] </a></span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <!-- User image -->
+                                        <li class="dropdown-header">
+
+                                            <div class="d-inline-block">
+                                                <a class="nav-link text-dark"> <i class='fas fa-user-check' style='font-size:20px'></i>@ViewBag.Role</a>
+                                                <small class="pt-1"></small>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <a asp-controller="UserProfile" asp-action="Index">
+                                                <i class="mdi mdi-account"></i> My Profile
+                                            </a>
+                                        </li>
+
+
+                                        <li class="right-sidebar-in">
+                                            <a href="javascript:0"> <i class="mdi mdi-settings"></i> Account </a>
+                                        </li>
+
+                                        <li class="dropdown-footer">
+                                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                                <button type="submit" style="font-size:18px;"><i style="font-size:18px;" class="mdi mdi-logout"></i> Logout</button>
+                                            </form>
+                                                    @* <a asp-area="" asp-controller="Home"><i class="mdi mdi-logout"></i> Log Out</a>*@
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </header>
+
+
+                <!-- ====================================
+                ——— CONTENT WRAPPER
+                ===================================== -->
+                <div class="content-wrapper">
+                    <div class="content">
+                            @RenderBody()
+                    </div>
+                </div>
+
+        </body>
+
+
+
+
+    }
+    else if (User.IsInRole("ADMIN"))
+    {
+        <body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body">
+
+            <div class="content-wrapper">
+                <div class="content">
+                    @RenderBody()
+                </div>
+            </div>
+        </body>
+    }
+    else if (User.IsInRole("DOCTOR"))
+    {
+        <body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body">
+
+            <div class="content-wrapper">
+                <div class="content">
+                    @RenderBody()
+                </div>
+            </div>
+        </body>
+    }
+    else if (User.IsInRole("PHARMACIST"))
+    {
+        <body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body">
+
+            <div class="content-wrapper">
+                <div class="content">
+                    @RenderBody()
+                </div>
+            </div>
+        </body>
+    }
+    else
+    {
+        <body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body">
+
+            <div class="content-wrapper">
+                <div class="content">
+                    @RenderBody()
+                </div>
+            </div>
+        </body>
+    }
+
+
+
+}
+
+<script src="~/Set/plugins/jquery/jquery.min.js" asp-append-version="true"></script>
+<script src="~/Set/plugins/bootstrap/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+<script src="~/Set/plugins/simplebar/simplebar.min.js" asp-append-version="true"></script>
+<script src="~/Set/js/sleek.js" asp-append-version="true"></script>
+
+
+</html>

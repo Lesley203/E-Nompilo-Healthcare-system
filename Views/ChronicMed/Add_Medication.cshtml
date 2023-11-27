@@ -1,0 +1,168 @@
+﻿@model Add_Medication_Model
+@{
+    ViewData["Title"] = "Add_Medication";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Form styling */
+        .card {
+            margin: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Buttons */
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Links */
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        /* Validation errors */
+        .invalid-feedback {
+            color: #dc3545;
+        }
+
+        /* Additional styles specific to your form */
+        .w-70 {
+            width: 70%;
+        }
+
+        .login-danger {
+            color: red;
+        }
+
+        /* Responsiveness */
+      
+    </style>
+</head>
+<body>
+    <div>
+        <a class="btn btn-shadow-primary " asp-action="Medication_List">View List</a>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <h3>Adding Medication</h3>
+                        <hr class="w-70" />
+                        <form asp-action="Add_Medication" asp-controller="ChronicMed" method="post" class="form-horizontal needs-validation"  novalidate id="registerForm" novalidate>
+                            <div class="form-group form-check-inline">
+                                <div class="col-8">
+                                    <label>Medication Name</label>
+                                    <input class="form-control" asp-for="MedicationName" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Please enter a medicine name!
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                    <label>Manufacturer</label>
+                                    <input class="form-control" asp-for="Manufacturer" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Please enter manufacturer!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label id="validationCustom01" class="col-sm-10" for="TextArea">Active Ingredient<span class="login-danger">*</span></label>
+                                <div class="col-md-8">
+                                    <input class="form-control" id="validationCustom01" asp-for="ActiveIngredient" placeholder="" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Please enter active ingredient!
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label id="validationCustom02" class="col-md-10" for="TextArea">Dosage Quantity<span class="login-danger">*</span></label>
+                                <div class="col-md-10">
+                                    <input class="form-control" id="validationCustom02" asp-for="Dosage" type="number" required />
+                                    <div class="invalid-feedback">
+                                        Please Provide a correct Dosage quantity.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-check-inline">
+                                <div class="col-8">
+                                    <label id="validationCustom03" class="col-sm-8">Dosage Form<span class="login-danger">*</span></label>
+                                    <input class="form-control" id="validationCustom03" asp-for="DosageForm" placeholder="" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Please Provide a correct Dosage Form.
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                    <label id="validationCustom04">Description<span class="login-danger">*</span></label>
+                                    <input class="form-control" id="validationCustom04" asp-for="Description" placeholder="" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Please Provide a correct Description.
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <hr />
+                            <div class="form">
+                                <input type="submit" value="Add" class="btn btn-primary float-end" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>

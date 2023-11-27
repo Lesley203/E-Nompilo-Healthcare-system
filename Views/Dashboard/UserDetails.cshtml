@@ -1,0 +1,188 @@
+﻿@model E_Nompilo_Healthcare_system.Areas.Identity.Data.HealthcareSystemUser
+
+@{
+    ViewData["Title"] = "UserDetails";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+<header>
+
+    <style>
+
+        /* General styles for the container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section header styling */
+        .section-header {
+            color: #333;
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        /* User details list styling */
+        .user-details {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 10px;
+            font-size:17px;
+        }
+
+        /* Left-aligned outcomes */
+        .outcome-label {
+            text-align: right;
+            font-size: 19px;
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Right-aligned details */
+        .outcome-details {
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Animation on hovering links */
+        .action-links a {
+            margin-right: 10px;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s ease-in-out;
+
+        }
+
+            .action-links a:hover {
+                text-decoration: underline;
+                color: #0056b3;
+            }
+
+
+
+    </style>
+</header>
+
+<div class="action-links">
+    <a asp-controller="Dashboard" class="btn btn-primary text-light" asp-action="Admin_medical_file_Edit" asp-route-Id="@Model.Id">Update</a>
+    <a asp-controller="Dashboard" class="btn btn-primary text-light" asp-action="System_User">Back to List</a>
+</div>
+
+<div class="container">
+    <h4 class="section-title">Medical File View</h4>
+ 
+    <hr />
+    <dl class="user-details">
+        <dt class="col-md-8">
+            @Html.DisplayNameFor(model => model.MedicalFileModel.IdentityNo)
+        </dt>
+        <dd class="col-md-8">
+            @Html.DisplayFor(model => model.MedicalFileModel.IdentityNo)
+        </dd>
+        <dt class="col-md-8">
+            @Html.DisplayNameFor(model => model.MedicalFileModel.Address1)
+        </dt>
+        <dd class="col-md-8">
+            @Html.DisplayFor(model => model.MedicalFileModel.Address1)
+        </dd>
+        <dt class="col-md-8">
+           
+        </dt>
+        <dd class="col-md-8">
+            @Html.DisplayFor(model => model.MedicalFileModel.Address2)
+        </dd>
+        <dt class="col-md-8">
+            @Html.DisplayNameFor(model => model.MedicalFileModel.City)
+        </dt>
+        <dd class="col-md-8">
+            @Html.DisplayFor(model => model.MedicalFileModel.City)
+        </dd>
+        <dt class="col-md-8">
+            @Html.DisplayNameFor(model => model.MedicalFileModel.postalCode)
+        </dt>
+        <dd class="col-md-8">
+            @Html.DisplayFor(model => model.MedicalFileModel.postalCode)
+        </dd>
+        <dt class="col-md-8">
+            @Html.DisplayNameFor(model => model.MedicalFileModel.Country)
+        </dt>
+        <dd class="col-md-8">
+            @Html.DisplayFor(model => model.MedicalFileModel.Country)
+        </dd>
+        <dt class="col-md-8">
+            @Html.DisplayNameFor(model => model.MedicalFileModel.KinFirstName)
+        </dt>
+        <dd class="col-md-8">
+            @Html.DisplayFor(model => model.MedicalFileModel.KinFirstName)
+        </dd>
+        <dt class="col-md-8">
+            @Html.DisplayNameFor(model => model.MedicalFileModel.KinRelationship)
+        </dt>
+        <dd class="col-md-8">
+            @Html.DisplayFor(model => model.MedicalFileModel.KinRelationship)
+        </dd>
+        <dt class="col-md-8">
+            @Html.DisplayNameFor(model => model.MedicalFileModel.KinContact)
+        </dt>
+        <dd class="col-md-8">
+            @Html.DisplayFor(model => model.MedicalFileModel.KinContact)
+        </dd>
+        <dt class="col-md-8">
+            @Html.DisplayNameFor(model => model.MedicalFileModel.KinEmail)
+        </dt>
+        <dd class="col-md-8">
+            @Html.DisplayFor(model => model.MedicalFileModel.KinEmail)
+        </dd>
+        <dt class="col-md-8">
+            @Html.DisplayNameFor(model => model.MedicalFileModel.KinAddress1)
+        </dt>
+        <dd class="col-md-8">
+            @Html.DisplayFor(model => model.MedicalFileModel.KinAddress1)
+        </dd>
+        <dt class="col-md-8">
+            @Html.DisplayNameFor(model => model.MedicalFileModel.KinAddress2)
+        </dt>
+        <dd class="col-md-8">
+            @Html.DisplayFor(model => model.MedicalFileModel.KinAddress2)
+        </dd>
+        <dt class="col-md-8">
+            @Html.DisplayNameFor(model =>model.MedicalFileModel.KinPostalcode)
+        </dt>
+        <dd class="col-md-8">
+            @Html.DisplayFor(model => model.MedicalFileModel.KinPostalcode)
+        </dd>
+        <dt class="col-md-8">
+            @Html.DisplayNameFor(model => model.MedicalFileModel.TakingMed)
+        </dt>
+        <dd class="col-md-8">
+            @Html.DisplayFor(model => model.MedicalFileModel.TakingMed)
+        </dd>
+        <dt class="col-md-8">
+            @Html.DisplayNameFor(model => model.MedicalFileModel.allergies)
+        </dt>
+        <dd class="col-md-8">
+            @Html.DisplayFor(model => model.MedicalFileModel.allergies)
+        </dd>
+        <dt class="col-md-8">
+            @Html.DisplayNameFor(model => model.MedicalFileModel.MedicalInfor)
+        </dt>
+        <dd class="col-md-8">
+            @Html.DisplayFor(model => model.MedicalFileModel.MedicalInfor)
+        </dd>
+       
+    </dl>
+     
+</div>
+
+
+
+
+
+

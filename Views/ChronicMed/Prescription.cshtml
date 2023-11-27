@@ -1,0 +1,204 @@
+﻿@model E_Nompilo_Healthcare_system.Models.PrescriptionModel;
+@using E_Nompilo_Healthcare_system.Models
+@{
+    ViewData["Title"] = "Prescription";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    var medicationsList = ViewBag.MedicationsList as SelectList ?? new SelectList(new List<Add_Medication_Model>(), "MedicationId", "MedicationName");
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+                    <h3 class="text-center">Create Prescription for patient</h3>
+                    <hr class="w-70" />
+                    <form asp-action="Prescription" asp-controller="ChronicMed" method="post"  class="form-horizontal needs-validation" id="registerForm" novalidate>
+                       
+                        <input hidden asp-for="PrescripId" />
+                        <input hidden asp-for="Id" />
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label>Patient Name</label>
+                                <input disabled class="form-control" value="@ViewBag.Patient" placeholder="" type="text">
+                            </div>
+                            <div class="col-6">
+                                <label>Doctor Name</label>
+                                <input disabled class="form-control"  value="@ViewData["Firstname_D"]" placeholder="" type="text">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label asp-for="MedicationName">Select Medication:<span class="login-danger">*</span></label>
+                                <select asp-for="MedicationName" class="form-control" id="MedicationId">
+                                    <option value="">Select Medication</option>
+                                    @foreach (Add_Medication_Model item in ViewBag.MedicationList)
+                                    {
+                                        <option value="@item.MedicationName">@item.MedicationName</option>
+                                    }
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please Please select the Medication name.
+                                </div>
+                            </div>
+                            <div class="form-group col-6">
+                                <label id="validationCustom02" class="col-md-10" for="TextArea">Dosage Form<span class="login-danger">*</span></label>
+                         
+                                    <input class="form-control" id="validationCustom02" asp-for="Dosageamount" type="text" required />
+                                    <div class="invalid-feedback">
+                                        Please Provide a correct Dosage Form.
+                                    </div>
+                               
+                            </div>
+                        </div>
+                      
+
+                        <div class="form-group row ">
+                            <div class="col-6">
+                                <label id="validationCustom03" class="col-sm-8">Frequency<span class="login-danger">*</span></label>
+                                <input class="form-control" id="validationCustom03" asp-for="Frequency" placeholder="" type="text" required>
+                                <div class="invalid-feedback">
+                                    Please Provide a correct Frequency.
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <label id="validationCustom04">Comment<span class="login-danger">*</span></label>
+                                <textarea class="form-control" id="validationCustom04" asp-for="Comment" placeholder="" type="text" required=""></textarea>
+                                
+                                <div class="invalid-feedback">
+                                    Please Provide Comment.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-md-6">
+                                <label id="validationCustom06">Prescription Expiration Date<span class="login-danger">*</span></label>
+                                <input class="form-control" id="validationCustom06" asp-for="PrescriptionExpirationDate" placeholder="First" type="date" required>
+                                <div class="invalid-feedback">
+                                    Please Provide a correct date.
+                                </div>
+                            </div>
+
+                        </div>
+                       @* <div class="form-group ">
+                            <div class="col-md-8">
+                                <label id="validationCustom06">Date of Prescription<span class="login-danger">*</span></label>
+                                <input class="form-control" id="validationCustom06" asp-for="DatePrescribed" placeholder="First" type="date" required>
+                                <div class="invalid-feedback">
+                                    Please Provide a correct date.
+                                </div>
+                            </div>
+
+                        </div>*@
+
+
+
+                        <hr />
+                        <div class="form">
+                            <input type="submit" value="Add Prescription" class="btn btn-primary float-end" />
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+@*<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+                    <h3> Create Prescription</h3>
+                    <hr class="w-80" />
+                    <form asp-action="Prescription" method="post" class="form-horizontal" id="registerForm" novalidate>
+                       
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="PrescripId" />
+                        <div class="form-group form-check-inline">
+                            <div class="col-8">
+                                <label>Patient Name</label>
+                                <input disabled class="form-control" value="@ViewBag.Patient" placeholder="" type="text">
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-group form-check-inline">
+                            <div class="col-8">
+                                <label>Doctor Name</label>
+                                <input disabled class="form-control" asp-for="Doctor_Name" value="@ViewData["Firstname_D"]" placeholder="" type="text">
+                               
+                            </div>
+                        </div>
+                        <div class="form-group form-check-inline ">
+
+                            <div class="col-md-6">
+                                <label id="validationCustom01" class="col-sm-10" for="TextArea">Dosage<span class="login-danger">*</span></label>
+                                <input class="form-control" id="validationCustom01" asp-for="Dosage" placeholder="" type="number" required>
+                                <div class="invalid-feedback">
+                                    Please Provide a correct Dosage.
+                                </div>
+                            </div>
+
+                            <div class="col-md-8">
+                                
+                                <div class="form-group">
+                                    <label asp-for="MedicationName">Select Medication:<span class="login-danger">*</span></label>
+                                    <select asp-for="MedicationName" class="form-control" id="MedicationId" name="MedicationId">
+                                        <option value="">Select Medication</option>
+                                        @foreach (var item in medicationsList)
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please Provide a correct Dosage.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label id="validationCustom02" class="col-md-10" for="TextArea">Remaining Quantity<span class="login-danger">*</span></label>
+                            <div class="col-md-10">
+                                <input class="form-control" asp-for="RemainingQuantity" placeholder="" type="number" required />
+                               
+                            </div>
+                        </div>
+
+                      
+                        </div>
+                       
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+*@

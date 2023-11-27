@@ -1,0 +1,127 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.Vaccine_Information>
+
+@{
+    ViewData["Title"] = "Vaccine_list";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    int row = 0;
+
+}
+
+@if (TempData["AlertMessaget"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>@TempData["AlertMessaget"]</strong>
+    </div>
+}
+@if (TempData["AlertMessages"] != null)
+{
+    <div class="alert alert-success">
+        <strong>@TempData["AlertMessages"]</strong>
+    </div>
+}
+@if (TempData["AlertMessagesL"] != null)
+{
+    <div class="alert alert-warning">
+        <strong>@TempData["AlertMessagesL"]</strong>
+    </div>
+}
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<div class="form-container">
+
+    <form method="get" asp-controller="Vaccine_Information" asp-action="Vaccine_list" class="form-inline">
+        @* <input class="form-control " value="@ViewData["CurrentFilter"]" type="text" name="searchEmail" placeholder="Search by Email" aria-label="Search">
+        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i> Search</button>*@
+        <div class="container1t">
+            <input type="text" id="box" placeholder="Search by vaccination Name" aria-label="Search" value="@ViewData["CurrentFilter"]" name="searchEmail" class="search__box">
+            <button type="submit"> <i class="fas fa-search search__icon" id="icon" onclick="toggleShow()"></i></button>
+        </div>
+    </form>
+
+</div>
+
+<br />
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>@Html.DisplayNameFor(model => model.VaccineName)</th>
+            <th>@Html.DisplayNameFor(model => model.VaccineType)</th>
+            <th>@Html.DisplayNameFor(model => model.VaccineDescription)</th>
+            <th>@Html.DisplayNameFor(model => model.Dose_Number)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            row++;
+            <tr>
+                <td>@row</td>
+                <td>@Html.DisplayFor(modelItem => item.VaccineName)</td>
+                <td>@Html.DisplayFor(modelItem => item.VaccineType)</td>
+                <td>@Html.DisplayFor(modelItem => item.VaccineDescription)</td>
+                <td>@Html.DisplayFor(modelItem => item.Dose_Number)</td>
+                <td>
+                    <a class="a" asp-action="VaccineInfo_Edit" asp-route-id="@item.InformationID">Edit</a> |
+                    <form method="post" asp-action="VaccineDelete" asp-route-id="@item.InformationID">
+                        <input type="hidden" asp-for="@item.InformationID">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<style>
+    /* Style for the table */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    /* Style for table header */
+    th {
+        background-color: #007bff;
+        color: #fff;
+        font-weight: bold;
+        padding: 10px;
+    }
+
+    /* Style for table rows */
+    tr {
+        background-color: #f5f5f5;
+    }
+
+        /* Style for alternating rows (zebra striping) */
+        tr:nth-child(even) {
+            background-color: #e0e0e0;
+        }
+
+    /* Style for table cells */
+    td {
+        padding: 10px;
+    }
+
+    /* Style for links and buttons */
+    .a, button {
+        text-decoration: none;
+        padding: 5px 10px;
+        margin: 3px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: #fff;
+        text-align: center;
+        display: inline-block;
+    }
+
+        /* Hover effect for links and buttons */
+        .a:hover, button:hover {
+            background-color: #0056b3;
+        }
+
+</style>

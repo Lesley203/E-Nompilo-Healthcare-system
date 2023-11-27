@@ -1,0 +1,66 @@
+﻿@model E_Nompilo_Healthcare_system.Models.Ultra_Sound_Image
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_PreNatalLayout.cshtml";
+}
+
+<div class="bg-primary p-3 mb-2 border border-secondary">
+    <h4 class="text-white text-center">Ultra Sound Image</h4>
+</div>
+<hr />
+<div class="row ">
+    <div class="col-md-4 ">
+        <form asp-action="Create" class="p-3 ">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group ">
+                <label asp-for="Question1" class="control-label"></label>
+                <select asp-for="Question1" class="form-control" required>
+                    <option selected disabled value="">Choose an option...</option>
+                    <option value="5">Week 1 - Week 5</option>
+                    <option value="10">Week 6 - Week 10</option>
+                    <option value="15">Week 15 - Week 20</option>
+                </select>
+                <span asp-validation-for="Question1" class="text-danger "></span>
+            </div>
+            <div class="form-group ">
+                <label asp-for="Question2" class="control-label"></label>
+                <select asp-for="Question2" class="form-control"required>
+                    <option selected disabled value="">Choose an option...</option>
+                    <option value="10">Yes</option>
+                    <option value="5">No</option>
+                </select>
+                <span asp-validation-for="Question2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question3" class="control-label"></label>
+                <select asp-for="Question3" class="form-control "required>
+                    <option selected disabled value="">Choose an option...</option>
+                    <option value="5">Kicks</option>
+                    <option value="10">Rolls</option>
+                    <option value="15">Flutters</option>
+                    <option value="0">None</option>
+                </select>
+                <span asp-validation-for="Question3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question4" class="control-label"></label>
+                <select asp-for="Question4" class="form-control"required>
+                    <option selected disabled value="">Choose an option...</option>
+                    <option value="5">Higher Up</option>
+                    <option value="10">Low in the pelvis</option>
+                    <option value="0">None</option>
+                </select>
+                <span asp-validation-for="Question4" class="text-danger "></span>
+            </div>
+            <div class="form-group ">
+                <button type="submit" class="btn btn-primary ">Create</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-secondary ">Back to List</a>
+</div>
+

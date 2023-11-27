@@ -1,0 +1,110 @@
+﻿@model List<E_Nompilo_Healthcare_system.Models.AppointmentModel>
+@{
+    ViewData["Title"] = "DoctorManageQueue";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    int rowCount = 0;
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <form>
+                    <div class="row">
+
+                        <div class="col-12">
+                            <div class="form-heading align-content-center" style="position:center; ">
+                                <h2 class="heading-section text-center centered" style="position:center; margin-bottom:27px;">Manage Queue</h2>
+                            </div>
+                        </div>
+                        <form>
+                            <section class="ftco-section">
+                                <div class="container">
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @* <h3 class="h5 mb-4 text-center"></h3>*@
+                                            <div class="table-wrap">
+                                                @if (Model != null)
+                                                {
+                                                    <table class="table myaccordion table-hover" id="accordion">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="width: 70px;">#</th>
+                                                                <th style="width: 120px;">BookingId</th>
+                                                                <th style="width: 120px;">Type Of Appointment</th>
+                                                                <th style="width: 120px;">Status</th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                           
+                                                            @foreach (var apt in Model)
+                                                            {
+                                                                rowCount++;
+                                                                <tr data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+
+                                                                    <td width="30%">@rowCount</td>
+                                                                    <th style="width: 120px;">@apt.BookingId</th>
+                                                                    <th style="width: 120px;">@apt.TypeOfAppointment</th>
+                                                                    <td width="30%">@apt.Status</td>
+
+                                                                    <td width="30%">
+                                                                        <div class="w-100 btn-group" role="group">
+                                                                            
+                                                                            @if (apt.Status == BookingStatus.Queued)
+                                                                            {
+                                                                                <a asp-action="ChangeStatus" asp-route-id="@apt.BookingId" asp-route-newStatus="YourTurn">Place-In</a>
+                                                                            }
+                                                                            else if (apt.Status == BookingStatus.YourTurn)
+                                                                            {
+                                                                                <a asp-action="ChangeStatus" asp-route-id="@apt.BookingId" asp-route-newStatus="InProgress">Progress</a>
+                                                                            }
+                                                                            else if (apt.Status == BookingStatus.InProgress)
+                                                                            {
+                                                                                <a asp-action="ChangeStatus" asp-route-id="@apt.BookingId" asp-route-newStatus="Complete">Complete</a>
+                                                                            }
+                                                                            else if (apt.Status == BookingStatus.Complete )
+                                                                            {
+                                                                                <form method="post" asp-controller="Walk_In" asp-action="Delete_Appointmenttt_doc" asp-route-BookingId="@apt.BookingId">
+
+                                                                                    <input type="hidden" asp-for="@apt.BookingId" />
+                                                                                    <button type="submit" class="btn btn-danger mx-1">Cancel</button>
+                                                                                </form>
+                                                                            }
+
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <i class="fa" aria-hidden="true"></i>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="6" id="collapseOne" class="collapse show acc" data-parent="#accordion">
+                                                                        <p>@apt.Notes</p>
+                                                                    </td>
+                                                                </tr>
+
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                }
+                                                else
+                                                {
+                                                    <h1>No patient in the queue.</h1>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            
+                        </form>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

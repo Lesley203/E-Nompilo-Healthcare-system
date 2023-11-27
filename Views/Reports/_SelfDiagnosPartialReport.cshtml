@@ -1,0 +1,154 @@
+﻿
+
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+        .center ul {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            width: 90%;
+        }
+
+        .center ul {
+            margin-top: 5rem;
+        }
+
+            .center ul li {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #fff;
+                width: 90%;
+                padding: 1rem 2rem;
+                margin: 1rem 0px;
+                border-radius: 20px;
+                box-shadow: 0px 0px 20px #00000020;
+                position: relative;
+                transition: all .3s ease;
+                background-color: #1e202b;
+            }
+
+                .center ul li:hover:before {
+                    content: "";
+                    display: flex;
+                    width: 8px;
+                    height: 100%;
+                    background-color: #f1f1f1;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    margin-left: -1.5rem;
+                    border-radius: 25px;
+                    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.162);
+                }
+
+                .center ul li:hover {
+                    transform: translateX(15px);
+                }
+
+    .image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
+        .image img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+    .text-group {
+        width: 40%;
+    }
+
+    .c {
+        word-break: break-all;
+    }
+
+</style>
+@model List<Combined_diagnosis>
+@{
+    Layout = "~/Views/Shared/_WalkinLayout.cshtml";
+}
+
+
+<h2 class="text-center">Diagnos History</h2>
+<hr />
+@if (Model != null)
+{
+    <form method="post" asp-controller="Reports" asp-action="DeleteSelected">
+        <div class="center">
+            <ul>
+
+                @foreach (var history in Model)
+                {
+
+                    <li>
+
+                        <input type="checkbox" class="mr-2" style="font-size:36px;" name="selectedItems" value="@history.SelfHistoryModel.SelfDigId" />
+                        <div class="image">
+                            <i class="fa fa-history " style="color:white; font-size:30px;" aria-hidden="true"></i>
+
+
+                            <h4 class="text-light" style=" word-break: break-all;"> </h4>
+                            @history.SelfDiagnosModel.SymptomName
+
+                        </div>
+
+                        <div class="c text-group" style=" word-break: break-all;">
+                            @history.SelfDiagnosModel.Description
+                        </div>
+
+                        <div class="date-group">
+                            <h4 class="text-light">@history.SelfHistoryModel.GetDateTime</h4>
+
+                        </div>
+                    </li>
+                    <br />
+                }
+               
+
+
+            </ul>
+        </div>
+        <button type="submit"> <i class="fa fa-trash-o" style="font-size:30px;color:red"></i></button>
+    </form>
+    @*   <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var history in Model)
+            {
+                <tr>
+                    <td>@history.GetDateTime</td>
+                    <!-- Add other columns as needed -->
+                </tr>
+            }
+        </tbody>
+    </table>*@
+}
+else
+{
+    <h2>No History is available</h2>
+}

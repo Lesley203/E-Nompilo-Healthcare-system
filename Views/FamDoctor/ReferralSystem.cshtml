@@ -1,0 +1,163 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "ReferralSystem";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h1>Referral System</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .info-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .info-card-content {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .info-card-icon {
+            font-size: 48px;
+            color: #007BFF;
+        }
+
+        .info-card-text {
+            flex: 1;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .referral-form {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+
+        .referral-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .referral-button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333;
+            color: white;
+        }
+    </style>
+    <title>Referral System</title>
+</head>
+<body>
+     <div class="section">
+            <h2>Refer a Patient</h2>
+            <div class="referral-form">
+                <form>
+                    <div class="form-group">
+                        <label for="patient-name" class="form-label">Patient's Name</label>
+                        <input type="text" id="patient-name" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="specialist" class="form-label">Select Specialist</label>
+                        <select id="specialist" class="form-input" required>
+                            <option value="" disabled selected>Select a Specialist</option>
+                            <option value="gynecologist">Gynecologist</option>
+                            <option value="endocrinologist">Endocrinologist</option>
+                            <option value="psychologist">Psychologist</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reason" class="form-label">Reason for Referral</label>
+                        <textarea id="reason" class="form-textarea" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="referral-button">Submit Referral</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+   
+</body>
+</html>
+
+
+

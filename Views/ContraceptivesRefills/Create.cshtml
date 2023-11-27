@@ -1,0 +1,138 @@
+﻿@model E_Nompilo_Healthcare_system.Models.ContraceptivesRefill
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_FamilyPlanLayout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contraceptives Refill</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .control-label {
+            font-weight: bold;
+        }
+
+        .text-danger {
+            color: #dc3545;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Contraceptives Renewal</h4>
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label hidden asp-for="PatientID" class="control-label"></label>
+                                <select hidden asp-for="PatientID" class="form-control" asp-items="ViewBag.PatientID"></select>
+                            </div>
+                            <!-- Contraceptive Type -->
+                            <div class="form-group">
+                                <label asp-for="ContraceptiveType" class="control-label">Contraceptive Type</label>
+                                <select asp-for="ContraceptiveType" class="form-control">
+                                    <option value="Intrauterine Device (IUD)">Intrauterine Device (IUD)</option>
+                                    <option value="Birth Control Pills">Birth Control Pills</option>
+                                    <option value="Birth Control Shot (Depo-Provera)">Birth Control Shot (Depo-Provera)</option>
+                                    <option value="Birth Control Implant (Nexplanon)">Birth Control Implant (Nexplanon)</option>
+                                    <option value="Long-Acting Reversible Contraceptives">Long-Acting Reversible Contraceptives</option>
+                                    <option value="Sterilization">Sterilization</option>
+                                </select>
+                                <span asp-validation-for="ContraceptiveType" class="text-danger"></span>
+                            </div>
+                            <!-- Last Refill Date -->
+                            <div class="form-group">
+                                <label asp-for="LastRefillDate" class="control-label">Last Refill Date</label>
+                                <input asp-for="LastRefillDate" class="form-control" />
+                                <span asp-validation-for="LastRefillDate" class="text-danger"></span>
+                            </div>
+                            <!-- Refill Date -->
+                            <div class="form-group">
+                                <label asp-for="CollectionDate" class="control-label">Refill Date</label>
+                                <input asp-for="CollectionDate" class="form-control" />
+                                <span asp-validation-for="CollectionDate" class="text-danger"></span>
+                            </div>
+                            <!-- Contact Number -->
+                            <div class="form-group">
+                                <label asp-for="ContactNumber" class="control-label">Contact Number</label>
+                                <input asp-for="ContactNumber" class="form-control" />
+                                <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                            </div>
+                            <!-- Additional Information -->
+                            <div class="form-group">
+                                <label asp-for="AdditionalInformation" class="control-label">Additional Information</label>
+                                <textarea asp-for="AdditionalInformation" class="form-control" rows="4"></textarea>
+                                <span asp-validation-for="AdditionalInformation" class="text-danger"></span>
+                            </div>
+                            <!-- Submit Button -->
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary">Request</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</body>
+</html>

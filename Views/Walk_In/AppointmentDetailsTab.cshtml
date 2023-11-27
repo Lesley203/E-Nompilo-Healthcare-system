@@ -1,0 +1,346 @@
+﻿@model List<E_Nompilo_Healthcare_system.Models.AppointmentModel>
+@{
+    ViewData["Title"] = "AppointmentDetailsTab";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+}
+<head>
+    <script>
+        // Function to show the confirmation modal and store BookingId
+        function showConfirmationModal(bookingId) {
+            $('#confirmationModal').modal('show');
+            $('#deleteAppointmentButton').data('bookingId', bookingId);
+        }
+
+        // Function to confirm and execute the delete action
+        function confirmDelete() {
+            var bookingIdToDelete = $('#deleteAppointmentButton').data('bookingId');
+
+            $.ajax({
+                url: '@Url.Action("Delete_Appointment", "Walk_In")',
+                type: 'POST',
+                data: { BookingId: bookingIdToDelete },
+                success: function () {
+                    $('#confirmationModal').modal('hide');
+                    window.location.reload(); // Refresh the page or update UI as needed
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.error(xhr.responseText);
+                    // Handle errors, e.g., display an error message
+                }
+            });
+        }
+    </script>
+
+</head>
+
+<ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+    <li class="nav-item">
+        <a asp-controller="Walk_In" asp-action="BookingAppointForm" role="tab" class="btnn  btn-border-3 active">
+            <span>Book</span>
+        </a>
+    </li>
+
+
+    @*<li class="nav-item">
+    <a role="tab" class="btnn  btn-border-3 active">
+    <span>Reschedule Appointment</span>
+    </a>
+    </li>*@
+    <li class="nav-item">
+        <a asp-controller="Walk_In" asp-action="AppointmentDetails" role="tab" class="btnn  btn-border-3 active">
+            <span>Print</span>
+        </a>
+
+    </li>
+    
+    <li class="nav-item">
+        <a asp-controller="Walk_In" asp-action="PatientQueueManage" role="tab" class="btnn  btn-border-3 active">
+            <span>Track</span>
+        </a>
+
+    </li>
+</ul>
+<hr />
+@if (TempData["AlertMessagee"] != null)
+{
+    <div class="alert alert-warning">
+        <strong>Failed to book, You already have a booking!</strong> @TempData["AlertMessage"]
+    </div>
+}
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Successfully!</strong> @TempData["AlertMessage"]
+    </div>
+}
+@if (TempData["AlertMess"] != null)
+{
+    <script>
+        alert("@TempData["AlertMess"]");
+    </script>
+}
+@if (Model != null && Model.Any())
+{
+    @foreach (var apt in Model)
+    {
+
+
+
+        <div id="example1" class="p-3">
+            <table class="table myaccordion table-hover" id="accordion">
+                <thead>
+                    <tr>
+                        <th style="width: 70px;">Booking Reference</th>
+
+                        <th>DateofAppointment</th>
+                        <th>Time</th>
+                       
+                        <th class="text-end" style="width: 120px;">TypeOfAppointment</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+
+                        <td width="30%">@apt.BookingId</td>
+                        <td width="30%">@apt.DateofAppointment</td>
+                        <td width="40%">@apt.Time</td>
+                        
+                        <td width="30%">@apt.TypeOfAppointment</td>
+
+
+                        <td>
+                            <i class="fa" aria-hidden="true"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" id="collapseOne" class="collapse show acc" data-parent="#accordion">
+                            <p>@apt.Notes</p>
+                        </td>
+                    </tr>
+
+
+                </tbody>
+
+
+                <td width="100%" class="right ">
+                    <div class="w-38 btn-group " role="group">
+                        @*  asp-controller="Walk_In" asp-action="Delete_Appointment" asp-route-BookingId="@apt.BookingId"*@
+                        @*  <form method="post" asp-controller="Walk_In" asp-action="Delete_Appointment" asp-route-BookingId="@apt.BookingId">*@
+                        @*@Html.AntiForgeryToken()*@
+                        @* <button onclick="showConfirmationModal(@apt.BookingId)" class="btn btn-danger mx-1">Delete</button> *@
+                        @*   </form>*@
+
+                        <form method="post" asp-controller="Walk_In" asp-action="Delete_Appointment" asp-route-BookingId="@apt.BookingId">
+                            @Html.AntiForgeryToken()
+                            <input asp-for="@apt.BookingId" type="hidden">
+                            <button type="submit" class="btn btn-danger mx-1">Delete</button>
+                        </form>
+                        <a asp-controller="Walk_In" asp-action="Update_Appointment" asp-route-BookingId="@apt.BookingId" class="btn btn-warning mx-1">Reschedule</a>
+                    </div>
+
+                </td>
+
+
+            </table>
+
+        </div>
+        <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this appointment?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <form method="post" asp-controller="Walk_In" asp-action="Delete_Appointment" asp-route-BookingId="@apt.BookingId">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-danger mx-1">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <h2 class="text-danger">No Appointment Booked</h2>
+}
+<br />
+<!-- Modal for Confirmation -->
+
+
+
+
+
+
+
+
+<style>
+
+    #example1 {
+        border: 1px solid;
+        padding: 10px;
+        box-shadow: 5px 7px;
+    }
+    /* .top-right {
+                          position: absolute;
+                          top: 8px;
+                          right: 16px;
+                        } */
+    table {
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    td {
+        padding: 16px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #eee;
+    }
+</style>
+<style>
+    .btnn {
+        position: relative;
+        display: inline-block;
+        margin: 8px;
+        padding: 4px 6px;
+        text-align: center;
+        font-size: 14px;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color: black;
+        background: #ffffff;
+        border: 2px solid #999999;
+        cursor: pointer;
+        transition: ease-out 0.4s;
+        -webkit-transition: ease-out 0.4s;
+        -moz-transition: ease-out 0.4s;
+    }
+
+        .btnn.btn-border-1::after,
+        .btnn.btn-border-1::before {
+            position: absolute;
+            content: "";
+            width: 0%;
+            height: 0%;
+            visibility: hidden;
+        }
+
+        .btnn.btn-border-1::after {
+            bottom: -3px;
+            right: -3px;
+            border-left: 3px solid #222222;
+            border-bottom: 3px solid #222222;
+            transition: width .1s ease .1s, height .1s ease, visibility 0s .2s;
+        }
+
+        .btnn.btn-border-1::before {
+            top: -3px;
+            left: -3px;
+            border-top: 3px solid #222222;
+            border-right: 3px solid #222222;
+            transition: width .1s ease .3s, height .1s ease .2s, visibility 0s .4s;
+        }
+
+        .btnn.btn-border-1:hover {
+            animation: pulse 1s ease-out .4s;
+            color: #222222;
+        }
+
+            .btnn.btn-border-1:hover::after,
+            .btnn.btn-border-1:hover::before {
+                width: calc(100% + 3px);
+                height: calc(100% + 3px);
+                visibility: visible;
+                transition: width .1s ease .2s, height .1s ease .3s, visibility 0s .2s;
+            }
+
+            .btnn.btn-border-1:hover::after {
+                transition: width .1s ease .2s, height .1s ease .3s, visibility 0s .2s;
+            }
+
+            .btnn.btn-border-1:hover::before {
+                transition: width .1s ease, height .1s ease .1s;
+            }
+
+        .btnn.btn-border-2::after,
+        .btnn.btn-border-2::before {
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 0;
+            transition: .5s;
+        }
+
+        .btnn.btn-border-2::after {
+            top: -3px;
+            left: -3px;
+            border-top: 3px solid transparent;
+            border-left: 3px solid transparent;
+        }
+
+        .btnn.btn-border-2::before {
+            bottom: -3px;
+            right: -3px;
+            border-bottom: 3px solid transparent;
+            border-right: 3px solid transparent;
+        }
+
+        .btnn.btn-border-2:hover {
+            color: #222222;
+        }
+
+            .btnn.btn-border-2:hover::after,
+            .btnn.btn-border-2:hover::before {
+                width: calc(50% + 3px);
+                height: calc(50% + 3px);
+                border-color: #222222;
+            }
+
+        .btnn.btn-border-3::after,
+        .btnn.btn-border-3::before {
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 0;
+            transition: .5s;
+        }
+
+        .btnn.btn-border-3::after {
+            top: -9px;
+            left: -9px;
+            border-top: 3px solid transparent;
+            border-left: 3px solid transparent;
+        }
+
+        .btnn.btn-border-3::before {
+            bottom: -9px;
+            right: -9px;
+            border-bottom: 3px solid transparent;
+            border-right: 3px solid transparent;
+        }
+
+        .btnn.btn-border-3:hover {
+            color: #222222;
+        }
+
+            .btnn.btn-border-3:hover::after,
+            .btnn.btn-border-3:hover::before {
+                width: 30px;
+                height: 30px;
+                border-color: #222222;
+            }
+
+</style>

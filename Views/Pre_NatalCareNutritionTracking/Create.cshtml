@@ -1,0 +1,311 @@
+﻿@model E_Nompilo_Healthcare_system.Models.Pre_NatalCareNutritionTracking
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_PreNatalLayout.cshtml";
+}
+
+<div class="bg-primary p-3 mb-2 text-white">
+    <h4 class="text-center">Nutrition Tracking</h4>
+</div>
+<div class="container-fluid bg-white border border-primary p-3">
+
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row p-3">
+            <div class="col-6 border-right border-primary">
+                <div class="form-group">
+                    <label asp-for="Question1" class="control-label"></label>
+                    <div class="form-check" >
+                        <input asp-for="Question1" value="1" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Less than 1 serving
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question1" value="2" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            1-2 Servings
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question1" value="3" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            3-4 Servings
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question1" value="5" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            5 or more Servings
+                        </label>
+                    </div>
+                    <span asp-validation-for="Question1" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question2" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question2" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes, regularly
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question2" value="3" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Yes, occassionally
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question2" value="1" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                           No
+                        </label>
+                    </div>
+                    
+                    <span asp-validation-for="Question2" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question3" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question3" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Daily
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question3" value="3" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            A few times a week
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question3" value="1" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Rarely or never
+                        </label>
+                    </div>
+
+                    <span asp-validation-for="Question3" class="text-danger"></span>
+                </div>
+                <div class="form-group" >
+                    <label asp-for="Question4" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question4" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes, daily
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question4" value="3" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Yes, occassionaly
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question4" value="1" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                           No
+                        </label>
+                    </div>
+
+                    <span asp-validation-for="Question4" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question5" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question5" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Weekly
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question5" value="3" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Monthly
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question5" value="1" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Rarely or never
+                        </label>
+                    </div>
+
+                    <span asp-validation-for="Question5" class="text-danger"></span>
+                </div>
+                <div class="form-group"required>
+                    <label asp-for="Question6" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question6" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes, frequently aversions
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question6" value="3" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Yes, occassional aversions
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question6" value="0" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            No significant aversions or cravings
+                        </label>
+                    </div>
+
+                    <span asp-validation-for="Question6" class="text-danger"></span>
+                </div>
+                <!-- Other form groups and radio buttons... -->
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="Question7" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question7" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes and I meet or exceed it
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question7" value="3" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Yes, but I may not meet it consistently
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question7" value="0" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            No
+                        </label>
+                    </div>
+                    <span asp-validation-for="Question7" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question8" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question8" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            8 or more glasses
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question8" value="3" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            4-7 glasses
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question8" value="0" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Less than 4 glasses
+                        </label>
+                    </div>
+                    <span asp-validation-for="Question8" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question9" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question9" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes and I follow their recommendation
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question9" value="3" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Yes, but I have not fully implemented their suggestion
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question9" value="0" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            No
+                        </label>
+                    </div>
+                    <span asp-validation-for="Question9" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question10" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question10" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            No, I avoid them completely
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question10" value="3" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Occassionally, but in moderation
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question10" value="0" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Yes, regulary
+                        </label>
+                    </div>
+                    <span asp-validation-for="Question10" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question11" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question11" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Excellent, I follow all guidelines closely
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question11" value="3" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Good, I follow mostly follow guidelines but could improve
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question11" value="2" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Fair, I follow some guidelines but need to make significant improvements
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question11" value="0" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Poor, I do not follow pre-natal nutrition guidelines
+                        </label>
+                    </div>
+                    <span asp-validation-for="Question11" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question12" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question12" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            No, I only take prescribed supplements
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question12" value="3" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Yes, but I have discussed them with my healthcare provider
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question12" value="0" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Yes, without consulting my healthcare provider
+                        </label>
+                    </div>
+                    <span asp-validation-for="Question12" class="text-danger"></span>
+                </div>
+                <!-- Other form groups and radio buttons... -->
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Track" class="btn btn-primary mb-2" />
+        </div>
+    </form>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

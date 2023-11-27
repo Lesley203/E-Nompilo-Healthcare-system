@@ -1,0 +1,49 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.Counselling>
+
+@{
+    ViewData["ViewTitle"] = "List of Bookings";
+    ViewData["Description"] = "All bookings for the patient";
+    ViewData["Title"] = "All_Counsellings";
+     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h1>
+    List of All counselling Bookings
+</h1>
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table table-striped">
+    <thead>
+        <tr>
+           
+            <th>
+                Patient Information
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+               @Html.DisplayFor(modelItem =>item.MainUser.FirstName)
+               @Html.DisplayFor(modelItem =>item.MainUser.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,139 @@
+﻿@model E_Nompilo_Healthcare_system.Models.RefillrequestModel
+
+@{
+    ViewData["Title"] = "Update_RefillRequest";
+    Layout = "~/Views/Shared/_ChronicMedLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Center the form vertically and horizontally */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width:100%px;
+            background-color: #f5f5f5;
+        }
+
+        /* Style the form container */
+        .form-container {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+
+        /* Header styles */
+        h1 {
+            font-size: 24px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* Form field styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Button styles */
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .btn:hover {
+                background-color: #0056b3;
+            }
+
+        /* Link styles */
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        /* Validation message styles */
+        .text-danger {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container col-md-4">
+            <h1>Update_RefillRequest</h1>
+            <h4>RefillrequestModel</h4>
+            <hr />
+
+            <form asp-action="Update_RefillRequest">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="RefillId" />
+
+                <div class="form-group">
+                    <label asp-for="MedicationName" class="control-label"></label>
+                    <input asp-for="MedicationName" class="form-control" />
+                    <span asp-validation-for="MedicationName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label hidden asp-for="RequestDate" class="control-label"></label>
+                    <input hidden asp-for="RequestDate" class="form-control" />
+                    <span asp-validation-for="RequestDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="RequestedQuantity" class="control-label"></label>
+                    <input asp-for="RequestedQuantity" class="form-control" />
+                    <span asp-validation-for="RequestedQuantity" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Notes" class="control-label"></label>
+                    <input asp-for="Notes" class="form-control" />
+                    <span asp-validation-for="Notes" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="DosageForm" class="control-label"></label>
+                    <input asp-for="DosageForm" class="form-control" />
+                    <span asp-validation-for="DosageForm" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <a asp-action="RequestRefill">Back to List</a>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,95 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.VaccineScreening>
+
+@{
+    ViewData["Title"] = "Report_Review_Screening_1st";
+    Layout = "~/Views/Shared/_VaccinationLayout.cshtml";
+}
+
+
+
+<p>
+    <a class="btn btn-secondary" asp-action="Report_Review_Screening">Print</a>
+</p>
+<h2>Screening History</h2>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cough)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dizzines)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Abdominalpain)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Headache)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.legswelling)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.snezzing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChestPressure)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Allergy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Days)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TakenVac)
+            </th>
+            <th>
+              Date
+            </th>
+   
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cough)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dizzines)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Abdominalpain)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Headache)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.legswelling)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.snezzing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChestPressure)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Allergy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Days)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TakenVac)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GetDateSurvay)
+            </td>
+           
+           
+        </tr>
+}
+    </tbody>
+</table>

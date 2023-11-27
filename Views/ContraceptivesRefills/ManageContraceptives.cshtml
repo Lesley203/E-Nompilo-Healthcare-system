@@ -1,0 +1,115 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.ContraceptivesRefill>
+
+@{
+	ViewData["Title"] = "ManageContraceptives";
+	Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Contraceptives Refill Request</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        table {
+            margin: 0 auto;
+            width: 80%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        th, td {
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        script {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    @if (TempData["AlertMessagee"] != null)
+    {
+        <script>
+            alert("@TempData["AlertMessagee"]");
+        </script>
+    }
+
+    <h1>Manage Contraceptives Refill Request</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Appointment Information</th>
+                <th>@Html.DisplayNameFor(model => model.Status)</th>
+                <th>Contraceptive Type</th>
+                <th>Last Refill Date</th>
+                <th>Collection Date</th>
+                <th>Contact Number</th>
+                <th>Additional Information</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MainUser.FirstName)
+                        @Html.DisplayFor(modelItem => item.MainUser.LastName)
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ContraceptiveType)</td>
+                    <td>@Html.DisplayFor(modelItem => item.LastRefillDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CollectionDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ContactNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AdditionalInformation)</td>
+                    <td>
+                        @if (item.Status == "New")
+                        {
+                            <a asp-action="ContraceptivesApprove" asp-route-id="@item.RefillID">Approve</a>
+                            <a asp-action="ContraceptivesDecline" asp-route-id="@item.RefillID">Decline</a>
+                            
+                        }
+                        else if (item.Status == "Approve")
+                        {
+                            <a asp-action="Details" asp-route-id="@item.RefillID">Decline</a>
+                        @*    <a asp-action="Edit" asp-route-id="@item.RefillID">Reschedule</a>*@
+                        }
+                        else if (item.Status == "Done")
+                        {
+                            <a asp-action="Details" asp-route-id="@item.RefillID">Decline</a>
+                            <a asp-action="Details" asp-route-id="@item.RefillID">View More</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+
+

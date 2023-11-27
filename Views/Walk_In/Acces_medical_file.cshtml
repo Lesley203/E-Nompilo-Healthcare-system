@@ -1,0 +1,257 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.MedicalFileModel>
+@{
+    ViewData["Title"] = "Acces_medical_file";
+    Layout = "~/Views/Shared/_WalkinLayout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+           
+            <div class="card-body">
+
+                <div class="row">
+                    
+                    <form asp-action="CreateFile" method="post" class="form-horizontal" id="registerForm" novalidate>
+                        <a asp-controller="Walk_In" asp-action="Access_medical_file_Edit" role="tab" class="">
+                            <span class="float-end float-right "><i style="font-size:32px;" class="fas fa-edit"></i></span>
+                        </a>
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                         <h3 class="text-primary">MEDICAL FILE</h3>
+                         <hr />
+                      @*  <input hidden asp-for="Id" />*@
+                         <div class="form-group form-check-inline">
+                        <div class="col-8">
+                        <label>First name</label>
+                                <input disabled value="@ViewData["FirstName"]" class="form-control" placeholder="First" type="text">
+                        </div>
+                        <div class="col-8">
+                        <label>Last name</label>
+                                <input value="@ViewData["LastName"]" class="form-control" disabled placeholder="Last" type="text">
+                        </div>
+                        </div>
+                        <div class="form-group">
+                            <label id="validationCustom01" class="col-sm-10" for="TextArea">Identity No<span class="login-danger">*</span></label>
+                            <div class="col-md-10">
+                                <input class="form-control" disabled id="validationCustom01" value="@ViewData["IdentityNo"]" placeholder="Identity Number" type="text" required>
+                                <div class="invalid-feedback">
+                                    Please Provide a correct ID.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label id="validationCustom02" class="col-md-10" for="TextArea">Residential Address<span class="login-danger">*</span></label>
+                            <div class="col-md-10">
+                                <input class="form-control" value="@ViewData["Address1"]" id="validationCustom02" disabled placeholder="Street Address 1" type="text" required />
+                                <div class="invalid-feedback">
+                                    Please Provide a correct Address.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <input class="form-control" value="@ViewData["Address2"]" disabled placeholder="Street Address 2" type="text">
+
+                            </div>
+                        </div>
+                        <div class="form-group form-check-inline ">
+                            <div class="col-sm-4">
+                                <label id="validationCustom03" class="col-sm-8">City<span class="login-danger">*</span></label>
+                                <input class="form-control" value="@ViewData["City"]" disabled id="validationCustom03" placeholder="City" type="text" required>
+                                <div class="invalid-feedback">
+                                    Please Provide a correct city.
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <label id="validationCustom04">Postcode<span class="login-danger">*</span></label>
+                                <input class="form-control" value="@ViewData["postalCode"]" disabled id="validationCustom04" placeholder="Postcode" type="text" required>
+                                <div class="invalid-feedback">
+                                    Please Provide a correct postalcode.
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                
+                                <label id="validationCustom05">Country or Region<span class="login-danger">*</span></label>
+                                <input id="validationCustom05" value="@ViewData["Country"]" disabled placeholder="Country" class="form-control " required>
+                                   
+                                <div class="invalid-feedback">
+                                    Please Provide a correct country.
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="p-1 text-primary">NEXT OF KIN </h3>
+                        <hr />
+                        <div class="form-group form-check-inline">
+                            <div class="col-sm-8">
+                                <label id="validationCustom06">First name<span class="login-danger">*</span></label>
+                                <input class="form-control" value="@ViewData["KinFirstName"]" disabled id="validationCustom06" placeholder="First Name" type="text" required>
+                                <div class="invalid-feedback">
+                                    Please Provide a correct name.
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <label id="validationCustom07">Relatioship<span class="login-danger">*</span></label>
+                                <input id="validationCustom07" placeholder="Relationship" value="@ViewData["Relationship"]" disabled class="form-select " required>
+                                   
+                                <div class="invalid-feedback">
+                                    Please Provide a correct answer.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label id="validationCustom08" class="col-sm-10" for="TextArea">Contact<span class="login-danger">*</span></label>
+                            <div class="col-sm-10">
+                                <input class="form-control" value="@ViewData["ContactKin"]" disabled id="validationCustom08" placeholder="Contact Number" type="number" >
+                                <div class="invalid-feedback">
+                                    Please Provide a correct contact number.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label id="validationCustom09" class="col-sm-10" for="TextArea">Email<span class="login-danger">*</span></label>
+                            <div class="col-sm-10">
+                                <input class="form-control" value="@ViewData["KinEmail"]" id="validationCustom09" disabled placeholder="Identity Number" type="email" >
+                                <div class="invalid-feedback">
+                                    Please Provide a correct email.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label id="validationCustom10" class="col-sm-10" for="TextArea">Residential Address<span class="login-danger">*</span></label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="validationCustom10" disabled value="@ViewData["KinAddress1"]" placeholder="Street Address 1" type="text" >
+                                <div class="invalid-feedback">
+                                    Please Provide a correct kin Address
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-check-inline">
+
+                            <div class="col-sm-8">
+                                <label id="validationCustom11" class="col-sm-10" for="TextArea">street2</label>
+                                <input class="form-control" id="validationCustom11" disabled value="@ViewData["KinAddress2"]" placeholder="Street Address 2" type="text">
+
+                            </div>
+
+                            <div class="col-sm-4">
+                                <label id="validationCustom12">Postcode<span class="login-danger">*</span></label>
+                                <input class="form-control" id="validationCustom12" disabled value="@ViewData["postalCodeKin"]" placeholder="Postcode" type="text" >
+                                <div class="invalid-feedback">
+                                    Please Provide a postal code
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="p-1 text-primary">MEDICAL HISTORY</h3>
+                        <hr />
+                        <div class="form-group form-check-inline">
+                            <div class="col-sm-8">
+                                <label id="validationCustom13">Currently taking any medication?<span class="login-danger">*</span> </label>
+                                <input id="validationCustom13" value="@ViewData["TakingMed"]" disabled class=" form-select" >
+                                  
+                                <div class="invalid-feedback">
+                                    Please Provide an answer
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <label id="validationCustom14">Any Allergies?<span class="login-danger dang">*</span></label>
+                                <input id="validationCustom14" value="@ViewData["allergies"]" disabled class=" form-select " >
+                                   
+                                <div class="invalid-feedback">
+                                    Please Provide a Answer
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-10" for="TextArea">Medical information we should Know(Write N/A if not)</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" value="@ViewData[" MedicalInfor"]" disabled rows="3" cols="30">
+                            </div>
+                        </div>
+                        <hr />
+                       
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Container styling */
+    .row {
+        margin: 20px;
+    }
+
+    /* Card styling */
+    .card {
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Card body styling */
+    .card-body {
+        padding: 20px;
+    }
+
+    /* Form label styling */
+    label {
+        font-weight: 550;
+    }
+
+    /* Input field styling */
+    .form-control {
+        margin-bottom: 10px;
+    }
+
+    /* Add padding to the form */
+    #registerForm {
+        padding: 20px;
+    }
+
+    /* Style the headings */
+    h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 24px;
+        color: #007BFF;
+    }
+
+    /* Style the edit icon */
+    .fa-edit {
+        color: #007BFF;
+    }
+
+    /* Error message styling */
+    .text-danger {
+        color: red;
+    }
+
+    /* Add some spacing between form groups */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    /* Style the submit button if needed */
+    /* You can customize this further */
+    [type="submit"] {
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+        /* Style the submit button on hover */
+        [type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+</style>

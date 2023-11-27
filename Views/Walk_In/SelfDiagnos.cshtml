@@ -1,0 +1,110 @@
+﻿
+@model E_Nompilo_Healthcare_system.Models.SelfDiagnosModel
+@{
+    
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body p-2">
+                <form asp-action="SelfDiagnos" method="post">
+
+                    <div class="row">
+
+                        <div class="col-12">
+                            <div class="form-heading align-content-center" style="position:center; ">
+                                <h3 class=" text-centre centered" style="position:center; margin-bottom:27px;">Self-Diagnosis</h3>
+                            </div>
+                        </div>
+                       <hr />
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms ">
+                                <label>Illness <span class="login-danger">*</span></label>
+                                <input asp-for="SymptomName" class="form-control "   type="text" required />
+                            </div>
+                        </div>
+                       
+                       
+                        <div class="col-12 col-md-6 col-xl-6">
+                            <div class="form-group local-forms">
+                                <label>Description</label>
+                                <input asp-for="Description" class="form-control "   type="text" required />
+                            </div>    
+
+                        </div>
+                         <div class="col-12 col-sm-12">
+                          <div class="form-group local-forms">
+                                <label>Symptoms<span class="login-danger">*</span></label>
+                                 <input asp-for="Treatment" class="form-control "  type="text" required />
+                            </div>
+                        </div>
+  
+                       
+                    </div>  
+                    <input class="btn btn-primary" type="submit" value="Submit" />
+                </form>
+
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            // Autocomplete functionality using AJAX
+            $("#searchTerm").on("input", function () {
+                var term = $(this).val();
+                if (term.length >= 3) {
+                    $.ajax({
+                        url: "/Walk_In/Autocomplete",
+                        type: "GET",
+                        data: { term: term },
+                        success: function (data) {
+                            var suggestions = "";
+                            data.forEach(function (item) {
+                                suggestions += "<div>" + item + "</div>";
+                            });
+                            $("#searchSuggestions").html(suggestions);
+                        },
+                        error: function (xhr, status, error) {
+                            console.log("Error in autocomplete AJAX request: " + error);
+                        }
+                        
+                    });
+                } else {
+                    $("#searchSuggestions").html("");
+                }
+            });
+
+            // Search results using AJAX
+            $("#searchTerm").on("keyup", function () {
+                var searchTerm = $(this).val();
+                if (searchTerm.length >= 3) {
+                    $.ajax({
+                        url: "/Walk_In/SelfView",
+                        type: "GET",
+                        data: { searchTerm: searchTerm },
+                        success: function (data) {
+                            $("#searchResults").html(data);
+                        },
+                        error: function (xhr, status, error) {
+                            console.log("Error in search AJAX request: " + error);
+                        }
+                    });
+                } else {
+                    // Clear search results if the search term is less than 3 characters
+                    $("#searchResults").empty();
+                }
+            });
+        });
+    </script>
+}
+

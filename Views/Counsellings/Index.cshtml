@@ -1,0 +1,68 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.Counselling>
+
+@{
+    ViewData["ViewTitle"] = "List of Bookings";
+    ViewData["Description"] = "All bookings for the patient";
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_FamilyPlanLayout.cshtml";
+}
+
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-striped">
+    <thead class="table-primary">
+        <tr>
+            <th>
+                Full Names
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+            
+                  @Html.DisplayFor(modelItem =>item.MainUser.FirstName)
+                  @Html.DisplayFor(modelItem =>item.MainUser.LastName)
+           </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+            <div class="col-4 offset-4" id="test">
+              <div class="dropdown">
+                <a data-toggle="dropdown"><i class="fa fa-ellipsis-v fa-2x waves-effect"></i></a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#"> <a asp-action="Edit" asp-route-id="@item.Id">Edit</a></a>
+                  <a class="dropdown-item" href="#"><a asp-action="Details" asp-route-id="@item.Id">Details</a></a>
+                  <a class="dropdown-item" href="#"> <a asp-action="Delete" asp-route-id="@item.Id">Delete</a></a>
+                  <div class="dropdown-divider"></div>
+                  
+                </div>
+              </div>
+            </div>
+                
+            </td>
+             </tr>          @* <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>*@
+       
+       
+}
+    </tbody>
+</table>

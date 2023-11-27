@@ -1,0 +1,136 @@
+﻿@using System.Security.Claims;
+@using E_Nompilo_Healthcare_system.UserClaimsIdentity;
+@using E_Nompilo_Healthcare_system.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<HealthcareSystemUser> SignInManager
+@inject UserManager<HealthcareSystemUser> UserManager
+@model IEnumerable<E_Nompilo_Healthcare_system.Models.ContraceptivesRefill>
+
+@{
+	ViewData["Title"] = "Reporting";
+	 Layout = "~/Views/Shared/Fam_Layout1.cshtml";
+}
+<style>
+
+</style>
+<div id="mainDiv" class="p-2">
+	<div id="header" class="bg-primary">
+		@*      <h2>Report Requests for Contraceptives Refill</h2>*@
+
+	</div>
+	<a href="javascript:window.print()" role="tab" class="btn btn-primary">
+	Generate Report
+	</a>
+	@*<button id="btnPrint" class="btn btn-primary">
+	Generate Report
+	</button>*@
+	<div id="Information" class="row">
+		<div class="col-8">
+			<img src="~/images/111.png" style="width:200px" />
+			<p class="mt-3">Date of Report: @ViewBag.Date</p>
+			<p class="mt-3">Time of Report: @ViewBag.Time</p>
+		</div>
+		<div class="col-4 justify-content-md-end">
+
+			<h4>Patient Information</h4>
+
+			<p>First Name: @UserManager.GetUserAsync(User).Result.FirstName</p>
+			<p>Last Name: @UserManager.GetUserAsync(User).Result.LastName</p>
+			<p>Email Address: @UserManager.GetUserAsync(User).Result.Email</p>
+
+		</div>
+
+	</div>
+	<h3 class="text-center">List of all Requests</h3>
+
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				@* <th>
+				@Html.DisplayNameFor(model => model.Date)
+				</th>*@
+				<th>
+					Full Names
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Status)
+				</th>
+				<th>
+					Contraceptive Type
+				</th>
+				<th>
+					Last Refill Date
+				</th>
+				<th>
+					Collection Date
+				</th>
+				<th>
+					Contact Number
+				</th>
+				<th>
+					Additional Information
+				</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					@* <td>
+				@Html.DisplayFor(modelItem => item.Date)
+				</td>*@
+					<td>
+						@Html.DisplayFor(modelItem => item.MainUser.FirstName)
+						@Html.DisplayFor(modelItem => item.MainUser.LastName)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Status)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.ContraceptiveType)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.LastRefillDate)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.CollectionDate)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.ContactNumber)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.AdditionalInformation)
+					</td>
+
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+<script defer>
+window.onload = function
+{
+	console.log"Its working"
+    document.getElementById('Information').style.visibility = "hidden";
+
+}
+const Prntbtn = document.getElementById('btnPrint');
+Prntbtn.addEventListener("click", myPrint);
+
+function myPrint() {
+    document.getElementById('Information').style.visibility = "visible";
+    document.getElementById('sidebar').style.visibility = "hidden"; 
+	document.getElementById('header').style.visibility = "hidden";
+	//document.getElementById('myTable').style.visibility = "Table";
+
+    Prntbtn.style.visibility = "hidden";
+	window.print()
+	Prntbtn.style.visibility = "visible"
+
+	document.getElementById('Information').style.visibility = "hidden";
+    document.getElementById('sidebar').style.visibility = "visible"; 
+	document.getElementById('header').style.visibility = "visible";
+}
+</script>

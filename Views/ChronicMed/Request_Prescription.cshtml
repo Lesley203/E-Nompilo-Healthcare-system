@@ -1,0 +1,227 @@
+﻿@model E_Nompilo_Healthcare_system.Models.RequestPrescripModel
+@{
+    ViewData["Title"] = "Request_Prescription";
+    Layout = "~/Views/Shared/_ChronicMedLayout.cshtml";
+}
+
+
+<head>
+    <style>
+        /* CSS styles for the prescription request form */
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .container-fluid.bg-primary {
+            background-color: #007BFF;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+            .container-fluid.bg-primary h3 {
+                color: #fff;
+                font-size: 24px;
+            }
+
+        .card {
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-heading {
+            text-align: center;
+            margin-bottom: 27px;
+        }
+
+            .form-heading h3 {
+                color: #007BFF;
+                font-size: 28px;
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+            .form-group label {
+                font-weight: bold;
+            }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <div class="container container-fluid bg-primary">
+        <h3 class="text text-white text-center">Request Prescription</h3>
+    </div>
+
+    <hr />
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" asp-action="Request_Prescription" class="needs-validation" novalidate>
+                        <div class="row">
+                           @*  <div class="col-12">
+                                <div class="form-heading">
+                                    <h3>Prescription Request</h3>
+                                </div>
+                            </div> *@
+                            <div class="col-12 col-md-6 col-xl-4">
+                                <div class="form-group local-forms">
+                                    <label for="MedicalHistory">Reason for prescription or Diagnosis<span class="login-danger">*</span></label>
+                                    <input id="MedicalHistory" asp-for="MedicalHistory" class="form-control" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Please enter current medical history!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-xl-4">
+                                <div class="form-group local-forms">
+                                    <label for="CurrentSymptoms">Current Symptoms <span class="login-danger">*</span></label>
+                                    <input id="CurrentSymptoms" asp-for="CurrentSymptoms" class="form-control" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Please enter the current symtoms you expriencing.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-xl-4">
+                                <div class="form-group local-forms">
+                                    <label for="ChronicConditions">Chronic Condition <span class="login-danger">*</span></label>
+                                    <input id="ChronicConditions" asp-for="ChronicConditions" class="form-control" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Please choose any attendency doctor.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-xl-6">
+                                <div class="form-group local-forms">
+                                    <label for="Allergies">Allergies <span class="login-danger">*</span></label>
+                                    <input id="Allergies" asp-for="Allergies" class="form-control" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Please allergies.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group local-forms">
+                                    <label for="Notes">Notes <span class="login-danger">*</span></label>
+                                    <textarea id="Notes" asp-for="Notes" class="form-control" rows="3" cols="30" type="text" required></textarea>
+                                    <div class="invalid-feedback">
+                                        Please provide a notes.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="doctor-submit text-end">
+                                    <input type="submit" class="btn btn-primary" value="Request">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+
+
+@*<div class="container container-fluid bg-primary">
+    <h3 class="text text-black text-center">Welcome to Prescription request</h3>
+</div>
+
+
+</ul>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" asp-action="Request_Prescription">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <div class="form-heading align-content-center" style="position:center; ">
+                                <h3 class="align-content-center centered" style="position:center; margin-bottom:27px;"></h3>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms ">
+                                <label>Medical History <span class="login-danger">*</span></label>
+                                <textarea asp-for="MedicalHistory" class="form-control" rows="3" cols="30" required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms ">
+                                <label>Current Symptoms <span class="login-danger">*</span></label>
+                                <input asp-for="CurrentSymptoms" class="form-control " required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms ">
+                                <label>Chronic Condition <span class="login-danger">*</span></label>
+                                <input asp-for="ChronicConditions" class="form-control " required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms ">
+                                <label>Allergies <span class="login-danger">*</span></label>
+                                <input asp-for="Allergies" class="form-control " required>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-12">
+                            <div class="doctor-submit text-end">
+                               
+                                <input type="submit" class="btn btn-primary " value="Submit" />
+                               
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+*@

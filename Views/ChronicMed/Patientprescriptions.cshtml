@@ -1,0 +1,148 @@
+﻿@model List<E_Nompilo_Healthcare_system.Models.PrescriptionModel>
+
+
+@{
+    int row = 0;
+    ViewData["Title"] = "Patientprescriptions";
+    Layout = "~/Views/Shared/_ChronicMedLayout.cshtml";
+}
+
+<h1>Prescriptions</h1>
+
+@if (Model != null)
+
+{
+
+
+
+
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    
+                </th>
+                <th>
+                    Patient Name
+                </th>
+                <th>
+                    Doctor Name
+                </th>
+                
+                <th>
+                    Medication Name
+                </th>
+                <th>
+                    Dosage Amount
+                </th>
+                <th>
+                    Frequency
+                </th>
+                <th>
+                    Comment
+                </th>
+                <th>
+                    Date Prescribed
+                </th>
+                <th>
+                    Prescription Expiration Date*
+                </th>
+                <th>
+                   Action
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var apt in Model)
+            {
+                row++;
+
+                <tr>
+                    <td width="7%">@row</td>
+                    <td width="30%">@apt.Prescription_Request.HCUser.FirstName @apt.Prescription_Request.HCUser.LastName</td>
+
+
+                    <td width="30%">@apt.HUser.FirstName @apt.HUser.LastName</td>
+
+                    <td width="30%">@apt.MedicationName</td>
+                    <td width="30%">@apt.Dosageamount</td>
+                    <td width="30%">@apt.Frequency</td>
+                    <td width="30%">@apt.Comment</td>
+                    <td width="30%">@apt.DatePrescribed.ToString("yyyy/MM/dd")</td>
+                    <td width="30%">@apt.PrescriptionExpirationDate.ToString("yyyy/MM/dd")</td>
+                    <td width="30%">
+                        <div class="w-100 btn-group" role="group">
+                            <a asp-controller="ChronicMed" asp-action="Prescription_Details" asp-route-PrescriptionId="@apt.PrescriptionId" class="btn btn-success mx-1">View Prescription</a>
+                            
+                            
+                        </div>
+                    </td>
+                </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+
+}
+else
+{
+    <h1>No Prescription made</h1>
+
+}
+<style>
+    /* Style the header */
+    h1 {
+        font-size: 24px;
+        text-align: center;
+        margin-top: 20px;
+        color: #333;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Style the table */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        /* Style the table header */
+        .table th {
+            background-color: #007bff;
+            color: #fff;
+            text-align: left;
+            padding: 12px;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Style the table rows */
+        .table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+    /* Style the action button */
+    .btn-success {
+        background-color: #28a745;
+        color: #fff;
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        box-shadow: 2px 2px 4px rgba(40, 167, 69, 0.2);
+    }
+
+    /* Style the "No Prescription made" message */
+    h1 {
+        text-align: center;
+        margin-top: 20px;
+        color: #333;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+</style>

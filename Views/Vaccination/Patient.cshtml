@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewData["Title"] = "Patient";
+    Layout = "~/Views/Shared/_VaccinationLayout.cshtml";
+}
+@if (TempData["AlertMessagL"] != null)
+{
+    <script>
+        alert("@TempData["AlertMessagL"]");
+    </script>
+}
+@if (TempData["AlertMessagLe"] != null)
+{
+    <div class="alert alert-warning">
+        <strong>@TempData["AlertMessagLe"]</strong>
+    </div>
+}
+<h1>Welcome <span class="text-danger">E</span><span class="text-primary">-NOMPILE</span> <bold>Vaccination</bold></h1>
+<hr />
+<br />
+<div style="text-align: center;">
+    <img src="~/images/VACCINATION.png" style="max-width: 1000px; height: auto;">
+</div>
+
+
+<br /><br />
+<div class="container-fluid pt-4 px-4">
+
+    <div class="row g-4">
+        <div class=" col-sm-6 col-xl-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <div id="dash-con" class="dash-con rounded d-flex align-items-center justify-content-between p-4">
+                <img src="~/images/My Appointment.png" style="width: 79px" />
+                <div class="ms-3">
+                    <a asp-controller="VaccineScreenings" asp-action="Survay_Vacc">
+                    <h4 class="mb-2">Survey<span class="badge bg-primary rounded-pill text-white"></span></h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+            <div id="dash-con" class="dash-con rounded d-flex align-items-center justify-content-between p-4">
+                <img src="~/images/My Medical File.png" style="width: 65px" />
+                <div class="ms-3">
+                    <h4 class="mb-2">Records</h4>  
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-6 col-xl-3" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+            <div id="dash-con" class=" dash-con rounded d-flex align-items-center justify-content-between p-4">
+                <img src="~/images/My Dosage.png" style="width: 95px" />
+                <div class="ms-3">
+                    <a asp-controller="Vaccine_Information" asp-action="Vaccine_List_Patient">
+                    <h4 class="mb-2">Vaccine Information</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-6 col-xl-3" >
+            <div id="dash-con" class="dash-con rounded d-flex align-items-center justify-content-between p-4">
+                <img src="~/images/My Feedback.png" style="width: 65px" />
+                <div class="ms-2">
+                     <a asp-controller="Vaccination" asp-action="Report_Feedback">
+                    <h4 class="mb-2">Feedback</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<style>
+    #dash-con {
+        background: rgba( 0, 42, 255, 0.75 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 0px );
+        -webkit-backdrop-filter: blur( 0px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+    }
+
+        #dash-con:hover {
+            background: rgba( 0, 42, 255, 1 );
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 20px );
+            -webkit-backdrop-filter: blur( 20px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+        }
+</style>
+

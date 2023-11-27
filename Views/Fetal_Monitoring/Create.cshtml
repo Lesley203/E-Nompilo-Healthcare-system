@@ -1,0 +1,216 @@
+﻿@model E_Nompilo_Healthcare_system.Models.Fetal_Monitoring
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_PreNatalLayout.cshtml";
+}
+
+<div class="bg-primary p-3 mb-2">
+    <h4 class="text-white text-center">Fetal Monitoring</h4>
+</div>
+
+<div class="container-fluid bg-white border border-primary p-3">
+    
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row p-3">
+            <div class="col-6 border-right border-primary">
+                <div class="form-group">
+                    <label asp-for="Question1" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question1" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes, I understand the significance of monitoring fetal movements.
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question1" value="1" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            No, I need more information about why it's important.
+                        </label>
+                    </div>
+                    <span asp-validation-for="Question1" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question2" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question2" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes, I feel my baby moving regularly.
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question2" value="1" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            No, I'm not sure if I'm feeling the movements or not.
+                        </label>
+                    </div>
+                    <span asp-validation-for="Question2" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question3" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question3" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes, I know how to count fetal movements as advised.
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question3" value="1" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            No, I haven't received instructions on counting movements.
+                        </label>
+                    </div>
+                    <span asp-validation-for="Question3" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question4" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question4" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes, I've talked to my healthcare provider about any concerns.
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question4" value="0" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            No, I haven't discussed decreased movement concerns yet.
+                        </label>
+                    </div>
+                    <span asp-validation-for="Question4" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question5" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question5" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes, I've been taught how to do kick counts.
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question5" value="0" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            No, I'm not familiar with the procedure.
+                        </label>
+                    </div>
+                    <span asp-validation-for="Question5" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question6" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question6" value="0" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            No, my baby's movements have been consistent.
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question6" value="5" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Yes, I've noticed changes or reduced movement.
+                        </label>
+                    </div>
+                    <span asp-validation-for="Question6" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-6">
+
+
+                <div class="form-group">
+                    <label asp-for="Question7" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question7" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes, I know how often I should check my baby's movements.
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question7" value="0" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            No, I'm not sure about the recommended frequency.
+                        </label>
+                    </div>
+                    <span asp-validation-for="Question7" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question8" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question8" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes, I know how to monitor my baby's heart rate.
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question8" value="0" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            No, I haven't received instructions on heart rate monitoring.
+                        </label>
+                    </div>
+                    <span asp-validation-for="Question8" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question9" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question9" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes, I know the methods for monitoring heart rate.
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question9" value="0" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            No, I'm not familiar with these methods.
+                        </label>
+                    </div>
+                    <span asp-validation-for="Question9" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question10" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question10" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes, I've had regular check-ups and tests.
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question10" value="0" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            No, I haven't had such tests yet.
+                        </label>
+                    </div>
+                    <span asp-validation-for="Question10" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question11" class="control-label"></label>
+                    <div class="form-check">
+                        <input asp-for="Question11" value="5" class="form-check-input" type="radio" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes, I have a method to track movements and heart rate.
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Question11" value="0" class="form-check-input" type="radio" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            No, I don't have a method for tracking at home.
+                        </label>
+                    </div>
+                    <span asp-validation-for="Question11" class="text-danger"></span>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+

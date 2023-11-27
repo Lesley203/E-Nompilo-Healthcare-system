@@ -1,0 +1,93 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.Pre_NatalCareNutritionTracking>
+
+@{
+    ViewData["Title"] = "TrackingHistory";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+<head>
+    <!-- Add these lines to your _Layout.cshtml -->
+    @* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"> *@
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+</head>
+<div class="bg-primary p-3 mb-2">
+    <h2 class="text-white text-center">Tracking History</h2>
+</div>
+
+<!-- Button trigger modal -->
+<table id="myTable" class="table table-bordered border-danger table-striped">
+    <thead class="table-dark table-active text-uppercase text-white">
+        <tr class ="text-White"> 
+            <th class="text-white">@Html.DisplayNameFor(model => model.Date)</th>
+            <th class="text-white">Patient Name</th>
+            <th class="text-white">@Html.DisplayNameFor(model => model.Total)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MainUser.FirstName)
+                    @Html.DisplayFor(modelItem => item.MainUser.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+
+                <td>
+                    @if (item.Total == 0)
+                    {
+                        <p> Error: No choice selected, Please make a selection before submitting. </p>
+                    }
+                    else if (item.Total < 30)
+                    {
+                     <p> Poor Nutrition, Reduce your intake of processed and sugary food, take prenatal care vitamins and consume food rich in Iron or with calcium to prevent chances of anaemia, pre-enclampsia, haemorrrphage and developmental delays of your child.</p>
+                    
+                    }
+                    else if (item.Total > 30 && item.Total < 59)
+                    {
+                       <p>well-done,  you're already making changes for the better in your nutrition. With continued effort, you'll achieve the level of nutrition you desire for a healthy pregnancy.</p>
+                 
+                    }
+                    else if (item.Total > 59)
+                    {
+                       <p>Congratulations, you're doing an excellent job with your prenatal nutrition. You're efforts are not only benefiting you but also ensuring the best possible start for your baby.</p>
+  
+                    }
+                </td>
+                <td>
+                    <a asp-controller="Referrals" asp-action="Index" class="btn btn-success">Referral</a>
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="~/js/site.js"></script>
+
+<!-- DataTables CSS file -->
+<!-- jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- DataTables JavaScript file -->
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.bootstrap4.min.js"></script>
+
+
+

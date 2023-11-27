@@ -1,0 +1,64 @@
+﻿@model E_Nompilo_Healthcare_system.Models.Resourses
+
+@{
+    ViewData["Title"] = "Create";
+  Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+@*
+<h1>Create</h1>*@
+
+<h4>Resourses</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ContraceptiveMethods" class="control-label">Contraceptive Methods</label>
+                <input asp-for="ContraceptiveMethods" class="form-control" />
+                <span asp-validation-for="ContraceptiveMethods" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Effectiveness" class="control-label"></label>
+                <input asp-for="Effectiveness" class="form-control" />
+                <span asp-validation-for="Effectiveness" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HealthBenefits" class="control-label">Health Benefits</label>
+                <input asp-for="HealthBenefits" class="form-control" />
+                <span asp-validation-for="HealthBenefits" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SideEffects" class="control-label">Side Effects</label>
+                <input asp-for="SideEffects" class="form-control" />
+                <span asp-validation-for="SideEffects" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reversibility" class="control-label"></label>
+                <input asp-for="Reversibility" class="form-control" />
+                <span asp-validation-for="Reversibility" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvailabilityandAccess" class="control-label">Availability and Access</label>
+                <input asp-for="AvailabilityandAccess" class="form-control" />
+                <span asp-validation-for="AvailabilityandAccess" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Product Image:</label>
+                <Input type="file" name="ImageFile" class="form-control"/>
+                <span class="text-danger"></span>
+                </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,119 @@
+﻿@model E_Nompilo_Healthcare_system.Models.RequestContraceptivesInfo
+@using E_Nompilo_Healthcare_system.Models
+@{
+	ViewData["Title"] = "Create";
+	Layout = "~/Views/Shared/_FamilyPlanLayout.cshtml";
+}
+<head>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap4.min.css" />
+</head>
+
+<h4>Request Contraceptives Information</h4>
+<hr />
+<div class="row">
+	<form asp-action="Create">
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		<div class="row">
+			<div class="form-group col-4">
+				<label asp-for="Contraceptivetype" class="control-label">Contraceptive Type</label>
+				<select asp-for="Contraceptivetype" class="form-control">
+					<option value="Intrauterine Device (IUD)">Intrauterine Device (IUD)</option>
+					<option value="Birth Control Pills">Birth Control Pills</option>
+					<option value="Birth Control Shot (Depo-Provera)">Birth Control Shot (Depo-Provera)</option>
+					<option value="Birth Control Implant (Nexplanon)">Birth Control Implant (Nexplanon)</option>
+					<option value="Long-Acting Reversible Contraceptives">Long-Acting Reversible Contraceptives</option>
+					<option value="Sterilization">Sterilization</option>
+				</select>
+				<span asp-validation-for="Contraceptivetype" class="text-danger"></span>
+			</div>
+
+			<div class="form-group col-4">
+				<label asp-for="AdditionalInfo" class="control-label">Additional Information</label>
+				<input asp-for="AdditionalInfo" class="form-control" />
+				<span asp-validation-for="AdditionalInfo" class="text-danger"></span>
+			</div>
+
+			<div class="form-group col-2">
+				<input type="submit" value="Request" class="btn btn-primary mt-4" />
+			</div>
+		</div>
+
+	</form>
+</div>
+
+<div>
+	<table id="myTable" class="table table-striped">
+		<thead>
+			<tr>
+            <th>
+	        Contraceptive Methods
+		</th>
+		<th>
+			Effectiveness
+		</th>
+		<th>
+			HealthBenefits
+		</th>
+		<th>
+			SideEffects
+		</th>
+		<th>
+			Reversibility
+		</th>
+		<th>
+			AvailabilityandAccess
+		</th>
+		</tr>
+		</thead>
+		<tbody>
+			@foreach (Resourse item in ViewBag.Inforam)
+			{
+				<tr>
+					<td>
+						@item.ContraceptiveMethods
+					</td>
+					<td>
+						@item.Effectiveness
+					</td>
+					<td>
+						@item.HealthBenefits
+					</td>
+					<td>
+						@item.SideEffects
+					</td>
+					<td>
+						@item.Reversibility
+					</td>
+					<td>
+						@item.AvailabilityandAccess
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+	</div>
+	<!-- jQuery library -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<!-- DataTables JavaScript file -->
+	<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.bootstrap4.min.js"></script>
+	@*<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>*@
+
+
+
+
+
+   

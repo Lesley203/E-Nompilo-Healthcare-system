@@ -1,0 +1,145 @@
+﻿@model List<E_Nompilo_Healthcare_system.Models.AppointmentModel>
+@{
+    ViewData["Title"] = "AdminManage";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    int rowCount = 0;
+}
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="form-heading align-content-center" style="position:center; ">
+                            <h2 class="heading-section text-center centered" style="position:center; margin-bottom:27px;">Queue List</h2>
+                        </div>
+                    </div>
+
+                    <section class="ftco-section">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-wrap">
+
+                                        @if (Model != null)
+                                        {
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Booking Ref</th>
+                                                        <th>Date</th>
+                                                       <th>  Time</th>
+                                                        
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    @foreach (var apt in Model)
+                                                    {
+                                                        rowCount++;
+                                                        <tr>
+                                                            <th>@rowCount</th>
+                                                            <td>@apt.BookingId</td>
+                                                            <td>@apt.DateofAppointment</td>
+                                                                    <th>@apt.Time</th>
+                                                                            
+                                                            <td>
+                                                                @if (apt.Status == BookingStatus.OnHold)
+                                                                {
+                                                                <button class="btn btn-warning">@apt.Status</button>
+                                                                }
+                                                                else if (apt.Status == BookingStatus.Queued)
+                                                                {
+                                                                    <button class="btn btn-secondary">@apt.Status</button>
+                                                                }
+                                                                else if (apt.Status == BookingStatus.YourTurn)
+                                                                {
+                                                                    <button class="btn btn-secondary">@apt.Status</button>
+                                                                }
+                                                                else if (apt.Status == BookingStatus.InProgress)
+                                                                {
+                                                                <button @*style="color:greenyellow;"*@ class="btn btn-secondary">@apt.Status</button>
+                                                                }
+                                                                else @*if(apt.Status == BookingStatus.Complete)*@
+                                                                {
+                                                                <button class="btn btn-success">@apt.Status</button>
+                                                                }
+                                                            </td>
+                                                            <td>
+                                                                <form method="post" asp-controller="Walk_In" asp-action="Delete_Appointmenttt" asp-route-BookingId="@apt.BookingId">
+
+                                                                    @*<input type="hidden" asp-for="@apt.Id" />*@
+                                                                    <input type="hidden" asp-for="@apt.BookingId" />
+                                                                    <button type="submit" class="btn btn-danger mx-1">Remove</button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                    }
+
+                                                </tbody>
+                                            </table>
+                                        }
+                                        else
+                                        {
+                                            <h1>No patient in the queue.</h1>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Style the search field */
+    form.example input[type=text] {
+        padding: 10px;
+        font-size: 17px;
+        border: 1px solid grey;
+        float: left;
+        width: 80%;
+        background: #f1f1f1;
+    }
+
+    /* Style the submit button */
+    form.example button {
+        float: left;
+        width: 20%;
+        padding: 10px;
+        background: #2196F3;
+        color: white;
+        font-size: 17px;
+        border: 1px solid grey;
+        border-left: none; /* Prevent double borders */
+        cursor: pointer;
+    }
+
+        form.example button:hover {
+            background: #0b7dda;
+        }
+
+    /* Clear floats */
+    form.example::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+</style>

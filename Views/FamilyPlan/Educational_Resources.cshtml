@@ -1,0 +1,127 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    
+    ViewData["Title"] = "Educational_Resources";
+    Layout = "~/Views/Shared/_FamilyPlanLayout.cshtml";
+
+}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: dimgray;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .resource {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .resource img {
+            max-width: 150px;
+            border-radius: 10px;
+        }
+
+        .resource-content {
+            flex: 1;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+    <title>Hospital Family Planning Education</title>
+</head>
+<body>
+   
+
+    <main> 
+        <section class="section">
+            <h2>Family Planning Educational Resources</h2>
+            <div class="resource">
+                <img src="/images/Contraceptives.PNG" alt="Resource Image">
+                <div class="resource-content">
+                    <h3>Contraception Options</h3>
+                    <p>Discover various contraception methods, including birth control pills, condoms, IUDs, and more.</p>
+                    <a href="contraception.html">Learn More</a>
+                </div>
+            </div>
+            <div class="resource">
+                <img src="/images/pregnancy.PNG" alt="Resource Image">
+                <div class="resource-content">
+                    <h3>Pregnancy Planning</h3>
+                    <p>Explore pre-pregnancy health, fertility tracking, and essential steps for a healthy pregnancy journey.</p>
+                    <a href="pregnancy-planning.html">Learn More</a>
+                </div>
+            </div>
+            <div class="resource">
+                <img src="/images/relation.PNG" alt="Resource Image">
+                <div class="resource-content">
+                    <h3>Healthy Relationships</h3>
+                    <p>Learn about effective communication, mutual respect, and emotional well-being in family planning.</p>
+                    <a href="healthy-relationships.html">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Why Family Planning Matters</h2>
+            <p>Family planning empowers individuals to make informed choices about their reproductive health and future. It contributes to better maternal and child health, women's empowerment, and sustainable communities.</p>
+        </section>
+    </main>
+
+</body>
+</html>
+

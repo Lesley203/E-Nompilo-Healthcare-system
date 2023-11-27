@@ -1,0 +1,82 @@
+﻿@using System.Security.Claims;
+@using E_Nompilo_Healthcare_system.UserClaimsIdentity;
+@using E_Nompilo_Healthcare_system.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<HealthcareSystemUser> SignInManager
+@inject UserManager<HealthcareSystemUser> UserManager
+@model IEnumerable<E_Nompilo_Healthcare_system.Models.RequestContraceptivesInfo>
+
+@{
+    ViewData["Title"] = "ContraceptiveReporting";
+   	Layout = "~/Views/Shared/Fam_Layout1.cshtml";
+}
+
+
+<style>
+
+</style>
+<div id="mainDiv" class="p-2">
+	<div id="header" class="bg-primary">
+		@*      <h2>Report Requests for Contraceptives Refill</h2>*@
+
+	</div>
+	<a href="javascript:window.print()" role="tab" class="btn btn-primary">
+	Generate Report
+	</a>
+@*	<button id="btnPrint" class="btn btn-primary">
+	Generate Report
+	</button>*@
+	<div id="Information" class="row">
+		<div class="col-8">
+			<img src="~/images/111.png" style="width:200px" />
+			<p class="mt-3">Date of Report: @ViewBag.Date</p>
+			<p class="mt-3">Time of Report: @ViewBag.Time</p>
+		</div>
+		<div class="col-4 justify-content-md-end">
+
+			<h4>Doctor Information</h4>
+
+			<p>First Name: @UserManager.GetUserAsync(User).Result.FirstName</p>
+			<p>Last Name: @UserManager.GetUserAsync(User).Result.LastName</p>
+			<p>Email Address: @UserManager.GetUserAsync(User).Result.Email</p>
+
+		</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Full Names
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                Contraceptive type
+            </th>
+            <th>
+                Additional Information
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MainUser.FirstName)
+                @Html.DisplayFor(modelItem => item.MainUser.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contraceptivetype)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdditionalInfo)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

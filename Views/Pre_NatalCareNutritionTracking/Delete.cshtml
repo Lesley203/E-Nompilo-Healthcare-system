@@ -1,0 +1,36 @@
+﻿@model E_Nompilo_Healthcare_system.Models.Pre_NatalCareNutritionTracking
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_PreNatalLayout.cshtml";
+}
+<div class="bg-primary p-3 mb-2 text-white">
+    <h4 class="text-center">Delete Nutrition Tracking</h4>
+</div>
+
+<h3>Are you sure you want to delete this?</h3>
+
+<div>
+    <h4>Pre-Natal Care Nutrition Trackings</h4>
+    <hr />
+
+   @*  <dl class="row">
+        <dt class="col-sm-2">Date</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Date)</dd>
+
+        <dt class="col-sm-2">Main User</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.MainUser.Id)</dd>
+
+        <dt class="col-sm-2">Status</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Status)</dd>
+
+        <!-- Add the remaining <dt> and <dd> pairs in a similar manner -->
+
+    </dl> *@
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="NutritionTrackingID" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+    </form>
+</div>

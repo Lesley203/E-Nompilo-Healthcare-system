@@ -1,0 +1,217 @@
+﻿@model E_Nompilo_Healthcare_system.Models.AppointmentModel
+@{
+    ViewData["Title"] = "Booking Postpone";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    var timeList = ViewBag.TimeList as SelectList ?? new SelectList(new List<TimeSpanModel>(), "ID", "Get_Time");
+}
+
+<hr />
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" asp-action="Update_Appointment_Admin" class="needs-validation" novalidate>
+                    <input type="hidden" asp-for="BookingId" value="@Model.BookingId" />
+                    <div class="row">
+                        <input type="hidden" asp-for="@Model.Id" />
+                        <div class="col-12">
+                            <div class="form-heading align-content-center" style="position:center; ">
+                                <h3 class="align-content-center centered" style="position:center; margin-bottom:27px;">Appointment Details</h3>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms ">
+                                <label for="validationTooltip01">Date of Appointment <span class="login-danger">*</span></label>
+                                @*  <input asp-for="DateofAppointment" class="form-control " id="validationTooltip01" type="date" required>*@
+                                <input asp-for="DateofAppointment" type="date" class="form-control" id="date" ng-model="date" required>
+                                <div class="invalid-feedback">
+                                    Please choose available date.
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms">
+                                <label for="validationTooltip02">Time<span class="login-danger">*</span></label>
+                                <div class="time-icon">
+                                    <select asp-for="Time" class="form-control" id="MedicationId" required>
+                                        <option selected disabled value="">Select Medication.......</option>
+                                        @foreach (TimeSpanModel item in ViewBag.TimeList)
+                                        {
+                                            <option value="@item.Get_Time">@item.Get_Time</option>
+                                        }
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please choose  time.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-6 col-xl-6">
+                            <div class="form-group local-forms">
+                               
+                                <select hidden class="form-select" id="validationCustom04" asp-for="ConsultingPerson" required>
+                                    <option selected disabled value="">Select Doctor</option>
+                                    <option>Dr.Bernardo James</option>
+                                    <option>Dr.Andrea Lalema</option>
+                                    <option>Dr.William Stephin</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please choose any attendency doctor.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-6">
+                            <div class="form-group local-forms">
+                               
+
+                                <select hidden asp-for="TypeOfAppointment" class="form-select" id="validationCustom04" required>
+                                    <option selected disabled value="">Choose appointment type...</option>
+                                    <option>Check-Ups</option>
+                                    <option>Consultation</option>
+                                    <option>Dentist</option>
+                                    <option>Surgery</option>
+                                    <option>Pre-natal Care</option>
+                                    <option>Family Planning</option>
+                                    <option>Chronic Medication</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please choose type of appointment.
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-12 col-sm-12">
+                            <div class="form-group local-forms">
+                                <label hidden>Notes <span class="login-danger">*</span></label>
+                                <textarea hidden asp-for="Notes" id="validationTooltip06" class="form-control" rows="3" cols="30" required></textarea>
+                                <div class="invalid-feedback">
+                                    Write N/A if unapplicable.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-6">
+                            <div class="form-group select-">
+                                <label hidden class="gen-label">First Time Visit</label><br>
+
+                                <select hidden asp-for="FirstTimeVisit" class="form-select" id="validationCustom04" required>
+                                    <option selected disabled value="">Choose...</option>
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Your first time visit?
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="doctor-submit text-end">
+                                @* <input type="submit" class="btn btn-info w-75" value="Create" />*@
+                                <input type="submit" class="btn btn-primary " value="Submit" />
+                                @*  <button type="submit" class="btn btn-primary cancel-form">Cancel</button>*@
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <partial name="_CancelModelPartial">
+</div>
+
+<style>
+
+    /* Add this style for button hover effect */
+    .btn-primary:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    /* Style for the "Update" button */
+    .btn-update {
+        background-color: #007bff; /* Primary blue */
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Smooth background color transition */
+    }
+
+    /* Style for the "Back to List" button */
+    .btn-back {
+        background-color: #007bff; /* Primary blue */
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Smooth background color transition */
+    }
+
+        /* Add this style for button hover effect */
+        .btn-back:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+    /* Style for the form container */
+    .form-container {
+        width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    /* Style for form labels */
+    .control-label {
+        font-weight: bold;
+    }
+
+    /* Style for form inputs */
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style for the submit button */
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+</style>
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>

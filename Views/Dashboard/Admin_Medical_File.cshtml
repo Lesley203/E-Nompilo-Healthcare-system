@@ -1,0 +1,64 @@
+﻿@using E_Nompilo_Healthcare_system.Areas.Identity.Data;
+
+@{
+    ViewData["Title"] = "Admin_Medical_File";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    var usersWithoutFile = TempData["UsersWithoutFile"] as IEnumerable<HealthcareSystemUser>;
+    int rowCount = 0;
+}
+<div class="form-container">
+    <form method="get" asp-controller="Dashboard" asp-action="Admin_Medical_File" class="form-inline">
+        @*<input class="form-control" value="@ViewData["CurrentFilter"]" type="text" name="searchEmail" placeholder="Search by Email" aria-label="Search">
+        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i> Search</button>*@
+        <div class="container1t">
+            <input type="text" id="box" placeholder="Search by Email" aria-label="Search" value="@ViewData["CurrentFilter"]" name="searchEmail" class="search__box">
+            <button type="submit"> <i class="fas fa-search search__icon" id="icon" onclick="toggleShow()"></i></button>
+        </div>
+    </form>
+</div>
+@if (TempData["UsersWithoutFile"] != null && ((IEnumerable<HealthcareSystemUser>)TempData["UsersWithoutFile"]).Any())
+{
+    <div class="container table-responsive py-5">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">FirstName</th>
+                    <th scope="col">LastName</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">PhoneNumber</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+                @foreach (var user in (IEnumerable<HealthcareSystemUser>)TempData["UsersWithoutFile"])
+                {
+                    rowCount++;
+                    <tr>
+                        <th scope="row">@rowCount</th>
+                        <td>@user.FirstName</td>
+                        <td>@user.LastName</td>
+                        <td>@user.Email</td>
+                        <td>@user.PhoneNumb</td>
+                        <td><a asp-controller="Dashboard" asp-action="CreateMedicalFile" asp-route-ID="@user.Id" class="btn btn-warning"><i class='fas fa-file' style='font-size:16px'></i>File</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="container">
+        <h3>No users without medical files found.</h3>
+    </div>
+}
+
+<script>
+    function toggleShow() {
+        var el = document.getElementById("box");
+        el.classList.toggle("show");
+    }
+</script>
+

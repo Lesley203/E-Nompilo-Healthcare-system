@@ -1,0 +1,200 @@
+﻿@using E_Nompilo_Healthcare_system.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims;
+@using E_Nompilo_Healthcare_system.UserClaimsIdentity;
+@inject SignInManager<HealthcareSystemUser> SignInManager
+@inject UserManager<HealthcareSystemUser> UserManager
+@{
+    var gender = ViewBag.Gender;
+    var lastname = ViewBag.LastName;
+    var role = ViewBag.Role;
+    var firstName = ViewBag.FirstName;
+}
+
+<html>
+<head>
+
+
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/x-icon" href="~/images/logo.png" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/PatientDash.css" asp-append-version="true" />
+       <link rel="stylesheet" href="~/css/PatientDash.css" asp-append-version="true" />
+   <link rel="icon" type="image/x-icon" href="~/images/favicon.ico"asp-append-version="true" />
+    <link rel="stylesheet" href="~/E_Nompilo_Healthcare_system.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <title> @ViewData["Title"] - Home page</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet" />
+    <link href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css" rel="stylesheet" />
+   <link id="sleek-css" rel="stylesheet" href="~/Set/css/sleek.css" />
+    <link href="~/Set/plugins/simplebar/simplebar.css" rel="stylesheet" asp-append-version="true" />
+    <link id="sleek-css" rel="stylesheet" href="~/assets/css/sleek.css" />
+    <!-- FAVICON -->
+    <link href="~/Set/img/favicon.png" rel="shortcut icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" asp-append-version="true">
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous" asp-append-version="true"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" asp-append-version="true">
+   @* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous" asp-append-version="true"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" asp-append-version="true">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" asp-append-version="true">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" asp-append-version="true">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous" asp-append-version="true"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" asp-append-version="true">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" asp-append-version="true"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" asp-append-version="true"></script>*@
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap4.min.css" />
+</head>
+
+@if (SignInManager.IsSignedIn(User))
+{  
+    if (User.IsInRole("PATIENT"))
+    {
+        
+
+                <!-- ====================================
+                ——— LEFT SIDEBAR WITH OUT FOOTER
+                ===================================== -->
+               @* <aside class="left-sidebar bg-sidebar">
+*@
+                    @*<div id="sidebar" class="sidebar sidebar-with-footer">
+
+                        <!-- Aplication Brand -->
+                        <div class="app-brand">
+                            <a style="width:300px; padding-left:6px;" title=" Dashboard">
+
+                                <img src="~/images/111.png" class=" imgg float-start">
+
+                            </a>
+                        </div>
+
+                        <!-- begin sidebar  -->
+                        <div class="" data-simplebar style="height: 100%;">
+
+                            <ul class="nav sidebar-inner" id="sidebar-menu">
+                                <li class="has-sub active expand">
+
+                                    <a asp-controller="Dashboard" asp-action="Index" class="sidenav-item-link" data-target="#dashboard"
+                               aria-expanded="false" aria-controls="dashboard">
+                                        <i style="font-size:24px" class=" fa fa-fw fa-home"></i>
+                                        <span class="nav-text">Home</span>
+                                    </a>
+
+                                </li>
+
+                                <!-- Dashboard link -->
+                                <li class="has-sub expand">
+
+                                    <a class="sidenav-item-link" asp-controller="FamilyPlan" asp-action="FamilyPlanning" data-target="#dashboard"
+                               aria-expanded="false" aria-controls="dashboard">
+                                        <i class="mdi mdi-view-dashboard-outline"></i>
+                                        <span class="nav-text">Family-Plan Dashboard</span>
+                                    </a>
+
+                                </li>*@
+                             
+                              
+
+                   
+                                <div class="content">
+                            @RenderBody()
+                        </div>
+                                <!-- sidebar Footer -->
+@*
+                        </div>
+                </aside>
+*@
+                <!-- ====================================
+                ——— PAGE Header
+                ===================================== -->
+             
+
+                    <!-- ====================================
+                    ——— CONTENT WRAPPER
+                    ===================================== -->
+             
+    }
+    else if (User.IsInRole("ADMIN"))
+    {
+        <body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body">
+
+            <div class="content-wrapper">
+                <div class="content">
+                    @RenderBody()
+                </div>
+            </div>
+        </body>
+    
+    }
+    else if (User.IsInRole("DOCTOR"))
+    {
+    <body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body">
+
+        <div class="content-wrapper">
+            <div class="content">
+                @RenderBody()
+            </div>
+        </div>
+    </body>
+
+    }
+    else if (User.IsInRole("PHARMACIST"))
+    {
+        <body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body">
+
+            <div class="content-wrapper">
+                <div class="content">
+                    @RenderBody()
+                </div>
+            </div>
+        </body>
+    
+    }
+    else
+    {
+        <h2>No Role registered</h2>
+    }
+
+   
+}
+@await RenderSectionAsync("Scripts", required: false)
+<script src="~/Set/plugins/jquery/jquery.min.js" asp-append-version="true"></script>
+<script src="~/Set/plugins/bootstrap/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+<script src="~/Sets/plugins/simplebar/simplebar.min.js" asp-append-version="true"></script>
+<script src="~/Set/js/sleek.js"></script>
+<script type="text/javascript" src="jquery.dataTables.js"></script>
+<script type="text/javascript" src="dataTables.antiThe.js"></script>
+<script type="text/javascript">
+    var table = new DataTable('#myTable', {
+        columnDefs: [
+            {
+                target: 0,
+                type: 'anti-the',
+            },
+        ],
+    });
+</script>
+@await RenderSectionAsync("Scripts", required: false)
+</html>
+
+<!-- jQuery library -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<!-- DataTables JavaScript file -->
+	<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.bootstrap4.min.js"></script>
+
+
+

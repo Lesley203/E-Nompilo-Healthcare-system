@@ -1,0 +1,83 @@
+﻿@model List<E_Nompilo_Healthcare_system.Models.RequestPrescripModel>
+@{
+    ViewData["Title"] = "DoctorrequestPresrip_List";
+    int row = 0;
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+    <h1 class="text text-black text-center"> Patients prescriptions request</h1>
+    <hr />
+
+@if (Model != null)
+
+{
+
+
+
+
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                   
+                </th>
+                <th>
+                   Patient Information
+                </th>
+                <th>
+                    Medical History
+                </th>
+                <th>
+                    Current Symptoms
+                </th>
+                <th>
+                    Chronic Conditions
+                </th>
+                <th>
+                    Allergies
+                </th>
+                <th>
+                    Notes
+                </th>
+                <th>
+                    Action
+                </th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var apt in Model)
+            {
+
+                row++;
+                <tr>
+                    <td width="6%">@row</td>
+                    <td width="30%">@apt.HCUser.FirstName @apt.HCUser.LastName</td>
+                    <td width="30%">@apt.MedicalHistory</td>
+                    <td width="30%">@apt.CurrentSymptoms</td>
+                    <td width="30%">@apt.ChronicConditions</td>
+                    <td width="30%">@apt.Allergies</td>
+                    <td width="30%">@apt.Notes</td>
+
+                    <td width="30%">
+                        <div class="w-100 btn-group" role="group">
+                            <a asp-controller="ChronicMed" asp-action="Prescription" asp-route-PrescripId="@apt.PrescripId" asp-route-Id="@apt.Id"  class="btn btn-primary mx-1">Prescribe</a>
+                            @*<a asp-controller="Expense" asp-action="Delete" asp-route-ID="" class="btn btn-warning mx-1">Edit</a>*@
+                        </div>
+                    </td>
+                </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+
+}
+else
+{
+    <h1>No Request created yet</h1>
+}

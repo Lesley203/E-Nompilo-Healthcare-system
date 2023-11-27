@@ -1,0 +1,145 @@
+﻿@model List<E_Nompilo_Healthcare_system.Models.RefillrequestModel>
+@{
+    int row = 0;
+    ViewData["Title"] = "PharmRequestRefill";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .container {
+            background-color: #007bff;
+            padding: 20px;
+        }
+
+        .text-white {
+            color: white;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        a.btn {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            a.btn:hover {
+                background-color: #0056b3;
+            }
+
+        .btn-secondary {
+            background-color: white;
+            box-shadow: 0 4px 6px 0 black;
+        }
+
+            .btn-secondary:hover {
+                background-color: #eee;
+            }
+
+        .btn-success {
+            background-color: #28a745;
+        }
+
+            .btn-success:hover {
+                background-color: #218838;
+            }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+            .btn-danger:hover {
+                background-color: #c82333;
+            }
+    </style>
+</head>
+<body>
+    <div class="container container-fluid bg-primary">
+        <h3 class="text text-white text-center">List of Refill Request</h3>
+    </div>
+    <br /><br />
+    @if (Model != null)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>    </th>
+                    <th>Medication Name</th>
+                    <th>Patient Name</th>
+                    <th>Dosage Form</th>
+                    <th>Request Date</th>
+                    <th>Request Quantity</th>
+                    <th>Reason for Refill</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var apt in Model)
+                {
+                    row++;
+                    <tr>
+                        <td width="7%">@row</td>
+                        <td width="30%">@apt.MedicationName</td>
+                        <td width="30%"> @apt.HCUser.LastName</td>
+                        <td width="30%">@apt.DosageForm</td>
+                        <td width="30%">@apt.RequestDate</td>
+                        <td width="30%">@apt.RequestedQuantity</td>
+                        <td width="30%">@apt.Notes</td>
+                        <td width="30%">
+                            <div class="w-100">
+                                @if (apt.Statuss == RefillStatus.Pending)
+                                {
+                                    <a asp-controller="ChronicMed" asp-action="ChangeStatus" asp-route-id="@apt.RefillId" asp-route-newStatus="Approve" class="btn btn-secondary text-dark">Approve</a>
+                                }
+                                else if (apt.Statuss == RefillStatus.Approve)
+                                {
+                                    <button class="btn btn-success">Request Approved</button>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h1>No Request made</h1>
+    }
+</body>
+</html>
+
+
+

@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<IdentityRole>
+@{
+    ViewData["Title"] = "Index";
+}
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<h1>Roles</h1>
+
+<p>
+<a asp-action="Create">Create a new role</a>
+</p>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model=>model.Id)</th>
+            <th>@Html.DisplayNameFor(model=>model.Name)</th>
+            <th>@Html.DisplayNameFor(model=>model.NormalizedName)</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model=>item.Id)</td>
+                <td>@Html.DisplayFor(model=>item.Name)</td>
+                <td>@Html.DisplayFor(model=>item.NormalizedName)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@*         <div class="form-group">
+    <label asp-for="IdentityNo" class="control-label"></label>
+    <input asp-for="IdentityNo" class="form-control" />
+    <span asp-validation-for="IdentityNo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="Address1" class="control-label"></label>
+    <input asp-for="Address1" class="form-control" />
+    <span asp-validation-for="Address1" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="Address2" class="control-label"></label>
+    <input asp-for="Address2" class="form-control" />
+    <span asp-validation-for="Address2" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="City" class="control-label"></label>
+    <input asp-for="City" class="form-control" />
+    <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="postalCode" class="control-label"></label>
+    <input asp-for="postalCode" class="form-control" />
+    <span asp-validation-for="postalCode" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="Country" class="control-label"></label>
+    <input asp-for="Country" class="form-control" />
+    <span asp-validation-for="Country" class="text-danger"></span>
+    </div>*@

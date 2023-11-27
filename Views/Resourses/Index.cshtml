@@ -1,0 +1,126 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.Resourses>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_FamilyPlanLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InformationID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContraceptiveMethods)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Effectiveness)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HealthBenefits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SideEffects)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reversibility)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvailabilityandAccess)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageData)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.ImageType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InformationID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContraceptiveMethods)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Effectiveness)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HealthBenefits)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SideEffects)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reversibility)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvailabilityandAccess)
+            </td>
+            <td>
+                <img src="data:@item.ImageType;base64, @Convert.ToBase64String(@item.ImageData)">
+            </td>
+            <td>
+                @if(User.IsInRole("Patient"))
+                {
+                  <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="@item.InformationID">
+ More
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="@item.InformationID" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+           <img src="data:@item.ImageType;base64, @Convert.ToBase64String(@item.ImageData)">
+           <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">Active</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+  </li>
+</ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>      
+                }
+                else
+                {
+
+                <a asp-action="Edit" asp-route-id="@item.InformationID">Edit</a> 
+                <a asp-action="Details" asp-route-id="@item.InformationID">Details</a> 
+                <a asp-action="Delete" asp-route-id="@item.InformationID">Delete</a>
+
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

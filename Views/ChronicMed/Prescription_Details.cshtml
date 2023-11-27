@@ -1,0 +1,225 @@
+﻿@model E_Nompilo_Healthcare_system.Models.PrescriptionModel
+
+@{
+    ViewData["Title"] = "Prescription_Details";
+    Layout = "~/Views/Shared/_ChronicMedLayout.cshtml";
+}
+
+
+<div id="Home" class="tabcontent">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col ">
+                            <img src="~/images/111.png" style="top:10px;width:20% !important" class="   h-15 float-start ">
+                            <div class="invoice-title float-end float-right">
+
+                                <div class="mb-4">
+                                    <h2 class="mb-1 text-muted">e-Nomplo  Healthcare</h2>
+                                </div>
+                                <div class="text-muted">
+                                    <p class="mb-1">Easatern Cape, Korten</p>
+                                    <p class="mb-1"><i class="uil uil-envelope-alt me-1"></i> e-Nompilo@yahoo.com</p>
+                                    <p><i class="uil uil-phone me-1"></i> 012-345-6789</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="javascript:window.print()" role="tab" class="">
+
+                            <span class="float-end float-right "><i style="font-size:32px;" class="fa fa-print"></i></span>
+                        </a>
+                        <form asp-action="CreateFile" method="post" class="form-horizontal" id="registerForm" novalidate>
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                          
+
+                            <hr />
+
+                            <hr />
+                            <dl class="row">
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.MedicationName)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.MedicationName)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Dosageamount)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Dosageamount)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Frequency)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Frequency)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.DatePrescribed)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.DatePrescribed)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.PrescriptionExpirationDate)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.PrescriptionExpirationDate)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Comment)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Comment)
+                                </dd>
+
+                            </dl>
+                          
+                            <hr />
+
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@*<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Add any custom styles for the prescription here */
+        .prescription-container {
+            padding: 20px;
+            border: 1px solid #ccc;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            max-width: 14px; /* Adjust the logo size as needed */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="prescription-container">
+        <div class="logo">
+            <img src="~/images/111.png" alt="logo">
+        </div>
+        <h1>Prescription</h1>
+        <div>
+            <h4>E-Nompilo Healthcare</h4>
+        </div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MedicationName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MedicationName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Dosageamount)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Dosageamount)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Frequency)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Frequency)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DatePrescribed)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DatePrescribed)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PrescriptionExpirationDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PrescriptionExpirationDate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Comment)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Comment)
+            </dd>
+        </dl>
+        <div>
+            <a href="print.html">Print</a>
+        </div>
+        <a href="edit.html">Edit</a> |
+        <a href="patientprescriptions.html">Back to List</a>
+    </div>
+</body>
+</html>
+
+*@
+@*<h1>Prescription</h1>
+
+<div>
+    <h4>E-Nompilo Healthcare</h4>
+    <div>
+   
+    <a asp-action="">Print</a>
+</div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MedicationName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MedicationName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Dosageamount)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Dosageamount)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Frequency)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Frequency)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DatePrescribed)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DatePrescribed)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PrescriptionExpirationDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PrescriptionExpirationDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+       
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.PrescriptionId">Edit</a> |
+    <a asp-action="Patientprescriptions">Back to List</a>
+</div>
+*@

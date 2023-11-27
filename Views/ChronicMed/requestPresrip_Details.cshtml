@@ -1,0 +1,114 @@
+﻿@model E_Nompilo_Healthcare_system.Models.RequestPrescripModel
+
+@{
+    ViewData["Title"] = "Request Prescription Details";
+    Layout = "~/Views/Shared/_ChronicMedLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Global CSS styles */
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Title styles */
+        h1 {
+            color: #007BFF;
+            text-align: center;
+        }
+
+        /* Container styles */
+        .container {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header styles */
+        h4 {
+            color: #007BFF;
+        }
+
+        /* Definition List styles */
+        dl.row {
+            margin-top: 20px;
+        }
+
+        dt.col-sm-2 {
+            font-weight: bold;
+        }
+
+        dd.col-sm-10 {
+            margin-bottom: 10px;
+        }
+
+        /* Edit and Back links styles */
+        .action-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Request Prescription Details</h1>
+        <div>
+            <h4>E-Nompilo Healthcare</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.MedicalHistory)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.MedicalHistory)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CurrentSymptoms)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CurrentSymptoms)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ChronicConditions)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ChronicConditions)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Allergies)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Allergies)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Notes)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Notes)
+                </dd>
+            </dl>
+        </div>
+        <div class="action-links">
+            
+            <a asp-action="requestPresrip_List">Back to List</a>
+        </div>
+    </div>
+</body>
+</html>

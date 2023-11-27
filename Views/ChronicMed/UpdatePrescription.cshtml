@@ -1,0 +1,68 @@
+﻿@model E_Nompilo_Healthcare_system.Models.PrescriptionModel
+
+@{
+    ViewData["Title"] = "UpdatePrescription";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+}
+
+
+
+<h4>PrescriptionModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdatePrescription">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PrescriptionId" />
+            <div class="form-group">
+                <label asp-for="MedicationName" class="control-label"></label>
+                <input asp-for="MedicationName" class="form-control" />
+                <span asp-validation-for="MedicationName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dosageamount" class="control-label"></label>
+                <input asp-for="Dosageamount" class="form-control" />
+                <span asp-validation-for="Dosageamount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Frequency" class="control-label"></label>
+                <input asp-for="Frequency" class="form-control" />
+                <span asp-validation-for="Frequency" class="text-danger"></span>
+            </div>
+           @* <div class="form-group">
+                <label asp-for="DatePrescribed" class="control-label"></label>
+                <input asp-for="DatePrescribed" class="form-control" />
+                <span asp-validation-for="DatePrescribed" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="PrescriptionExpirationDate" class="control-label"></label>
+                <input asp-for="PrescriptionExpirationDate" class="form-control" />
+                <span asp-validation-for="PrescriptionExpirationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comment" class="control-label"></label>
+                <input asp-for="Comment" class="form-control" />
+                <span asp-validation-for="Comment" class="text-danger"></span>
+            </div>
+           @* <div class="form-group">
+                <label asp-for="PrescripId" class="control-label"></label>
+                <select asp-for="PrescripId" class="form-control" asp-items="ViewBag.PrescripId"></select>
+                <span asp-validation-for="PrescripId" class="text-danger"></span>
+            </div>*@
+            @*<div class="form-group">
+                <label asp-for="DoctorId" class="control-label"></label>
+                <select asp-for="DoctorId" class="form-control" asp-items="ViewBag.DoctorId"></select>
+                <span asp-validation-for="DoctorId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="prescriptions">Back to List</a>
+</div>
+

@@ -1,0 +1,64 @@
+﻿@model E_Nompilo_Healthcare_system.Models.Resourses
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_FamilyPlanLayout.cshtml";
+}
+
+
+
+<div>
+    <h4>Contraceptive Info</h4>
+    <hr />
+    <dl class="row">
+         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InformationID)
+        </dt>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ContraceptiveMethods)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ContraceptiveMethods)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Effectiveness)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Effectiveness)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HealthBenefits)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HealthBenefits)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SideEffects)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SideEffects)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Reversibility)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Reversibility)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AvailabilityandAccess)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AvailabilityandAccess)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ImageData)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ImageData)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.InformationID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

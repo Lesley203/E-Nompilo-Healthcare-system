@@ -1,0 +1,312 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.MedicalFileModel>
+@{
+    ViewData["Title"] = "Walk_In_ReportIndex";
+    Layout = "~/Views/Shared/_WalkinLayout.cshtml";
+}
+
+<button class="tablink" onclick="openPage('Home', this, 'red' )" id="defaultOpen">Print </button>
+<a asp-controller="Reports" asp-action="_SelfDiagnosPartialReport" class="tablink"  >Diagnos History</a>
+
+
+
+<div id="Home" class="tabcontent">
+   
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col ">
+                         <img src="~/images/111.png" style="top:10px;width:20% !important" class="   h-15 float-start ">
+                        <div class="invoice-title float-end float-right">
+                            
+                            <div class="mb-4">
+                                <h2 class="mb-1 text-muted">e-Nomplo  Healthcare</h2>
+                            </div>
+                            <div class="text-muted">
+                                <p class="mb-1">Easatern Cape, Korten</p>
+                                <p class="mb-1"><i class="uil uil-envelope-alt me-1"></i> e-Nompilo@yahoo.com</p>
+                                <p><i class="uil uil-phone me-1"></i> 012-345-6789</p>
+                            </div>
+                        </div>
+                      </div>
+                        <a href="javascript:window.print()" role="tab" class="">
+
+                        <span class="float-end float-right "><i style="font-size:32px;" class="fa fa-print"></i></span>
+                      </a>
+                        <form asp-action="CreateFile" method="post" class="form-horizontal" id="registerForm" novalidate>
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                           @* <h3 class="text-primary">MEDICAL FILE</h3>*@
+                           
+                            <hr />
+
+                            @*  <input hidden asp-for="Id" />*@
+                            <div class="form-group form-check-inline">
+                                <div class="col-8">
+                                    <label>First name</label>
+                                    <input disabled value="@ViewData["FirstName"]" class="form-control" placeholder="First" type="text">
+                                </div>
+                                <div class="col-8">
+                                    <label>Last name</label>
+                                    <input value="@ViewData["LastName"]" class="form-control" disabled placeholder="Last" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label id="validationCustom01" class="col-sm-10" for="TextArea">Identity No<span class="login-danger">*</span></label>
+                                <div class="col-md-10">
+                                    <input class="form-control" disabled id="validationCustom01" value="@ViewData["IdentityNo"]" placeholder="Identity Number" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Please Provide a correct ID.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label id="validationCustom02" class="col-md-10" for="TextArea">Residential Address<span class="login-danger">*</span></label>
+                                <div class="col-md-10">
+                                    <input class="form-control" value="@ViewData["Address1"]" id="validationCustom02" disabled placeholder="Street Address 1" type="text" required />
+                                    <div class="invalid-feedback">
+                                        Please Provide a correct Address.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <input class="form-control" value="@ViewData["Address2"]" disabled placeholder="Street Address 2" type="text">
+
+                                </div>
+                            </div>
+                            <div class="form-group form-check-inline ">
+                                <div class="col-sm-4">
+                                    <label id="validationCustom03" class="col-sm-8">City<span class="login-danger">*</span></label>
+                                    <input class="form-control" value="@ViewData["City"]" disabled id="validationCustom03" placeholder="City" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Please Provide a correct city.
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label id="validationCustom04">Postcode<span class="login-danger">*</span></label>
+                                    <input class="form-control" value="@ViewData["postalCode"]" disabled id="validationCustom04" placeholder="Postcode" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Please Provide a correct postalcode.
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+
+                                    <label id="validationCustom05">Country or Region<span class="login-danger">*</span></label>
+                                    <select id="validationCustom05" value="@ViewData["Country"]" disabled class="form-control" required>
+                                        <option>Select.....</option>
+                                        <option>USA</option>
+                                        <option>Mexico</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please Provide a correct country.
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="p-1">NEXT OF KIN </h3>
+                            <hr />
+                            <div class="form-group form-check-inline">
+                                <div class="col-sm-8">
+                                    <label id="validationCustom06">First name<span class="login-danger">*</span></label>
+                                    <input class="form-control" value="@ViewData["KinFirstName"]" disabled id="validationCustom06" placeholder="First" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Please Provide a correct name.
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <label id="validationCustom07">Relatioship<span class="login-danger">*</span></label>
+                                    <select id="validationCustom07" value="@ViewData["Relationship"]" disabled class="form-select " required>
+                                        <option disabled>Select</option>
+                                        <option>Mother</option>
+                                        <option>GrandFather</option>
+                                        <option>Father</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please Provide a correct answer.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="validationCustom08" class="col-sm-10" for="TextArea">Contact<span class="login-danger">*</span></label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" value="@ViewData["ContactKin"]" disabled id="validationCustom08" placeholder="Contact Number" type="number">
+                                    <div class="invalid-feedback">
+                                        Please Provide a correct contact number.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label id="validationCustom09" class="col-sm-10" for="TextArea">Email<span class="login-danger">*</span></label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" value="@ViewData["KinEmail"]" id="validationCustom09" disabled placeholder="Identity Number" type="email">
+                                    <div class="invalid-feedback">
+                                        Please Provide a correct email.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label id="validationCustom10" class="col-sm-10" for="TextArea">Residential Address<span class="login-danger">*</span></label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" id="validationCustom10" disabled value="@ViewData["KinAddress1"]" placeholder="Street Address 1" type="text">
+                                    <div class="invalid-feedback">
+                                        Please Provide a correct kin Address
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-check-inline">
+
+                                <div class="col-sm-8">
+                                    <label id="validationCustom11" class="col-sm-10" for="TextArea">street2</label>
+                                    <input class="form-control" id="validationCustom11" disabled value="@ViewData["KinAddress2"]" placeholder="Street Address 2" type="text">
+
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label id="validationCustom12">Postcode<span class="login-danger">*</span></label>
+                                    <input class="form-control" id="validationCustom12" disabled value="@ViewData["postalCodeKin"]" placeholder="Postcode" type="text">
+                                    <div class="invalid-feedback">
+                                        Please Provide a postal code
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h3 class="p-1">MEDICAL HISTORY</h3>
+                            <hr />
+                            <div class="form-group form-check-inline">
+                                <div class="col-sm-8">
+                                    <label id="validationCustom13">Currently taking any medication?<span class="login-danger">*</span> </label>
+                                    <select id="validationCustom13" value="@ViewData["TakingMed"]" disabled class=" disabled form-select">
+                                        <option disabled>Select</option>
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please Provide an answer
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <label id="validationCustom14">Any Allergies?<span class="login-danger dang">*</span></label>
+                                    <select id="validationCustom14" value="@ViewData["allergies"]" disabled class=" form-select ">
+                                        <option disabled>Select</option>
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                        <option>Not Sure</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please Provide a Answer
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-10" for="TextArea">Medical information we should Know(Write N/A if not)</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" value="@ViewData[" MedicalInfor"]" disabled rows="3" cols="30"></textarea>
+                                </div>
+                            </div>
+                            <hr />
+
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="News" class="tabcontent">
+    <partial name="~/Views/Reports/_SelfDiagnosPartialReport.cshtml">
+</div>
+
+<div id="Contact" class="tabcontent">
+    <h3>Contact</h3>
+    <p>Get in touch, or swing by for a cup of coffee.</p>
+</div>
+
+<div id="About" class="tabcontent">
+    <h3>About</h3>
+    <p>Who we are and what we do.</p>
+</div>
+
+<style>
+
+    /* Set height of body and the document to 100% to enable "full page tabs" */
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: Arial;
+    }
+
+    /* Style tab links */
+    .tablink {
+        background-color: #555;
+        color: white;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        font-size: 17px;
+        width: 25%;
+    }
+
+        .tablink:hover {
+            background-color: #777;
+        }
+
+    /* Style the tab content (and add height:100% for full page content) */
+    .tabcontent {
+        color: white;
+        display: none;
+        padding: 100px 20px;
+        height: 100%;
+    }
+
+    #Home {
+        background-color: white;
+    }
+
+    #News {
+        background-color: White;
+    }
+
+    #Contact {
+        background-color: white;
+    }
+
+   
+</style>
+
+<script>
+
+    function openPage(pageName, elmnt, color) {
+        // Hide all elements with class="tabcontent" by default */
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Remove the background color of all tablinks/buttons
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+        }
+
+        // Show the specific tab content
+        document.getElementById(pageName).style.display = "block";
+
+        // Add the specific color to the button used to open the tab content
+        elmnt.style.backgroundColor = color;
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>

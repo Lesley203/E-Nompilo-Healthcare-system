@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-E_Nompilo_Healthcare_system-147AD7B1-4014-4002-AE26-3A711DF8EA77</UserSecretsId>
+    <RootNamespace>E_Nompilo_Healthcare_system</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Fam_Screening\**" />
+    <Compile Remove="Views\Reviews1\**" />
+    <Content Remove="Views\Fam_Screening\**" />
+    <Content Remove="Views\Reviews1\**" />
+    <EmbeddedResource Remove="Views\Fam_Screening\**" />
+    <EmbeddedResource Remove="Views\Reviews1\**" />
+    <None Remove="Views\Fam_Screening\**" />
+    <None Remove="Views\Reviews1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\Reviews1Controller.cs" />
+    <Compile Remove="Models\Reviews.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\FamilyPlan\Educational_Resourses.cshtml" />
+    <Content Remove="Views\RequestContraceptivesInfoes\Contaceptives_InfoRequests.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Image\hush-naidoo-jade-photography-yo01Z-9HQAw-unsplash.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Image\hush-naidoo-jade-photography-yo01Z-9HQAw-unsplash.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DinkToPdf" Version="1.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.21" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.21" />
+ 
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.23" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.23" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.23">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\chronic\" />
+  </ItemGroup>
+
+</Project>

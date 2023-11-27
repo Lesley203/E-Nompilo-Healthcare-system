@@ -1,0 +1,108 @@
+﻿@model E_Nompilo_Healthcare_system.Models.RequestPrescripModel
+
+@{
+    ViewData["Title"] = "EditRequestPrescrption";
+    Layout = "~/Views/Shared/_ChronicMedLayout.cshtml";
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Update Request Prescription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+     
+
+        <h3 class="text-center">Update Prescription</h3>
+        <hr />
+        <form method="post" asp-action="EditRequestPrescrption">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PrescripId" />
+            <div class="form-group">
+                <label asp-for="MedicalHistory">Reason for prescription or Diagnosis</label>
+                <input asp-for="MedicalHistory" class="form-control" />
+                <span asp-validation-for="MedicalHistory" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CurrentSymptoms">Current Symptoms</label>
+                <input asp-for="CurrentSymptoms" class="form-control" />
+                <span asp-validation-for="CurrentSymptoms" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ChronicConditions">Chronic Conditions</label>
+                <input asp-for="ChronicConditions" class="form-control" />
+                <span asp-validation-for="ChronicConditions" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Allergies">Allergies</label>
+                <input asp-for="Allergies" class="form-control" />
+                <span asp-validation-for="Allergies" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Notes">Notes</label>
+                <input asp-for="Notes" class="form-control" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+    <div>
+        <a asp-action="requestPresrip_List">Back to List</a>
+    </div>
+</body>
+</html>

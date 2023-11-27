@@ -1,0 +1,108 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.Vaccine_Information>
+
+@{
+    ViewData["Title"] = "Vaccine_List_Patient";
+    Layout = "~/Views/Shared/_VaccinationLayout.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+</head>
+<form method="get" asp-controller="Vaccine_Information" asp-action="Vaccine_List_Patient">
+<div id="container" class="float-md-none center align-items-center form-check-inline">
+    <div class="search">
+            <input type="text" placeholder="Mouse over!" name="VAccineName" value="@ViewData["CurrentFilter"]" class="searchbar">
+        <button type="submit" class="search_button"><i class="fa fa-search"></i></button>
+    </div>
+    
+</div>
+</form>
+
+            <a class="btn-secondary float-right float-end p-2" asp-controller="VaccineScreenings" asp-action="Survay_Vacc">Vaccinate</a>
+
+<br /><br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VaccineName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VaccineType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VaccineDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dose_Number)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VaccineName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VaccineType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VaccineDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dose_Number)
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>
+<style>
+        import url(https://fonts.googleapis.com/css?family=Shadows+Into+Light);
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #444546;
+}
+
+.searchbar {
+  padding: 10px;
+  width: 250px;
+  border: solid #c8ccd0 1px;
+  border-radius: 5px 0px 0px 5px;
+  -webkit-transition: box-shadow linear 0.2s;
+  transition: box-shadow linear 0.2s, width 500ms ease;
+}
+
+.searchbar:focus {
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+  width: 280px;
+}
+
+.searchbar:hover {
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+  width: 280px;
+}
+
+.search_button {
+  height: 38px;
+  margin-left: -4px;
+  width: 70px;
+  border: solid #c8ccd0 1px;
+  border-radius: 0px 5px 5px 0px;
+  border-left: 0;
+  transition: 400ms ease-out;
+}
+
+.search_button:hover {
+  background-color: hsl(0, 0%, 85%);
+}
+
+</style>

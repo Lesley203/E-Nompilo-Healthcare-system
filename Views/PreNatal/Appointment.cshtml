@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewData["Title"] = "Appointment";
+    Layout = "~/Views/Shared/_PreNatalLayout.cshtml";
+}
+
+<div class="bg-primary">
+    <h1 class="text-center text-white">List of your appointments.</h1>
+</div>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="AssessmentTable text-center rounded p-4" id="AssessmentTable">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">My Appointments</h6>
+            <a href="@Url.Action("Progress_Report","Reports")" class="button">Generate Report</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+
+                <thead class="table-primary">
+                    <tr>
+                        <th>Appointment Date</th>
+                        <th>Appointment Time</th>
+                        <th>Purpose of the Appointments</th>
+                        <th>Doctor / Nurse Information</th>
+                        <th>Status</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>2023/08/30</td>
+                        <td>08:00</td>
+                        <td class="">Confirming Pregnancy</td>
+                        <td>Dr Philips</td>
+                        <td>Pending</td>
+
+                    </tr>
+                    <tr>
+                        <td>2023/09/31</td>
+                        <td>09:00</td>
+                        <td class="">Check ups</td>
+                        <td>Dr Philips</td>
+                        <td>Accepted</td>
+
+                    </tr>
+                    <tr>
+                        <td>2023/10/31</td>
+                        <td>09:00</td>
+                        <td class="">Fetus Tracking</td>
+                        <td>Mr Mullar</td>
+                        <td>pending</td>
+
+                    </tr>
+
+
+                    <tr>
+                    </tr>
+
+                </tbody>
+
+
+
+            </table>
+        </div>
+    </div>
+</div>
+

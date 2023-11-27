@@ -1,0 +1,76 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.Resourse>
+
+@{
+    ViewData["Title"] = "Info";
+    Layout = "~/Views/Shared/_FamilyPlanLayout.cshtml";
+}
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Contraceptive Methods
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Effectiveness)
+            </th>
+            <th>
+                Health Benefits
+            </th>
+            <th>
+                Side Effects
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reversibility)
+            </th>
+            <th>
+                Availability and Access
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.ImageData)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageType)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContraceptiveMethods)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Effectiveness)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HealthBenefits)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SideEffects)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reversibility)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvailabilityandAccess)
+            </td>
+           @* <td>
+                @Html.DisplayFor(modelItem => item.ImageData)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageType)
+            </td>*@
+            @*<td>
+                <a asp-action="Edit" asp-route-id="@item.InformationID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.InformationID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.InformationID">Delete</a>
+            </td>*@
+        </tr>
+}
+    </tbody>
+</table>

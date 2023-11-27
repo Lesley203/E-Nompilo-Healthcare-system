@@ -1,0 +1,75 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.Get_VaccinatedModel>
+
+@{
+    ViewData["Title"] = "Get_Vaccinated_List";
+    Layout = "~/Views/Shared/_VaccinationLayout.cshtml";
+}
+
+<h1>Vaccine Follow-Up</h1>
+
+@if (TempData["AlertMessagL"] != null)
+{
+    <div class="alert alert-warning">
+        <strong>@TempData["AlertMessagL"]</strong>
+    </div>
+}
+
+<br />
+<a class="mb-2 p-2" style="background-color:white; box-shadow: 0 4px 6px 0 black;" asp-controller="Walk_In" asp-action="PatientQueueManage">View Queue</a>
+<a class="mb-2 p-2" style="background-color:white; box-shadow: 0 4px 6px 0 black;" asp-controller="Walk_In" asp-action="BookingAppointForm">Book Vaccine Appointment</a>
+<br /><br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Vaccination Number
+            </th>
+               
+            <th>
+                @Html.DisplayNameFor(model => model.VaccineType)
+            </th>
+            <th>
+                Placing Date
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VaccineId)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.VaccineType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                    <strong> @Html.DisplayFor(modelItem => item.Status)</strong>
+            </td>
+            <td>
+                    <form method="post" asp-controller="VaccineScreenings" asp-action="Delete_Vaccine" asp-route-VaccineId="@item.VaccineId">
+
+
+                        <input type="hidden" asp-route-id="@item.VaccineId" />
+                        <button type="submit" class="btn btn-danger mx-1 ml-2">Cancel</button>
+                    </form>
+
+            </td>
+           
+        </tr>
+}
+    </tbody>
+</table>

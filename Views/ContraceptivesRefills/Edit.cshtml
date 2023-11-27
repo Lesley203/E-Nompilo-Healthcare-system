@@ -1,0 +1,53 @@
+﻿@model E_Nompilo_Healthcare_system.Models.ContraceptivesRefill
+
+@{
+    ViewData["Title"] = "Edit";
+   Layout = "~/Views/Shared/_FamilyPlanLayout.cshtml";
+}
+
+
+
+<h4>Edit your Contraceptives Refill Information</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="RefillID" />
+          
+            <div class="form-group">
+                <label asp-for="ContraceptiveType" class="control-label">Contraceptive Type</label>
+                <input asp-for="ContraceptiveType" class="form-control" />
+                <span asp-validation-for="ContraceptiveType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastRefillDate" class="control-label">Last Refill Date</label>
+                <input asp-for="LastRefillDate" class="form-control" />
+                <span asp-validation-for="LastRefillDate" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="CollectionDate" class="control-label">Refill Date</label>
+                <input asp-for="CollectionDate" class="form-control" />
+                <span asp-validation-for="CollectionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContactNumber" class="control-label">Contact Number</label>
+                <input asp-for="ContactNumber" class="form-control" />
+                <span asp-validation-for="ContactNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdditionalInformation" class="control-label">Additional Information</label>
+                <input asp-for="AdditionalInformation" class="form-control" />
+                <span asp-validation-for="AdditionalInformation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

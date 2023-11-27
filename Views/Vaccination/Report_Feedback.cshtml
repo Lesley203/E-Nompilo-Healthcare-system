@@ -1,0 +1,351 @@
+﻿@model Vaccine_reportingModel
+
+@{
+    ViewData["Title"] = "Report_Feedback";
+    Layout = "~/Views/Shared/_VaccinationLayout.cshtml";
+
+}
+
+
+
+
+
+
+
+<div class="wrap">
+    <a asp-controller="Vaccination" asp-action="Report_Review" class="button">View Feedback</a>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" asp-controller="Vaccination" asp-action="Report_Feedback"  class="needs-validation" novalidate>
+                    <div class="row">
+
+                        <div class="col-12">
+                            <div class="form-heading align-content-center" style="position:center; ">
+                                <h3 class="align-content-center centered" style="position:center; margin-bottom:27px;">Give Feedback</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms ">
+                                <label for="validationTooltip01">Date  <span class="login-danger">*</span></label>
+                                @*  <input asp-for="DateofAppointment" class="form-control " id="validationTooltip01" type="date" required>*@
+                                <input asp-for="VaccinationDate" type="date" class="form-control" required>
+                                <div class="invalid-feedback">
+                                    Please choose available date.
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms">
+                                <label for="validationTooltip02">Vaccine Name<span class="login-danger">*</span></label>
+                                <div class="time-icon">
+                                    <input asp-for="VaccineName" id="validationTooltip02" type="text" class="form-control" required>
+                                    <div class="invalid-feedback">
+                                        Please choose a start time.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms">
+                                <label for="validationTooltip03">Vaccination Number<span class="login-danger">*</span></label>
+                                <div class="time-icon">
+                                    <input asp-for="VaccineId" id="validationTooltip03" type="number" class="form-control" required>
+                                    <div class="invalid-feedback">
+                                        Please choose a end time.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                      
+
+                        <div class="col-12 col-sm-12">
+                            <div class="form-group local-forms">
+                                <label>Notes <span class="login-danger">*</span></label>
+                                <textarea asp-for="PatientFeedback" id="validationTooltip06" class="form-control" rows="3" cols="30" required></textarea>
+                                <div class="invalid-feedback">
+                                    Write N/A if unapplicable.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12">
+                            <div class="doctor-submit text-end">
+                                @* <input type="submit" class="btn btn-info w-75" value="Create" />*@
+                                <input type="submit" class="btn btn-primary " value="Submit" />
+                                @*  <button type="submit" class="btn btn-primary cancel-form">Cancel</button>*@
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+
+    .wrap {
+        height: 12%;
+        
+        align-items: center;
+       
+    }
+
+    .button {
+        width: 140px;
+        height: 100px;
+        font-family: 'Roboto', sans-serif;
+        padding:5px;
+        font-size: 18px;
+        text-transform: uppercase;
+        margin-left:6px;
+        letter-spacing: 2.5px;
+        font-weight: 500;
+        color: #000; 
+        background-color: gray;
+        border: none;
+        border-radius: 45px;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease 0s;
+        cursor: pointer;
+        outline: none;
+    }
+    
+        .button:hover {
+            background-color: #2EE59D;
+            box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+            color: #fff;
+            transform: translateY(-7px);
+        }
+    .btnn {
+        position: relative;
+        display: inline-block;
+        margin: 8px;
+        padding: 4px 6px;
+        text-align: center;
+        font-size: 14px;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color: black;
+        background: #ffffff;
+        border: 2px solid #999999;
+        cursor: pointer;
+        transition: ease-out 0.4s;
+        -webkit-transition: ease-out 0.4s;
+        -moz-transition: ease-out 0.4s;
+    }
+
+        .btnn.btn-border-1::after,
+        .btnn.btn-border-1::before {
+            position: absolute;
+            content: "";
+            width: 0%;
+            height: 0%;
+            visibility: hidden;
+        }
+
+        .btnn.btn-border-1::after {
+            bottom: -3px;
+            right: -3px;
+            border-left: 3px solid #222222;
+            border-bottom: 3px solid #222222;
+            transition: width .1s ease .1s, height .1s ease, visibility 0s .2s;
+        }
+
+        .btnn.btn-border-1::before {
+            top: -3px;
+            left: -3px;
+            border-top: 3px solid #222222;
+            border-right: 3px solid #222222;
+            transition: width .1s ease .3s, height .1s ease .2s, visibility 0s .4s;
+        }
+
+        .btnn.btn-border-1:hover {
+            animation: pulse 1s ease-out .4s;
+            color: #222222;
+        }
+
+            .btnn.btn-border-1:hover::after,
+            .btnn.btn-border-1:hover::before {
+                width: calc(100% + 3px);
+                height: calc(100% + 3px);
+                visibility: visible;
+                transition: width .1s ease .2s, height .1s ease .3s, visibility 0s .2s;
+            }
+
+            .btnn.btn-border-1:hover::after {
+                transition: width .1s ease .2s, height .1s ease .3s, visibility 0s .2s;
+            }
+
+            .btnn.btn-border-1:hover::before {
+                transition: width .1s ease, height .1s ease .1s;
+            }
+
+        .btnn.btn-border-2::after,
+        .btnn.btn-border-2::before {
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 0;
+            transition: .5s;
+        }
+
+        .btnn.btn-border-2::after {
+            top: -3px;
+            left: -3px;
+            border-top: 3px solid transparent;
+            border-left: 3px solid transparent;
+        }
+
+        .btnn.btn-border-2::before {
+            bottom: -3px;
+            right: -3px;
+            border-bottom: 3px solid transparent;
+            border-right: 3px solid transparent;
+        }
+
+        .btnn.btn-border-2:hover {
+            color: #222222;
+        }
+
+            .btnn.btn-border-2:hover::after,
+            .btnn.btn-border-2:hover::before {
+                width: calc(50% + 3px);
+                height: calc(50% + 3px);
+                border-color: #222222;
+            }
+
+        .btnn.btn-border-3::after,
+        .btnn.btn-border-3::before {
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 0;
+            transition: .5s;
+        }
+
+        .btnn.btn-border-3::after {
+            top: -9px;
+            left: -9px;
+            border-top: 3px solid transparent;
+            border-left: 3px solid transparent;
+        }
+
+        .btnn.btn-border-3::before {
+            bottom: -9px;
+            right: -9px;
+            border-bottom: 3px solid transparent;
+            border-right: 3px solid transparent;
+        }
+
+        .btnn.btn-border-3:hover {
+            color: #222222;
+        }
+
+            .btnn.btn-border-3:hover::after,
+            .btnn.btn-border-3:hover::before {
+                width: 30px;
+                height: 30px;
+                border-color: #222222;
+            }
+
+</style>
+<style>
+
+    /* Add this style for button hover effect */
+    .btn-primary:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    /* Style for the "Update" button */
+    .btn-update {
+        background-color: #007bff; /* Primary blue */
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Smooth background color transition */
+    }
+
+    /* Style for the "Back to List" button */
+    .btn-back {
+        background-color: #007bff; /* Primary blue */
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Smooth background color transition */
+    }
+
+        /* Add this style for button hover effect */
+        .btn-back:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+    /* Style for the form container */
+    .form-container {
+        width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    /* Style for form labels */
+    .control-label {
+        font-weight: bold;
+    }
+
+    /* Style for form inputs */
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style for the submit button */
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+

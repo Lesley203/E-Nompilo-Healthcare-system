@@ -1,0 +1,94 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+     ViewData["Title"] = "Manage_Insurance";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .details {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .details th, .details td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .details th {
+            background-color: #f5f5f5;
+        }
+        .back-btn {
+            display: inline-block;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Insurance Details</h1>
+        <table class="details">
+            <tr>
+                <th>First Name:</th>
+                <td>Beatrice</td>
+            </tr>
+            <tr>
+                <th>Last Name:</th>
+                <td>Fox</td>
+            </tr>
+            <tr>
+                <th>ID Number:</th>
+                <td>9902260753685</td>
+            </tr>
+            <tr>
+                <th>Policy Number:</th>
+                <td>PN441825</td>
+            </tr>
+            <tr>
+                <th>Insurance Provider:</th>
+                <td>GEMS</td>
+            </tr>
+            <tr>
+                <th>Contact Number:</th>
+                <td>(082) 456-7890</td>
+            </tr>
+        </table>
+        <a href="#" class="back-btn">Back to List</a>
+    </div>
+</body>
+</html>
+
+

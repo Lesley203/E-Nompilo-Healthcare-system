@@ -1,0 +1,163 @@
+﻿@model List<E_Nompilo_Healthcare_system.Models.RequestPrescripModel>
+@{
+    
+    ViewData["Title"] = "requestPresrip_List";
+    Layout = "~/Views/Shared/_ChronicMedLayout.cshtml";
+}
+<head>
+    <style>
+        /* Global CSS styles */
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header container styles */
+        .container-fluid.bg-primary {
+            background-color: #007BFF;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+            .container-fluid.bg-primary h3 {
+                color: #fff;
+                font-size: 24px;
+            }
+
+        /* Alert message styles */
+        .alert-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Action buttons styles */
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            margin: 2px;
+        }
+
+        /* Updated Search bar styles with animation */
+        .search-bar {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        .search-input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+            width: 200px;
+            transition: width 0.4s ease-in-out;
+        }
+
+            .search-input:focus {
+                width: 300px;
+            }
+
+        .search-button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.4s ease-in-out;
+        }
+
+            .search-button:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <div class="container container-fluid bg-primary">
+        <h3 class="text text-white text-center">List Of Requested Prescription</h3>
+    </div>
+
+    @if (TempData["AlertMessage"] != null)
+    {
+        <div class="alert alert-success">
+            <strong>Successfully!</strong> @TempData["AlertMessage"]
+        </div>
+    }
+
+    <!-- Search bar with animation -->
+    <div class="search-bar">
+        <input type="text" class="search-input" placeholder="Search">
+        <button class="search-button">Search</button>
+    </div>
+
+    @if (Model != null)
+    {
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Reason for prescription or Diagnosis</th>
+                    <th>Current Symptoms</th>
+                    <th>Chronic Conditions</th>
+                    <th>Allergies</th>
+                    <th>Notes</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var apt in Model)
+                {
+                   
+                    <tr>
+                       
+                        <td>@apt.MedicalHistory</td>
+                        <td>@apt.CurrentSymptoms</td>
+                        <td>@apt.ChronicConditions</td>
+                        <td>@apt.Allergies</td>
+                        <td>@apt.Notes</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a asp-controller="ChronicMed" asp-action="EditRequestPrescrption" asp-route-PrescripId="@apt.PrescripId" class="btn btn-warning">Update</a>
+                                <a asp-controller="ChronicMed" asp-action="requestPresrip_Details" asp-route-PrescripId="@apt.PrescripId" class="btn btn-info">Infromation</a>
+                               @*  <form asp-controller="ChronicMed" asp-action="Delete_RequestPrescription" asp-route-PrescripId="@apt.PrescripId">
+                                    <input asp-for="@apt.PrescripId" type="hidden" >
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form> *@
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h1>No Request created yet</h1>
+    }
+</body>

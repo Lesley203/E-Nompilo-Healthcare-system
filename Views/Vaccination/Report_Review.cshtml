@@ -1,0 +1,72 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.Vaccine_reportingModel>
+ 
+@{
+    ViewData["Title"] = "Report Review";
+    Layout = "~/Views/Shared/_VaccinationLayout.cshtml";
+}
+
+<script>
+    $(document).ready(function () {
+    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+    {
+        <text>
+                $('#confirmationModal').modal('show');
+        </text>
+    }
+      });
+</script>
+
+
+
+<h1>Review</h1>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            
+            <th>
+                    Vaccination Number
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.VaccineName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VaccinationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientFeedback)
+            </th>
+            <th>
+                
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.VaccineId)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.VaccineName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VaccinationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientFeedback)
+            </td>
+                <td>
+                    <a asp-controller="Vaccination" asp-action="Vaccination_comments_view_P" asp-route-Vaccination_FeddbackId="@item.Vaccination_FeddbackId" class=" btn btn-warning">View Comments</a>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

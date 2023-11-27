@@ -1,0 +1,128 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+ViewData["Title"] = "ContraceptiveOptions";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .info-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .info-card-content {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .info-card-icon {
+            font-size: 48px;
+            color: #007BFF;
+        }
+
+        .info-card-text {
+            flex: 1;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333;
+            color: white;
+        }
+    </style>
+    <title>Contraceptive Options</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Family Planning Contraceptive Options</h1>
+            <p>Explore a range of contraceptive methods to provide to your patients.</p>
+        </div>
+
+        <div class="section">
+            <h2>Available Contraceptive Options</h2>
+            <div class="info-card">
+                <h3><i class="fas fa-pills info-card-icon"></i> Oral Contraceptives</h3>
+                <div class="info-card-content">
+                    <div class="info-card-text">
+                        Oral contraceptives, commonly known as birth control pills, are a popular option for preventing pregnancy. They contain hormones that inhibit ovulation.
+                    </div>
+                    <img src="/images/pills.PNG" alt="Oral Contraceptives" width="135" height="130">
+                </div>
+            </div>
+            <div class="info-card">
+                <h3><i class="fas fa-prescription info-card-icon"></i> Prescription Methods</h3>
+                <div class="info-card-content">
+                    <div class="info-card-text">
+                        Several contraceptive methods, such as IUDs and hormonal injections, require a prescription. Discuss the most suitable options with your patients.
+                    </div>
+                    <img src="/images/uid.PNG" alt="Prescription Methods" width="135" height="130">
+                </div>
+            </div>
+            <div class="info-card">
+                <h3><i class="fas fa-syringe info-card-icon"></i> Injectable Contraceptives</h3>
+                <div class="info-card-content">
+                    <div class="info-card-text">
+                        Injectable contraceptives are administered via injection and provide effective birth control for an extended period. They are convenient for some patients.
+                    </div>
+                    <img src="/images/inje.PNG" alt="Injectable Contraceptives" width="135" height="130">
+                </div>
+            </div>
+            <!-- Add more contraceptive options here -->
+        </div>
+    </div>
+
+    
+</body>
+</html>
+
+

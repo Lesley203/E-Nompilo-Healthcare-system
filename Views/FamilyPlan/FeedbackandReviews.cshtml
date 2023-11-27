@@ -1,0 +1,161 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    
+    ViewData["Title"] = "FeedbankandReviews";
+    Layout = "~/Views/Shared/_FamilyPlanLayout.cshtml";
+
+}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: slategray;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .feedback-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .feedback-form label,
+        .feedback-form textarea,
+        .feedback-form input[type="text"],
+        .feedback-form input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .feedback-form textarea {
+            resize: vertical;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .button-container button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .review {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .review p {
+            margin-top: 10px;
+        }
+
+    </style>
+    <title>Hospital Family Planning Feedback</title>
+</head>
+<body>
+    <header>
+        <h1>Reviews</h1>
+        </header>
+       
+    <main>
+        <section class="section">
+            <h2>Submit Your Review</h2>
+            <form class="feedback-form" action="#" method="post">
+                <div>
+                    <label for="patient-name">Your Name</label>
+                    <input type="text" id="patient-name" name="patient-name" required>
+                </div>
+                <div>
+                    <label for="patient-email">Your Email</label>
+                    <input type="email" id="patient-email" name="patient-email" required>
+                </div>
+                <div class="w-full">
+                    <label for="feedback">Your Review</label>
+                    <textarea id="feedback" name="feedback" rows="5" required></textarea>
+                </div>
+                <div class="button-container">
+                    <button type="submit">Submit Review</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="section">
+            <h2>Patient Reviews</h2>
+            <div class="review">
+                <p><strong>John Williams</strong></p>
+                <p>The family planning services exceeded my expectations. The staff was attentive, and I felt supported throughout the process. Highly recommended!</p>
+            </div>
+            <div class="review">
+                <p><strong>Charlotte Garcia</strong></p>
+                <p>I appreciate the personalized approach to family planning. The consultations were thorough, and I left with a clear understanding of my options.</p>
+            </div>
+            <div class="review">
+                <p><strong>Patience Davis</strong></p>
+                <p>The hospital's family planning services are exceptional. The team is knowledgeable and empathetic, making the experience comfortable and informative.</p>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
+
+

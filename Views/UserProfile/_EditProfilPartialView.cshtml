@@ -1,0 +1,23 @@
+﻿@model E_Nompilo_Healthcare_system.Services.AppUserImage
+<form clas class="file-upload" asp-action="ProfilePic" method="post" enctype="multipart/form-data">
+    <div class="col-xxl-4">
+        <div class="bg-secondary-soft px-4 py-5 rounded">
+            <div class="row g-3">
+                <h4 class="mb-4 mt-0">Upload your profile photo</h4>
+                <div class="text-center">
+                    <!-- Image upload -->
+                    <div class="square position-relative display-2 mb-3">
+                        @* <i class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary"></i>*@
+                        <img src="" class="img-thumbnail fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary" />
+                    </div>
+                    <!-- Button -->
+                    <input asp-for="ImagePath" type="file" name="file">
+                    <button type="submit" class="btn btn-success-soft btn-block" for="customFile">Upload</button>
+                    <button type="button" class="btn btn-danger-soft">Remove</button>
+                    <!-- Content -->
+                    <p class="text-muted mt-3 mb-0"><span class="me-1">Note:</span>Minimum size 300px x 300px</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

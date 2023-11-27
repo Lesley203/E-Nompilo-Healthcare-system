@@ -1,0 +1,206 @@
+﻿@model E_Nompilo_Healthcare_system.Models.Resourse
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+@*
+<h4>Resourse</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+       
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             <div class="form-group">
+                               <label asp-for="ContraceptiveMethods" class="control-label">Contraceptive Methods</label>
+                                <select asp-for="ContraceptiveMethods" class="form-control">
+                                    <option value="Intrauterine Device (IUD)">Intrauterine Device (IUD)</option>
+                                    <option value="Birth Control Pills">Birth Control Pills</option>
+                                    <option value="Birth Control Shot (Depo-Provera)">Birth Control Shot (Depo-Provera)</option>
+                                    <option value="Birth Control Implant (Nexplanon)">Birth Control Implant (Nexplanon)</option>
+                                    <option value="Long-Acting Reversible Contraceptives">Long-Acting Reversible Contraceptives</option>
+                                    <option value="Sterilization">Sterilization</option>
+                                </select>
+                                <span asp-validation-for="ContraceptiveMethods" class="text-danger"></span>
+                            </div>
+            <div class="form-group">
+                <label asp-for="Effectiveness" class="control-label"></label>
+                <input asp-for="Effectiveness" class="form-control" />
+                <span asp-validation-for="Effectiveness" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HealthBenefits" class="control-label">Health Benefits</label>
+                <input asp-for="HealthBenefits" class="form-control" />
+                <span asp-validation-for="HealthBenefits" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SideEffects" class="control-label">Side Effects</label>
+                <input asp-for="SideEffects" class="form-control" />
+                <span asp-validation-for="SideEffects" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reversibility" class="control-label"></label>
+                <input asp-for="Reversibility" class="form-control" />
+                <span asp-validation-for="Reversibility" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvailabilityandAccess" class="control-label">Availability and access</label>
+                <input asp-for="AvailabilityandAccess" class="form-control" />
+                <span asp-validation-for="AvailabilityandAccess" class="text-danger"></span>
+            </div>
+           @* <div class="form-group">
+                <label asp-for="ImageData" class="control-label"></label>
+                <input asp-for="ImageData" class="form-control" />
+                <span asp-validation-for="ImageData" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageType" class="control-label"></label>
+                <input asp-for="ImageType" class="form-control" />
+                <span asp-validation-for="ImageType" class="text-danger"></span>
+            </div>*@
+           @* <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Form</title>
+    <style>
+        h4 {
+            font-size: 1.5rem;
+        }
+
+        hr {
+            border: 1px solid #ccc;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+        }
+
+        .col-md-4 {
+            width: 25%;
+            padding: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+        }
+
+        select, input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .text-danger {
+            color: red;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h4>Information on Contraceptives</h4>
+    <hr>
+    
+
+    <div class="row">
+        <div class="col-sn-12">
+             <div class="card">
+                   <div class="card-body">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              
+                    <div class="col-md-4">
+                    <label asp-for="ContraceptiveMethods" class="control-label">Contraceptive Methods</label>
+                    <select asp-for="ContraceptiveMethods" class="form-control">
+                        <option value="Intrauterine Device (IUD)">Intrauterine Device (IUD)</option>
+                        <option value="Birth Control Pills">Birth Control Pills</option>
+                        <option value="Birth Control Shot (Depo-Provera)">Birth Control Shot (Depo-Provera)</option>
+                        <option value="Birth Control Implant (Nexplanon)">Birth Control Implant (Nexplanon)</option>
+                        <option value="Long-Acting Reversible Contraceptives">Long-Acting Reversible Contraceptives</option>
+                        <option value="Sterilization">Sterilization</option>
+                    </select>
+                    <span asp-validation-for="ContraceptiveMethods" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Effectiveness" class="control-label">Effectiveness</label>
+                    <input asp-for="Effectiveness" class="form-control" />
+                    <span asp-validation-for="Effectiveness" class="text-danger"></span>
+                </div>
+              
+                <div class="form-group">
+                  
+                    <label asp-for="HealthBenefits" class="control-label">Health Benefits</label>
+                    <input asp-for="HealthBenefits" class="form-control" />
+                    <span asp-validation-for="HealthBenefits" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="SideEffects" class="control-label">Side Effects</label>
+                    <input asp-for="SideEffects" class="form-control" />
+                    <span asp-validation-for="SideEffects" class="text-danger"></span>
+                </div>
+               
+                <div class="form-group">
+                  
+                    <label asp-for="Reversibility" class="control-label">Reversibility</label>
+                    <input asp-for="Reversibility" class="form-control" />
+                    <span asp-validation-for="Reversibility" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AvailabilityandAccess" class="control-label">Availability and access</label>
+                    <input asp-for="AvailabilityandAccess" class="form-control" />
+                    <span asp-validation-for="AvailabilityandAccess" class="text-danger"></span>
+            
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+   </div>   
+    </div>
+    
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

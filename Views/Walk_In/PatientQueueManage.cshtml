@@ -1,0 +1,331 @@
+﻿@model List<E_Nompilo_Healthcare_system.Models.AppointmentModel>
+@{
+
+    ViewData["Title"] = "PatientQueueManage";
+    Layout = "~/Views/Shared/_WalkinLayout.cshtml";
+
+}
+<head>
+    <style>
+        .card {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .btn-danger {
+            background-color: #da1212;
+            color: #fff;
+        }
+
+        .btn-warning {
+            background-color: #ff9900;
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background-color: #ccc;
+            color: #000;
+        }
+
+        .btn-success {
+            background-color: #5cb85c;
+            color: #fff;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-danger {
+            color: #da1212;
+        }
+
+        .modal-confirm {
+            color: #636363;
+            width: 400px;
+        }
+
+            .modal-confirm .modal-content {
+                padding: 20px;
+                border-radius: 5px;
+                border: none;
+                text-align: center;
+                font-size: 14px;
+            }
+
+            .modal-confirm .modal-header {
+                border-bottom: none;
+                position: relative;
+            }
+
+            .modal-confirm h4 {
+                text-align: center;
+                font-size: 26px;
+                margin: 30px 0 -10px;
+            }
+
+            .modal-confirm .close {
+                position: absolute;
+                top: -5px;
+                right: -2px;
+            }
+
+            .modal-confirm .modal-body {
+                color: #999;
+            }
+
+            .modal-confirm .modal-footer {
+                border: none;
+                text-align: center;
+                border-radius: 5px;
+                font-size: 13px;
+                padding: 10px 15px 25px;
+            }
+
+                .modal-confirm .modal-footer a {
+                    color: #999;
+                }
+
+            .modal-confirm .icon-box {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto;
+                border-radius: 50%;
+                z-index: 9;
+                text-align: center;
+                border: 3px solid #f15e5e;
+            }
+
+                .modal-confirm .icon-box i {
+                    color: #f15e5e;
+                    font-size: 46px;
+                    display: inline-block;
+                    margin-top: 13px;
+                }
+
+            .modal-confirm .btn {
+                color: #fff;
+                border-radius: 4px;
+                background: #60c7c1;
+                text-decoration: none;
+                transition: all 0.4s;
+                line-height: normal;
+                min-width: 120px;
+                border: none;
+                min-height: 40px;
+                border-radius: 3px;
+                margin: 0 5px;
+                outline: none !important;
+            }
+
+            .modal-confirm .btn-info {
+                background: #c1c1c1;
+            }
+
+        /*.modal-header {
+            display: none;
+            
+        }*/
+                .modal-confirm .btn-info:hover, .modal-confirm .btn-info:focus {
+                    background: #a8a8a8;
+                }
+
+            .modal-confirm .btn-danger {
+                background: #f15e5e;
+            }
+
+                .modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
+                    background: #ee3535;
+                }
+
+        .trigger-btn {
+            display: inline-block;
+            margin: 100px auto;
+        }
+
+    </style>
+    <script>
+        // Function to show the confirmation modal and store BookingId
+        function showConfirmationModal(bookingId) {
+            $('#confirmationModal').modal('show');
+            $('#deleteAppointmentButton').data('bookingId', bookingId);
+        }
+
+        // Function to confirm and execute the delete action
+        function confirmDelete() {
+            var bookingIdToDelete = $('#deleteAppointmentButton').data('bookingId');
+
+            $.ajax({
+                url: '@Url.Action("Delete_Appointment_queue", "Walk_In")',
+                type: 'POST',
+                data: { BookingId: bookingIdToDelete },
+                success: function () {
+                    $('#confirmationModal').modal('hide');
+                    window.location.reload(); // Refresh the page or update UI as needed
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.error(xhr.responseText);
+                    // Handle errors, e.g., display an error message
+                }
+            });
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<div class="container py-2 mt-7">
+    <div class="popup ml-4 mt-5 float-start float-left list-inline-item" onclick="myFunction()">
+        <i class='fas fa-exclamation-circle ' style='font-size:24px'></i>
+        <span class="popuptext" id="myPopup">Note! While placed on a queue, arrive 30 minutes before and consult Administrator for status to be activated</span>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <h1 class="font-weight-light">Hello, please wait in the queue😊</h1>
+            <div class="loader-circle red"></div>
+            <div class="loader-circle yellow"></div>
+            <div class="loader-circle green"></div>
+            <div class="loader-circle blue"></div>
+            <div class="loader-circle lime"></div>
+            <div class="loader-circle black"></div>
+            <div class="container1"></div>
+            <div class="container2"></div>
+            <p>We will call you in shortly.</p>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-1">
+    <div class="col-sm-12">
+        <div class="card mt-7">
+            <div class="card-body">
+                @if (Model.Count() > 0)
+                {
+
+                    <table class="table table-bordered table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Date Of Appointment</th>
+                                <th>Time</th>
+                              
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        @foreach (var apt in Model)
+                        {
+                            <tbody>
+
+                                <tr>
+                                    <td>@apt.DateofAppointment</td>
+                                    <td>@apt.Time</td>
+                                   
+                                    <td>
+                                        @if (apt.Status == BookingStatus.OnHold)
+                                        {
+                                            <button class="btn btn-warning">@apt.Status</button>
+                                        }
+                                        else if (apt.Status == BookingStatus.Queued) 
+                                        {
+                                            <button class="btn btn-secondary">@apt.Status</button>
+                                        }
+                                        else if (apt.Status == BookingStatus.YourTurn)
+                                        {
+                                            <button class="btn btn-secondary">@apt.Status</button>
+                                        }
+                                        else if (apt.Status == BookingStatus.InProgress)
+                                        {
+                                            <button class="btn btn-secondary">@apt.Status</button>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn btn-success">@apt.Status</button>
+                                        }
+                                    </td>
+                                    <td>
+
+                                        <button type="button" class="btn btn-danger mx-1" onclick="showConfirmationModal(@apt.BookingId)">Dequeue</button>
+                                    </td>
+                                   
+                                </tr>
+
+
+                            </tbody>
+                            <div id="confirmationModal" class="modal fade">
+                                <div class="modal-dialog modal-confirm">
+                                    <div class="modal-content">
+                                        <div class="modal-header text-center">
+                                           @* <div class="icon-box">
+                                                <i class="material-icons">&#xE5CD;</i>
+                                            </div>*@
+                                            <h4 class="modal-title text-center ml-8" >Are you sure?</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Do you really want to remove Yourself? This process cannot be undone.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                                            <form method="post" asp-controller="Walk_In" asp-action="Delete_Appointment_queue" asp-route-BookingId="@apt.BookingId">
+                                                @Html.AntiForgeryToken()
+                                                <button type="submit" class="btn btn-danger mx-1">Dequeue</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </table>
+                    
+
+                    <!-- Modal HTML -->
+                  
+
+
+                }
+                else
+                {
+                    <h1 class="text-danger">Book an appointment to be queued!</h1>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@*<script type="text/javascript">
+    function myFunction() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+    }
+</script>*@
+
+
+

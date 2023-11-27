@@ -1,0 +1,141 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.Add_Medication_Model>
+
+@{
+    ViewData["Title"] = "Pharm_Report_Sample_Med";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    int row = 0;
+}
+
+<h1>Report for Medication List</h1>
+<a href="javascript:window.print()" role="tab" class="ml-9 ">
+    <span class="float-end float-right "><i style="font-size:32px;" class="fa fa-print"></i></span>
+</a>
+<div class="card-body">
+    <header class="invoice-header">
+        <div class="logo">
+            <img src="~/images/111.png" style="top:110px;  width:300px; height:200px; font-size:20px;" class="  imgg float-start">
+        </div>
+        <div class="invoice-details">
+
+            <h2>e-Nomplo Healthcare</h2>
+            <p>Easatern Cape, Korten</p>
+            <p><i class="uil uil-envelope-alt me-1"></i> e-Nompilo@yahoo.com</p>
+            <p><i class="uil uil-phone me-1"></i> 012-345-6789</p>
+        </div>
+    </header>
+    <hr class="my-4">
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="text-muted">
+
+                <p class="mb-1">4068 Post Avenue Newfolden, MN 56738</p>
+                <p class="mb-1">+ 01 677 567 88</p>
+                <p>A</p>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActiveIngredient)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dosage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DosageForm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+           
+           
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            row++;
+        <tr>
+                <td>
+                   @row
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActiveIngredient)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dosage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DosageForm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+           
+           
+        </tr>
+}
+    </tbody>
+</table>
+<style>
+    .container {
+        padding: 20px;
+    }
+
+    /* Styles for the card */
+    .card {
+        border: 1px solid #ddd;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Styles for the header and logo */
+    .invoice-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #007BFF;
+        color: #fff;
+    }
+
+
+
+    /* Styles for the invoice details */
+    .invoice-details h4 {
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .invoice-details h2 {
+        font-size: 24px;
+        margin: 0;
+    }
+
+    .invoice-details p {
+        margin: 5px 0;
+    }
+
+    /* Styles for the rest of the content */
+    .card-body {
+        padding: 20px;
+    }
+</style>

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.SelfDiagnosModel>
+
+@{
+    ViewData["Title"] = "Diagnos_list";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h1>Diagnos_list</h1>
+
+<p>
+   
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DiagnosisId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SymptomName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Treatment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiagnosisId)
+                </td>
+                <td style=" word-break: break-all;">
+                @Html.DisplayFor(modelItem => item.SymptomName)
+            </td style=" word-break: break-all;">
+            <td style=" word-break: break-all;">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td style=" word-break: break-all;">
+            <td style=" word-break: break-all;">
+                @Html.DisplayFor(modelItem => item.Treatment)
+            </td>
+                <td>
+                    
+                    @*<a asp-controller="Walk_In" asp-action="Treat_diagnos_add" asp-route-ID="@item.DiagnosisId">Add</a>*@ 
+                    <a asp-controller="Walk_In" asp-action="Treat_diagnos_add" asp-route-DiagnosisId="@item.DiagnosisId">Add Treatment</a> |
+                <a asp-action="Delete" asp-route-id="@item.DiagnosisId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

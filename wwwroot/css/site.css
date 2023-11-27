@@ -1,0 +1,380 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 0px;
+}
+
+.h1Title {
+    margin-bottom: 0;
+}
+
+.header_ {
+    background-color: darkgray;
+    box-shadow: 0 13px 10px 6px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    text-align: center;
+}
+
+.header_2 {
+    padding: 12px;
+    font-size: 15px;
+    float: left;
+    width: 100%;
+}
+
+.header {
+    background-color: white;
+    padding: 13px;
+    text-align: center;
+    z-index: 999;
+}
+
+    .header h5 {
+        font-weight: 600;
+        font-size: 30px;
+    }
+
+#navbar {
+    overflow: hidden;
+    background-color: #333;
+}
+
+    #navbar a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        /*padding: 14px 16px;*/
+        text-decoration: none;
+        font-size: 20px;
+    }
+
+        #navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        #navbar a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+.content {
+    padding: 16px;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+    .sticky + .content {
+        padding-top: 60px;
+    }
+
+.nav_bac {
+    /*background-color: #509494;*/
+    border-radius: 9px;
+}
+
+.logo_img {
+    
+    height: 50px;
+    margin-right: 17px;
+    color: aliceblue
+}
+
+.navbar {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    color: white;
+    font-size: 14px;
+}
+
+#navbar {
+    background-image: linear-gradient(180deg,#6f6b7d,#4693af,#ffffff);
+    opacity: 9;
+    z-index: 999;
+}
+
+/*sticky content*/
+
+
+.auto-slider {
+    font-weight: 600;
+    height: 20px;
+}
+
+
+@keyframes slide {
+    6% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-10%);
+    }
+
+    30% {
+        transform: translateX(-80%);
+    }
+
+    40% {
+        transform: translateX(-80%);
+    }
+}
+
+/* google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+    list-style: none;
+    text-decoration: none;
+    font-family: "Poppins",sans-serif;
+}
+
+:root {
+    --text-color: #000000;
+    --main-color: #83b735;
+}
+
+
+/* header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 100px;
+    background: #edecea;
+} */
+
+/*header {
+    background: #edecea;
+    position: fixed;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}*/
+
+nav {
+    flex: 1;
+    text-align: right;
+}
+
+    nav ul {
+        display: inline-block;
+        list-style-type: none;
+    }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+a {
+    text-decoration: none;
+    font-size: 16px;
+}
+
+    a:hover {
+        color: #83b735;
+    }
+
+.loho {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.logo span {
+    color: var(--main-color);
+}
+
+/* .navbar a{
+    font-size: 1rem;
+    
+    font-weight: 500;
+    
+}
+.navbar a:hover{
+    color: var(--main-color);
+} */
+#menu-icon {
+    font-size: 2rem;
+    cursor: pointer;
+    display: none;
+}
+
+.home {
+    width: 100%;
+    min-height: 100vh;
+    /*background-image: url("/css/Slide1.JPG");*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    word-wrap: normal;
+}
+
+.home-text h1 {
+    font-size: 2.7rem;
+}
+
+.home-text p {
+    font-size: 1.200rem;
+    margin: 0.4rem 0 1.8rem;
+}
+
+.home-text span {
+    color: var(--main-color);
+}
+
+.btn {
+    padding: 10px 14px;
+    background: var(--main-color);
+    color: #fff;
+    border-radius: 0.3rem;
+    font-size: 14px;
+}
+
+    .btn:hover {
+        background: #8fc53d;
+    }
+
+.title-price {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+}
+
+    .title-price h3 {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+.box span {
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding-left: 12px;
+    color: var(--main-color);
+}
+/* .stars .bx{
+    color: var(--main-color);
+}
+.box .bx-cart{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 7px;
+    font-size: 20px;
+    color: #fff;
+    border-radius: 4px 0 4px 0;
+    background: var(--main-color);
+}
+.box .bx-cart:hover{
+    background: #8fc53d;
+} */
+
+
+#tpc {
+    box-shadow: 0 0 5px black;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+    #tpc:hover {
+        transform: translateY(-10px);
+    }
+/* Container holding the image and the text */
+.cont {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+/* Bottom left text */
+.bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+}
+
+/* Top left text */
+.top-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+}
+
+/* Top right text */
+.top-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+}
+
+/* Bottom right text */
+.bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+}
+
+/* Centered text */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/*
+astrok*/
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    left: -10000px;
+    overflow: hidden;
+}
+
+.control, fieldset {
+    margin: 6px 0;
+}
+
+label {
+    display: inline-block;
+    width: 120px;
+    vertical-align: top;
+}
+
+.required {
+    color: red;
+}

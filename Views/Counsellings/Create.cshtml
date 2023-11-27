@@ -1,0 +1,77 @@
+﻿@model E_Nompilo_Healthcare_system.Models.Counselling
+@using E_Nompilo_Healthcare_system.Models
+@{
+    
+    ViewData["ViewTitle"] = "Make New Bookings";
+    ViewData["Description"] = "Make a booking as a patient";
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_FamilyPlanLayout.cshtml";
+}
+
+
+<h4>Book Counselling</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notes" class="control-label"></label>
+                <input asp-for="Notes" class="form-control" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Book" class="btn btn-primary" />
+            </div>
+        </form>
+        @*<div class="col-md-12">
+            <table class="table table-striped">
+    <thead class="col-md-12 table-primary">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MainUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (Counselling item in ViewBag.Con) {
+        <tr>
+           <td>@Html.DisplayFor(modelItem =>item.MainUser.FirstName)
+           @Html.DisplayFor(modelItem =>item.MainUser.LastName)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+        </div>*@
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+

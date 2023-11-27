@@ -1,0 +1,199 @@
+﻿@model List<Combined_BookingModel>
+@{
+    ViewData["Title"] = "Booking Report";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    int row = 0;
+}
+
+
+<h2 class="text-center">Bookings Report</h2>
+<hr />
+<!-- Filter form with horizontal layout -->
+<form asp-controller="Reports" asp-action="FilterByDateAndBooking" method="get" class="form-inline">
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="startDate" class="">From:</label>
+        <input class="form-control" type="date" id="startDate" name="startDate" required>
+    </div>
+
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="endDate" class="">From:</label>
+        <input class="form-control" type="date" id="endDate" name="endDate" required>
+    </div>
+
+    <button class="btn btn-primary mb-2" type="submit">Filter</button>
+    <a href="javascript:window.print()" role="tab" class="ml-9 ">
+        <span class="float-end float-right "><i style="font-size:32px;" class="fa fa-print"></i></span>
+    </a>
+</form>
+
+
+
+<div class="card-body">
+    <header class="invoice-header">
+        <div class="logo">
+            <img src="~/images/111.png" style="top:110px;  width:300px; height:200px; font-size:20px;" class="  imgg float-start">
+        </div>
+        <div class="invoice-details">
+
+            <h2>e-Nomplo Healthcare</h2>
+            <p>Easatern Cape, Korten</p>
+            <p><i class="uil uil-envelope-alt me-1"></i> e-Nompilo@yahoo.com</p>
+            <p><i class="uil uil-phone me-1"></i> 012-345-6789</p>
+        </div>
+    </header>
+    <hr class="my-4">
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="text-muted">
+
+                <p class="mb-1">4068 Post Avenue Newfolden, MN 56738</p>
+                <p class="mb-1">+ 01 677 567 88</p>
+                <p>A</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Table to display user data -->
+<table class="report-table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Booking Ref</th>
+            <th>Date Of Appointment</th>
+            <th> Time</th>
+            
+            <th>Last Name</th>
+            <th>Email</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            row++;
+            <tr>
+                <td>@row</td>
+                <td>@user.AppointmentModel.BookingId</td>
+                <td>@user.AppointmentModel.DateofAppointment</td>
+                <td>@user.AppointmentModel.Time</td>
+                
+                <td>@user.HUser.LastName</td>
+                <td>@user.HUser.Email</td>
+                
+               
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Filter form -->
+
+<style>
+
+    /* CSS in site.css */
+
+    /* Style the table */
+    /* CSS in report.css */
+
+    /* Style the report title */
+    h1 {
+        text-align: center;
+        font-size: 24px;
+    }
+
+    /* Style the report table */
+    .report-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+
+        /* Style table headers */
+        .report-table th {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+        }
+
+        /* Style table rows */
+        .report-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .report-table tr:hover {
+            background-color: #ddd;
+        }
+
+        /* Style table cells */
+        .report-table td, .report-table th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+    /* CSS in site.css */
+
+    /* Style the form container */
+    .filter-form {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+        /* Style the date inputs */
+        .filter-form .form-control {
+            width: 150px; /* Adjust the width as needed */
+            margin-right: 10px; /* Add some spacing between elements */
+        }
+
+        /* Style the Filter button */
+        .filter-form .btn-primary {
+            margin-left: 10px; /* Add some spacing between inputs and button */
+        }
+
+    .container {
+        padding: 20px;
+    }
+
+    /* Styles for the card */
+    .card {
+        border: 1px solid #ddd;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Styles for the header and logo */
+    .invoice-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #007BFF;
+        color: #fff;
+    }
+
+
+
+    /* Styles for the invoice details */
+    .invoice-details h4 {
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .invoice-details h2 {
+        font-size: 24px;
+        margin: 0;
+    }
+
+    .invoice-details p {
+        margin: 5px 0;
+    }
+
+    /* Styles for the rest of the content */
+    .card-body {
+        padding: 20px;
+    }
+</style>
+

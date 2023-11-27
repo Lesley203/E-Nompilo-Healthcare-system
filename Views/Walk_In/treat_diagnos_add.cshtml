@@ -1,0 +1,39 @@
+﻿@model E_Nompilo_Healthcare_system.Models.IllnessTreatmentModel
+
+@{
+    ViewData["Title"] = "treat_diagnos_add";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+
+<h3>Illness Treatment</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Walk_In" asp-action="Treat_diagnos_ad" method="post" class="form-horizontal">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input hidden asp-for="DiagnosisId" value="@ViewData["DiagnosisId"]" />
+
+
+            <div class="form-group">
+                <label asp-for="Illness_Treatment" class="control-label"></label>
+                <input asp-for="Illness_Treatment" class="form-control" />
+                <span asp-validation-for="Illness_Treatment" class="text-danger"></span>
+            </div>
+           @* <div class="form-group">
+                <label asp-for="DiagnosisId" class="control-label"></label>
+                <select hidden asp-for="DiagnosisId" class ="form-control" asp-items="ViewBag.DiagnosisId"></select>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Walk_In" asp-action="treat_diagnos_add">Back to List</a>
+</div>
+

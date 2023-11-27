@@ -1,0 +1,194 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.VaccineScreening>
+
+@{
+    ViewData["Title"] = "Nurse_Screen_Report";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    int row = 0;
+}
+
+<h1>Screenings Report</h1>
+<hr />
+<form asp-controller="Reports" asp-action="FilterByDateAndNurse_Scre" method="get" class="form-inline">
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="startDate" class="">From:</label>
+        <input class="form-control" type="date" id="startDate" name="startDate" required>
+    </div>
+
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="endDate" class="">To:</label>
+        <input class="form-control" type="date" id="endDate" name="endDate" required>
+    </div>
+
+    <button class="btn btn-primary mb-2" type="submit">Filter</button>
+    <a href="javascript:window.print()" role="tab" class="ml-9 ">
+        <span class="float-end float-right "><i style="font-size:32px;" class="fa fa-print"></i></span>
+    </a>
+</form>
+<div class="card-body">
+    <header class="invoice-header">
+        <div class="logo">
+            <img src="~/images/111.png" style="top:110px;  width:300px; height:200px; font-size:20px;" class="  imgg float-start">
+        </div>
+        <div class="invoice-details">
+           
+            <h2>e-Nomplo Healthcare</h2>
+            <p>Easatern Cape, Korten</p>
+            <p><i class="uil uil-envelope-alt me-1"></i> e-Nompilo@yahoo.com</p>
+            <p><i class="uil uil-phone me-1"></i> 012-345-6789</p>
+        </div>
+    </header>
+    <hr class="my-4">
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="text-muted">
+ 
+                <p class="mb-1">4068 Post Avenue Newfolden, MN 56738</p>
+                <p class="mb-1">+ 01 677 567 88</p>
+                <p>A</p>
+            </div>
+        </div>
+    </div>
+    </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cough)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dizzines)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Abdominalpain)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Headache)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.legswelling)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.snezzing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChestPressure)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Allergy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Days)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TakenVac)
+            </th>
+           
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            row++;
+        <tr>
+          
+                <td>
+                   @row
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cough)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dizzines)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Abdominalpain)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Headache)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.legswelling)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.snezzing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChestPressure)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Allergy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Days)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TakenVac)
+            </td>
+            
+         
+           
+        </tr>
+}
+    </tbody>
+</table>
+<style>
+
+    .container {
+        padding: 20px;
+    }
+
+    /* Styles for the card */
+    .card {
+        border: 1px solid #ddd;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Styles for the header and logo */
+    .invoice-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #007BFF;
+        color: #fff;
+    }
+
+
+
+    /* Styles for the invoice details */
+    .invoice-details h4 {
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .invoice-details h2 {
+        font-size: 24px;
+        margin: 0;
+    }
+
+    .invoice-details p {
+        margin: 5px 0;
+    }
+
+    /* Styles for the rest of the content */
+    .card-body {
+        padding: 20px;
+    }
+</style>

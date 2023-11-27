@@ -1,0 +1,47 @@
+﻿@model E_Nompilo_Healthcare_system.Models.Vaccine_Information
+
+@{
+    ViewData["Title"] = "VaccineInfo_Edit";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+
+<h4>Vaccine_Information</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="VaccineInfo_Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="InformationID" />
+            <div class="form-group">
+                <label asp-for="VaccineName" class="control-label"></label>
+                <input asp-for="VaccineName" class="form-control" />
+                <span asp-validation-for="VaccineName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VaccineType" class="control-label"></label>
+                <input asp-for="VaccineType" class="form-control" />
+                <span asp-validation-for="VaccineType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VaccineDescription" class="control-label"></label>
+                <input asp-for="VaccineDescription" class="form-control" />
+                <span asp-validation-for="VaccineDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dose_Number" class="control-label"></label>
+                <input asp-for="Dose_Number" class="form-control" />
+                <span asp-validation-for="Dose_Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

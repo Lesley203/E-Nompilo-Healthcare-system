@@ -1,0 +1,118 @@
+﻿
+*{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+
+}
+
+body {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background-image: linear-gradient(#0094ff, #00ffff)
+}
+.Container{
+    max-width:620px;
+    padding: 28px;
+    margin: 0 28px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #00ffff;
+    box-shadow:0 15px 20px #0094ff;
+}
+h4{
+    font-size:26px;
+    font-weight: bold;
+    text-align: left;
+    color:blue;
+    padding-bottom: 8px;
+    border-bottom: 1px solid silver;
+
+}/*
+.card-body{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
+.form-group{
+    display: flex;
+    flex-wrap:wrap;
+    width:50%;
+    padding-bottom: 15px;
+}
+.form-group:nth-child(2n) {
+        justify-content: end;
+    }
+.control-label{
+    font-size: 16px;
+}
+.form-group input {
+    height: 40px;
+    width: 95%;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: 1px solid #0094ff;
+    outline: none;
+}
+.form-group:is(:focus,:valid) {
+    box-shadow: 0 3px 6px silver;
+}
+.gender-category label{
+    padding:0 20px 0 5px;
+    font-size: 14px;
+}
+.gender-category{
+    color:aquamarine;
+}
+.gender-category label, .gender-category input{
+    cursor: pointer;
+}
+.btn btn-primary {
+    margin: 15px 0;
+}
+.btn btn-primary {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    display: block;
+    font-size: 20px;
+    color: blue;
+    border: none;
+    border-radius: 5px;
+    background-image: linear-gradient(to right, blue, #0094ff);
+    cursor: pointer;
+    transition: 0.3s;
+}
+ .btn btn-primary button:hover {
+        background-image: linear-gradient(to right #00ffff, blue);
+    }
+
+@media(max-width:600px){
+    .Container{
+        min-width: 280px;
+    }
+    .content{
+        max-height:380px;
+        overflow:auto;
+    }
+    .form-group {
+        margin-bottom: 12px;
+        width: 100%;
+    }
+        .form-group:nth-child(2n) {
+            justify-content: space-between;
+        }
+    .gender-category{
+        display:flex;
+        justify-content: space-between;
+        width: 60%;
+    }
+    .content::webkit-scrollbar{
+        width:0;
+*/
+    }
+}

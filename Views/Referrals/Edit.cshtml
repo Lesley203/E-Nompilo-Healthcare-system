@@ -1,0 +1,51 @@
+﻿@model E_Nompilo_Healthcare_system.Models.Referrals
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="bg-primary">
+    <h1 class="text-center text-white">Edit Referrals</h1>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-action="ID" />
+            <div class="form-group">
+                <label hidden
+                    asp-for="Patient" class="control-label"></label>
+                <input hidden asp-for="Patient" class="form-control" />
+                <span hidden asp-validation-for="Patient" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReferralDate" class="control-label"></label>
+                <input asp-for="ReferralDate" class="form-control" />
+                <span asp-validation-for="ReferralDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reasons" class="control-label"></label>
+                <input asp-for="Reasons" class="form-control" />
+                <span asp-validation-for="Reasons" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpecificConcerns" class="control-label"></label>
+                <input asp-for="SpecificConcerns" class="form-control" />
+                <span asp-validation-for="SpecificConcerns" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReferredTo" class="control-label"></label>
+                <input asp-for="ReferredTo" class="form-control" />
+                <span asp-validation-for="ReferredTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary"</input>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back To List</a>
+</div>

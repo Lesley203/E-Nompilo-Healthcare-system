@@ -1,0 +1,165 @@
+﻿@model Get_VaccinatedModel
+@{
+    ViewData["Title"] = "Get_Vaccinated";
+    Layout = "~/Views/Shared/_VaccinationLayout.cshtml";
+    var timeList = ViewBag.TimeList as SelectList ?? new SelectList(new List<Vaccine_Information>(), "VaccineId", "VaccineType");
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" asp-controller="VaccineScreenings" asp-action="Get_Vaccinated" class="needs-validation" novalidate>
+                  
+                    <div class="row">
+                       
+                        <div class="col-12">
+                            <div class="form-heading align-content-center" style="position:center; ">
+                                <h3 class="align-content-center centered" style="position:center; margin-bottom:27px;">Vaccinate</h3>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-6">
+                            <div class="form-group local-forms">
+                                <label for="validationTooltip01">Type Of Vaccine <span class="login-danger">*</span></label>
+                               
+                                    <select asp-for="VaccineType" class="form-control" id="MedicationId" required>
+                                        <option selected disabled value="">Select Medication.......</option>
+                                    @foreach (Vaccine_Information item in ViewBag.TimeList)
+                                        {
+                                        <option value="@item.VaccineType">@item.VaccineType</option>
+                                        }
+                                    </select>
+                                <div class="invalid-feedback">
+                                    Please choose Vaccine Type.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms ">
+                                <label for="validationTooltip01">Notes<span class="login-danger"></span></label> 
+                                <input asp-for="Notes" type="text" class="form-control" id="date" ng-model="date" required>
+                                <div class="invalid-feedback">
+                                    Please provide a notes.
+                                </div>
+
+                            </div>
+                        </div>
+                       @*  <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms">
+                                <label hidden for="validationTooltip02">From <span class="login-danger">*</span></label>
+                                <div class="time-icon">
+                                    <input hidden  id="validationTooltip02" type="time" class="form-control" required>
+                                    <div class="invalid-feedback">
+                                        Please choose a start time.
+                                    </div>
+                                </div>
+                            </div>
+                        </div> *@
+                        
+                        <div class="col-12">
+                            <div class="doctor-submit text-end">
+                                @* <input type="submit" class="btn btn-info w-75" value="Create" />*@
+                                <input type="submit" class="btn btn-primary " value="Submit" />
+                                @*  <button type="submit" class="btn btn-primary cancel-form">Cancel</button>*@
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+
+    /* Add this style for button hover effect */
+    .btn-primary:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    /* Style for the "Update" button */
+    .btn-update {
+        background-color: #007bff; /* Primary blue */
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Smooth background color transition */
+    }
+
+    /* Style for the "Back to List" button */
+    .btn-back {
+        background-color: #007bff; /* Primary blue */
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Smooth background color transition */
+    }
+
+        /* Add this style for button hover effect */
+        .btn-back:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+    /* Style for the form container */
+    .form-container {
+        width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    /* Style for form labels */
+    .control-label {
+        font-weight: bold;
+    }
+
+    /* Style for form inputs */
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style for the submit button */
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+</style>
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+

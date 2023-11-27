@@ -1,0 +1,164 @@
+﻿@model IEnumerable<E_Nompilo_Healthcare_system.Models.SelfDiagnosModel>
+
+@{
+    ViewData["Title"] = "Self-Search";
+    Layout = "~/Views/Shared/_WalkinLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="search-card">
+            <div class="search-card-body">
+                <form asp-action="SelfSearch" method="get">
+                    <div class="search-heading">
+                        <h3>Self Diagnosis</h3>
+                    </div>
+                    <div class="search-input">
+                        <label for="SearchString">Illness <span class="login-danger">*</span></label>
+                        <div class="search-box">
+                            <input class="search-input-field" name="SearchString" type="text" value="@ViewData["CurrentFilter"]" />
+                            <button type="submit" class="search-btn">
+                                Search <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <div class="row">
+        @foreach (var symptom in Model)
+        {
+            <div class="col-md-4">
+                <div class="symptom-card">
+                    <h5 class="symptom-header">Illness</h5>
+                    <div class="symptom-name">@symptom.SymptomName</div>
+                    <h5 class="symptom-header">Description</h5>
+                    <div class="symptom-description">@symptom.Description</div>
+                    <h5 class="symptom-header">Symptoms</h5>
+                    <div class="symptom-treatment">@symptom.Treatment</div>
+                    <form asp-controller="Walk_In" asp-action="SelfHistoryDiagnosis" method="post">
+                        <input type="hidden" name="DiagnosisId" value="@symptom.DiagnosisId" />
+                        <button class="diagnose-btn" type="submit">Diagnose</button>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 class="no-results-text">Search for symptoms using the form above</h2>
+        </div>
+    </div>
+}
+
+<style>
+    /* Search Form Styling */
+    .search-card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .search-card-body {
+        padding: 0;
+    }
+
+    .search-heading h3 {
+        font-size: 24px;
+        font-weight: 300;
+        margin: 0 0 20px;
+    }
+
+    .search-input label {
+        font-weight: bold;
+    }
+
+    .search-box {
+        display: flex;
+        align-items: center;
+    }
+
+    .search-input-field {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    .search-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .search-btn:hover {
+            background-color: #0056b3;
+        }
+
+    /* Symptom Result Styling */
+    .symptom-card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .symptom-header {
+        font-size: 16px;
+        
+        margin-top: 0;
+    }
+
+    .symptom-name {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .symptom-description {
+        margin-top: 5px;
+        font-style: italic;
+    }
+
+    .symptom-treatment {
+        margin-top: 10px;
+        font-style: italic;
+        color: #666;
+    }
+
+    .diagnose-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+    }
+
+        .diagnose-btn:hover {
+            background-color: #0056b3;
+        }
+
+    /* No Results Text Styling */
+    .no-results-text {
+        font-size: 18px;
+        color: #007bff;
+    }
+</style>

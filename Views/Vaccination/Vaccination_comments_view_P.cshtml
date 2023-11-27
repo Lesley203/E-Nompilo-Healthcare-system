@@ -1,0 +1,24 @@
+﻿@model E_Nompilo_Healthcare_system.Models.Vaccination_Feedback_commentsModel
+@{
+    ViewData["Title"] = "Vaccination_comments_view_P";
+    Layout = "~/Views/Shared/_VaccinationLayout.cshtml";
+}
+<div>
+    <h4>Feedback_comments</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Comments)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Comments)
+        </dd>
+
+
+    </dl>
+</div>
+<div>
+
+    <a asp-action="Report_Review">Back to List</a>
+</div>
+

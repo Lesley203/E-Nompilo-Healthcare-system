@@ -1,0 +1,219 @@
+﻿@model List<E_Nompilo_Healthcare_system.Models.AppointmentModel>
+@using Microsoft.AspNetCore.Identity;
+
+@{
+    ViewData["Title"] = "AppointmentDetails";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+}
+<ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav ml-3">
+    <li class="nav-item">
+        <a asp-controller="Walk_In" asp-action="BookingAppointForm" role="tab" class="btnn  btn-border-3 active">
+            <span>Book</span>
+        </a>
+    </li>
+    
+   
+    <li class="nav-item">
+        <a asp-controller="Walk_In" asp-action="AppointmentDetailsTab" role="tab" class="btnn  btn-border-3 active">
+            <span>Table List</span>
+        </a>
+</ul>
+@*<th>
+   
+
+</th>*@
+<hr/>
+@if (Model != null && Model.Any())
+{
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        @foreach (var appoint in Model)
+                        {
+                            <form></form>
+                            <div class="card-body">
+                                <header class="invoice-header">
+                                    <div class="logo">
+                                        <img src="~/images/111.png" style="top:110px;  width:300px; height:200px; font-size:20px;" class="  imgg float-start">
+                                    </div>
+                                    <div class="invoice-details">
+                                        <h4>Appointment Reference: @appoint.BookingId <span class="badge bg-success">Appointment</span></h4>
+                                        <h2>e-Nomplo Healthcare</h2>
+                                        <p>Easatern Cape, Korten</p>
+                                        <p><i class="uil uil-envelope-alt me-1"></i> e-Nompilo@yahoo.com</p>
+                                        <p><i class="uil uil-phone me-1"></i> 012-345-6789</p>
+                                    </div>
+                                </header>
+                                <hr class="my-4">
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="text-muted">
+                                            <h5 class="font-size-16 mb-3">Appointment of:</h5>
+                                            <h5 class="font-size-15 mb-2">@ViewData["LastNameWlk"]</h5>
+                                            <p class="mb-1">4068 Post Avenue Newfolden, MN 56738</p>
+                                            <p class="mb-1">@ViewData["Email"]</p>
+                                            <p>@ViewData["PhoneNumb"]</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="text-muted text-sm-end">
+                                            <div>
+                                                <h5 class="font-size-15 mb-1">First Time Visit</h5>
+                                                <p>@appoint.FirstTimeVisit</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="py-2">
+                                    <h5 class="font-size-15">Appointment Details</h5>
+
+                                    <div class="table-responsive">
+                                        <table class="table align-middle table-nowrap table-centered mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 70px;">BookingId</th>
+                                                    <th>DateofAppointment</th>
+                                                    <th>Time</th>
+                                                    <th>ConsultingPerson</th>
+                                                    
+                                                    <th class="text-end" style="width: 120px;">TypeOfAppointment</th>
+                                                    <th>Notes</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">@appoint.BookingId</th>
+                                                    <td>
+                                                        <div>
+                                                            <h5 class="text-truncate font-size-14 mb-1">@appoint.DateofAppointment</h5>
+                                                            <p class="text-muted mb-0"></p>
+                                                        </div>
+                                                    </td>
+                                                    <td>@appoint.Time</td>
+                                                    <td>@appoint.ConsultingPerson</td>
+                                                    
+                                                    <td class="text-end">@appoint.TypeOfAppointment</td>
+                                                    <td>@appoint.Notes</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="d-print-none mt-4">
+                                        <form>
+                                        <div class="float-end">
+                                            <a href="javascript:window.print()" role="tab" class="ml-9 ">
+                                                <span class="float-end float-right "><i style="font-size:32px;" class="fa fa-print"></i></span>
+                                            </a>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <br /><br />
+}
+else
+{
+    <h2 class="text-danger">No Appointment Booked</h2>
+}
+<style>
+    /* Reset some default browser styles */
+    body, h1, h2, h3, p {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    /* Styles for the card */
+    .card {
+        border: 1px solid #ddd;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Styles for the header and logo */
+    .invoice-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #007BFF;
+        color: #fff;
+    }
+
+   
+
+    /* Styles for the invoice details */
+    .invoice-details h4 {
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .invoice-details h2 {
+        font-size: 24px;
+        margin: 0;
+    }
+
+    .invoice-details p {
+        margin: 5px 0;
+    }
+
+    /* Styles for the rest of the content */
+    .card-body {
+        padding: 20px;
+    }
+
+    /* Table styles */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+        .table th, .table td {
+            padding: 8px 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+        }
+
+    /* Button styles */
+    .btn-success {
+        background-color: #28a745;
+        color: #fff;
+        padding: 10px 20px;
+        text-decoration: none;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+</style>
+

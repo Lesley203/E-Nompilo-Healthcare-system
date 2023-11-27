@@ -1,0 +1,135 @@
+﻿@model AddUserModel
+@{
+    ViewData["Title"] = "Add_New_Patient";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" asp-action="Add_New_Patient" class="needs-validation" novalidate>
+                    <div class="row">
+
+                        <div class="col-12">
+                            <div class="form-heading align-content-center" style="position:center; ">
+                                <h3 class="align-content-center centered" style="position:center; margin-bottom:27px;">New Patient</h3>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms ">
+                                <label>First Name<span class="login-danger">*</span></label>
+                                <input id="validationCustom04" asp-for="FirstName" class="form-control " type="text" required>
+                                <div class="invalid-feedback">
+                                    Please provide the name.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-4">
+                            <div class="form-group local-forms">
+                                <label>Last Name<span class="login-danger">*</span></label>
+                                <div class="time-icon">
+                                    <input id="validationCustom04" asp-for="LastName" type="text" class="form-control" required>
+                                    <div class="invalid-feedback">
+                                        Please provide the lastname.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="col-12 col-md-6 col-xl-6">
+                            <div class="form-group local-forms">
+                                <label>Gender</label>
+                         
+                                    <select asp-for="Gender" class="form-select" id="validationCustom04" required>
+                                        <option selected disabled value="">Choose appointment type...</option>
+                                    <option>MR</option>
+                                    <option>MRS</option>
+                                    <option>MISS</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select the gender.
+                                </div>
+                            </div>
+                        </div>
+                        
+
+
+                        <div class="col-12 col-sm-12">
+                            <div class="form-group local-forms">
+                                <label>Phone Number <span class="login-danger">*</span></label>
+                                <input id="validationCustom04" asp-for="PhoneNumb" class="form-control" type="number" required>
+                                <div class="invalid-feedback">
+                                    Please Provive a number.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12">
+                            <div class="form-group local-forms">
+                                <label>Email<span class="login-danger">*</span></label>
+                                <input id="validationCustom04" asp-for="Email" class="form-control" type="email" required>
+                                <div class="invalid-feedback">
+                                    Please an email.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12">
+                            <div class="form-group local-forms">
+                                <label>Date Of Birth <span class="login-danger">*</span></label>
+                                <input id="validationCustom04" asp-for="DateofBirth" class="form-control" type="date" required>
+                                <div class="invalid-feedback">
+                                    Please provide a date of birth.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12">
+                            <div class="form-group local-forms">
+                                <label>Password <span class="login-danger">*</span></label>
+                                <input id="validationCustom04" asp-for="Password" class="form-control" type="password" required>
+                                <div class="invalid-feedback">
+                                    Please provide a password.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12">
+                            <div class="form-group local-forms">
+                                <label>Confirm Password <span class="login-danger">*</span></label>
+                                <input id="validationCustom04" asp-for="ConfirmPassword" class="form-control" type="password" required>
+                                <div class="invalid-feedback">
+                                    Confirm the password.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="doctor-submit text-end">
+                                @* <input type="submit" class="btn btn-info w-75" value="Create" />*@
+                                <input type="submit" class="btn btn-primary " value="Submit" />
+                                @*  <button type="submit" class="btn btn-primary cancel-form">Cancel</button>*@
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Nompilo_Healthcare_system.Migrations
 {
     [DbContext(typeof(HealthcareDbContext))]
-    [Migration("20231127160647_kjlk")]
-    partial class kjlk
+    [Migration("20231127224555_iniw")]
+    partial class iniw
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

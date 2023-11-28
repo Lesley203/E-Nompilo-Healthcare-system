@@ -5,7 +5,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace E_Nompilo_Healthcare_system.Migrations
 {
-    public partial class kjlk : Migration
+
+    public partial class iniw : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

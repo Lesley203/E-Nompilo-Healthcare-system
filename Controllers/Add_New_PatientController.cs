@@ -66,45 +66,7 @@ namespace E_Nompilo_Healthcare_system.Controllers
                 }
                 
             }
-            //if (patient.Email == null)
-            //{
-
-
-            //    var user = new HealthcareSystemUser()
-            //    {
-            //        FirstName = patient.FirstName,
-            //        LastName = patient.LastName,
-            //        Email = patient.Email,
-            //        Gender = patient.Gender,
-            //        PhoneNumb = patient.PhoneNumb,
-            //        DateofBirth = patient.DateofBirth,
-            //        EmailConfirmed = true,
-            //        UserName = patient.Email
-            //    };
-            //    var result = await _userManager.CreateAsync(user, Password);
-            //    if (result.Succeeded)
-            //    {
-
-            //        await _userManager.AddToRoleAsync(user, "Patient");
-
-            //        var userId = await _userManager.GetUserIdAsync(user);
-
-            //        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            //        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-
-
-            //        string returnURL = Url.Content("~/");
-            //        ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            //        var callbackUrl = Url.Page(
-            //          "/Account/Login",
-            //          pageHandler: null,
-            //          values: new { area = "Identity", userId = userId, code = code, returnUrl = returnURL },
-            //          protocol: Request.Scheme);
-
-            //    }
-
-            //}
-
+           
 
             return View(model);
         }

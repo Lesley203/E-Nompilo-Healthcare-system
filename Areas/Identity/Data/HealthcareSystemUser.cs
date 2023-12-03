@@ -50,6 +50,7 @@ public class HealthcareSystemUser : IdentityUser
 
     public HealthcareSystemUser()
     {
+
         Date_AccountCreated = DateTime.Now;
     }
 

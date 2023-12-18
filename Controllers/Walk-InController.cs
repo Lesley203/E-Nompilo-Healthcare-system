@@ -24,7 +24,6 @@ namespace E_Nompilo_Healthcare_system.Controllers
 
         //Patient Walk-in Dashboard
         public async Task<IActionResult> Index()
-
         {
             var userI = await this._userManager.GetUserAsync(User);
             string lastName = userI.LastName;
@@ -415,6 +414,7 @@ namespace E_Nompilo_Healthcare_system.Controllers
                 return RedirectToAction("DoctorManageQueue");
             }
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Delete_Appointmentt(int? BookingId)

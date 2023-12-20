@@ -721,6 +721,7 @@ namespace E_Nompilo_Healthcare_system.Controllers
 
             return View(model);
         }
+
         public async Task<IActionResult> Illness_Treatment(int id)
         {
             var userII = await this._userManager.GetUserAsync(User);
